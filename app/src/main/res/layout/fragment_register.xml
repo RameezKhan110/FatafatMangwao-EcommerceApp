@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterFragment" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/createacc_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create An Account"
+            android:textColor="#01456B"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginStart="19dp"
+            android:layout_marginTop="60dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="67dp"
+            android:layout_marginEnd="31dp"
+            android:text="Skip"
+            android:textColor="#AAAAAA"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/createacc_tv"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="36dp"
+            android:id="@+id/name_ll"
+            android:layout_marginTop="47dp"
+            android:background="@drawable/input_fields_bg"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/createacc_tv">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="2dp"
+                android:layout_gravity="center"
+                android:src="@drawable/email_illustration">
+
+            </ImageView>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:layout_marginStart="12dp"
+                android:hint="Login with Email or Number"
+                android:paddingVertical="10dp">
+
+            </com.google.android.material.textfield.TextInputEditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="36dp"
+            android:id="@+id/email_ll"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/input_fields_bg"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/name_ll">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="2dp"
+                android:layout_gravity="center"
+                android:src="@drawable/email_illustration">
+
+            </ImageView>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:layout_marginStart="12dp"
+                android:hint="Enter you Email Address"
+                android:paddingVertical="10dp">
+
+            </com.google.android.material.textfield.TextInputEditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="36dp"
+            android:id="@+id/pass_ll"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/input_fields_bg"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/email_ll">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="2dp"
+                android:layout_gravity="center"
+                android:src="@drawable/email_illustration">
+
+            </ImageView>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:layout_marginStart="12dp"
+                android:hint="Enter Password"
+                android:paddingVertical="10dp">
+
+            </com.google.android.material.textfield.TextInputEditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="36dp"
+            android:id="@+id/confirmpass_ll"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/input_fields_bg"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pass_ll">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="2dp"
+                android:layout_gravity="center"
+                android:src="@drawable/email_illustration">
+
+            </ImageView>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="8dp"
+                android:layout_marginStart="12dp"
+                android:hint="Confirm Password"
+                android:paddingVertical="10dp">
+
+            </com.google.android.material.textfield.TextInputEditText>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="262dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="42dp"
+            android:text="Sign Up"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:id="@+id/signup_btn"
+            android:background="@drawable/loginbtn_bg"
+            android:layout_marginHorizontal="49dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/confirmpass_ll">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/goToLogin_tv"
+            android:text="Already have an account? Login"
+            android:textColor="@color/black"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:layout_marginTop="18dp"
+            app:layout_constraintTop_toBottomOf="@id/signup_btn"
+            app:layout_constraintStart_toStartOf="@id/signup_btn"
+            app:layout_constraintEnd_toEndOf="@id/signup_btn">
+
+        </TextView>
+
+        <View
+            android:layout_width="109dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="32dp"
+            android:background="#B3B3B3"
+            android:layout_marginStart="35dp"
+            android:id="@+id/view1"
+            app:layout_constraintTop_toBottomOf="@id/goToLogin_tv"
+            android:layout_height="1dp">
+
+        </View>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="18dp"
+            android:text="Or"
+            android:id="@+id/or_tv"
+            android:layout_marginEnd="23dp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toStartOf="@+id/view2"
+            app:layout_constraintStart_toEndOf="@id/view1"
+            app:layout_constraintTop_toBottomOf="@id/goToLogin_tv">
+
+        </TextView>
+
+        <View
+            android:layout_width="109dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="32dp"
+            android:background="#B3B3B3"
+            android:layout_marginEnd="35dp"
+            android:id="@+id/view2"
+            app:layout_constraintTop_toBottomOf="@id/goToLogin_tv"
+            android:layout_height="1dp">
+
+        </View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="32dp"
+            android:id="@+id/fb_ll"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="horizontal"
+            android:background="@drawable/social_login_bg"
+            android:layout_marginHorizontal="36dp"
+            app:layout_constraintTop_toBottomOf="@id/or_tv">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/fblogo"
+                android:layout_marginStart="16dp"
+                android:layout_marginVertical="11dp">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Continue with Facebook"
+                android:textSize="18sp"
+                android:gravity="center_vertical"
+                android:textColor="#01456B"
+                android:layout_gravity="center"
+                android:layout_marginStart="18dp"
+                android:layout_marginVertical="8dp">
+
+            </TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginTop="21dp"
+            android:id="@+id/google_ll"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:orientation="horizontal"
+            android:background="@drawable/social_login_bg"
+            android:layout_marginHorizontal="36dp"
+            app:layout_constraintTop_toBottomOf="@id/fb_ll">
+
+            <ImageView
+                android:layout_width="23dp"
+                android:layout_height="23dp"
+                android:src="@drawable/googlelogo"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginVertical="11dp">
+
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Continue with Google"
+                android:textSize="18sp"
+                android:textColor="#BF0000"
+                android:layout_gravity="center"
+                android:layout_marginStart="18dp"
+                android:layout_marginVertical="8dp">
+
+            </TextView>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

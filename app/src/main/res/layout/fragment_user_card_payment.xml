@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".UserCardPayment">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="41dp"
+        android:layout_marginStart="30dp">
+
+    </ImageView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Payment"
+        android:textSize="24sp"
+        android:id="@+id/payment_tv"
+        android:textColor="@color/text_color"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="31dp">
+
+    </TextView>
+
+    <Spinner
+        android:id="@+id/selectBank_spinner"
+        android:layout_width="279dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="23dp"
+        android:background="@drawable/social_login_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/payment_tv"
+        app:layout_constraintTop_toBottomOf="@id/payment_tv">
+
+    </Spinner>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="279dp"
+        android:layout_height="50dp"
+        android:id="@+id/cardTitle_txtLayout"
+        app:layout_constraintTop_toBottomOf="@id/selectBank_spinner"
+        app:layout_constraintStart_toStartOf="@id/selectBank_spinner"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="@id/selectBank_spinner"
+        android:hint="Card Title">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:background="@drawable/social_login_bg"
+            android:id="@+id/cardTitle_et"
+            android:layout_height="match_parent">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="279dp"
+        android:layout_height="50dp"
+        android:id="@+id/cardNumber_txtLayout"
+        app:layout_constraintTop_toBottomOf="@id/cardTitle_txtLayout"
+        app:layout_constraintStart_toStartOf="@id/cardTitle_txtLayout"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="@id/cardTitle_txtLayout"
+        android:hint="Card Number">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:background="@drawable/social_login_bg"
+            android:id="@+id/cardNumber_et"
+            android:layout_height="match_parent">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cardCvc_txtLayout"
+        android:layout_width="125dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:hint="Cvc Code"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/cardNumber_txtLayout"
+        app:layout_constraintTop_toBottomOf="@id/cardNumber_txtLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cardCvc_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/social_login_bg">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cardExpiry_txtLayout"
+        android:layout_width="125dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:hint="Expiry Date"
+        app:layout_constraintEnd_toEndOf="@id/cardNumber_txtLayout"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@id/cardCvc_txtLayout"
+        app:layout_constraintTop_toBottomOf="@id/cardNumber_txtLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cardExpiry_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/social_login_bg">
+
+        </com.google.android.material.textfield.TextInputEditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/price_btn"
+        android:layout_width="198dp"
+        android:layout_height="45dp"
+        android:layout_marginHorizontal="49dp"
+        android:layout_marginTop="108dp"
+        android:background="@drawable/loginbtn_bg"
+        android:gravity="center"
+        android:text="2400 Rs."
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@id/cardNumber_txtLayout"
+        app:layout_constraintHorizontal_bias="0.417"
+        app:layout_constraintStart_toStartOf="@id/cardNumber_txtLayout"
+        app:layout_constraintTop_toBottomOf="@id/cardNumber_txtLayout">
+
+    </TextView>
+
+    <TextView
+        android:layout_width="195dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:text="Return to Cart"
+        android:id="@+id/returnToCart_btn"
+        android:textSize="18sp"
+        android:textColor="#01456B"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@drawable/signupbtn_bg"
+        android:layout_marginHorizontal="49dp"
+        app:layout_constraintTop_toBottomOf="@+id/price_btn"
+        app:layout_constraintEnd_toEndOf="@id/price_btn"
+        app:layout_constraintStart_toStartOf="@id/price_btn"
+        >
+
+    </TextView>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

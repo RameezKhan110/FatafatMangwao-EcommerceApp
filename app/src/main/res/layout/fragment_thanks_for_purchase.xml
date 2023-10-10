@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ThanksForPurchaseFragment">
+
+    <ImageView
+        android:layout_width="307dp"
+        android:layout_height="307dp"
+        android:src="@drawable/thanksforpurchase"
+        android:layout_marginTop="80dp"
+        android:id="@+id/thanksForPurchase_img"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="25dp">
+
+    </ImageView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thanks You For Your Purchase"
+        android:textColor="#000000"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:id="@+id/thanksForPurchase_tv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/thanksForPurchase_img">
+
+    </TextView>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#000000"
+        android:textAlignment="center"
+        android:id="@+id/thanksForPurchaseDesc_tv"
+        app:layout_constraintTop_toBottomOf="@id/thanksForPurchase_tv"
+        app:layout_constraintStart_toStartOf="@id/thanksForPurchase_tv"
+        app:layout_constraintEnd_toEndOf="@id/thanksForPurchase_tv"
+        android:layout_marginTop="17dp"
+        android:text="You will recieve your confirmation email with your order number shortly">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/trackOrder_btn"
+        android:layout_width="195dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="17dp"
+        android:background="@drawable/loginbtn_bg"
+        android:gravity="center"
+        android:text="Track Order"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/thanksForPurchaseDesc_tv">
+
+    </TextView>
+
+    <TextView
+        android:layout_width="195dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:text="Home"
+        android:id="@+id/backToHome_Btn"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:background="@drawable/signupbtn_bg"
+        app:layout_constraintTop_toBottomOf="@+id/trackOrder_btn"
+        app:layout_constraintEnd_toEndOf="@id/trackOrder_btn"
+        app:layout_constraintStart_toStartOf="@id/trackOrder_btn"
+        >
+
+    </TextView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

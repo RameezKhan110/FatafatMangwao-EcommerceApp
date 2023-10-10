@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="303dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="11dp"
+    app:cardBackgroundColor="#FDFAFA"
+    app:cardCornerRadius="10dp"
+    android:elevation="12dp"
+    android:layout_marginStart="29dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ImageView
+            android:layout_width="92dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="13dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/food"
+            android:layout_marginVertical="18dp"
+            android:id="@+id/itemPic_img"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.362" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="White Meat Shop"
+            android:textSize="16sp"
+            android:id="@+id/itemName_tv"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/itemPic_img"
+            app:layout_constraintStart_toEndOf="@id/itemPic_img">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Minimum Rs."
+            android:layout_marginTop="6dp"
+            android:textSize="10sp"
+            android:id="@+id/Rs_tv"
+            android:textColor="#000000"
+            app:layout_constraintStart_toStartOf="@id/itemName_tv"
+            app:layout_constraintTop_toBottomOf="@id/itemName_tv">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="249"
+            android:id="@+id/itemPrice_tv"
+            android:textColor="#000000"
+            app:layout_constraintTop_toTopOf="@id/Rs_tv"
+            app:layout_constraintBottom_toBottomOf="@id/Rs_tv"
+            app:layout_constraintStart_toEndOf="@id/Rs_tv"
+            android:textSize="10sp">
+
+        </TextView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/time"
+            android:id="@+id/clock_img"
+            android:layout_marginTop="7dp"
+            app:layout_constraintStart_toStartOf="@id/Rs_tv"
+            app:layout_constraintTop_toBottomOf="@id/Rs_tv">
+
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:textSize="8sp"
+            android:id="@+id/deliveryTime_tv"
+            android:textColor="#000000"
+            app:layout_constraintTop_toTopOf="@id/clock_img"
+            app:layout_constraintBottom_toBottomOf="@id/clock_img"
+            app:layout_constraintStart_toEndOf="@id/clock_img"
+            android:text="20 min">
+
+        </TextView>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:src="@drawable/deliver"
+            android:id="@+id/delivery_img"
+            app:layout_constraintTop_toTopOf="@id/deliveryTime_tv"
+            app:layout_constraintBottom_toBottomOf="@id/deliveryTime_tv"
+            app:layout_constraintStart_toEndOf="@id/deliveryTime_tv">
+
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="8sp"
+            android:layout_marginStart="5dp"
+            android:textColor="#000000"
+            app:layout_constraintTop_toTopOf="@id/delivery_img"
+            app:layout_constraintBottom_toBottomOf="@id/delivery_img"
+            app:layout_constraintStart_toEndOf="@id/delivery_img"
+            android:text="Free">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text="Near Akram Biryani House Latifabad Unit 11 Hyderabad"
+            app:layout_constraintEnd_toEndOf="@id/itemName_tv"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/itemName_tv"
+            app:layout_constraintTop_toBottomOf="@id/itemName_tv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>
