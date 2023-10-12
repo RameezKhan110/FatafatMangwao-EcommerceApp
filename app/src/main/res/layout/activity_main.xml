@@ -6,6 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <github.com.st235.lib_expandablebottombar.ExpandableBottomBar
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/expandableBottomBar"
+        android:backgroundTint="@color/white"
+        app:exb_itemInactiveColor="#01456B"
+        app:exb_elevation="12dp"
+        app:exb_itemStyle="stroked"
+        app:exb_items="@menu/bottom_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    </github.com.st235.lib_expandablebottombar.ExpandableBottomBar>
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"

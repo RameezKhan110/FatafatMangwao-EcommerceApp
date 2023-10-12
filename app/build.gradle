@@ -47,5 +47,8 @@ dependencies {
 
     //circular image
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    //expandable bottom bar
+    implementation 'com.github.st235:expandablebottombar:1.5.4'
+
 
 }

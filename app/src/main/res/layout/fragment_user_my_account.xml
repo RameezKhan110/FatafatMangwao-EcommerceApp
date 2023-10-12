@@ -6,51 +6,62 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".UserMyAccount">
 
+    <androidx.constraintlayout.widget.Group
+        android:layout_width="wrap_content"
+        app:constraint_referenced_ids="ivBack2, tv1, iv1 "
+        android:visibility="gone"
+        android:layout_height="wrap_content" />
+
+    <androidx.constraintlayout.widget.Group
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="cl1,cvBankDetails,cvName,cvAccNum,cvCvc,cvExpiry,textView" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl1"
         android:layout_width="0dp"
         android:layout_height="195dp"
-        android:id="@+id/cl1"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="#E5ECEF"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="#E5ECEF">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
+            android:id="@+id/ivBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/back"
-            android:id="@+id/ivBack"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="29dp"
-            android:layout_marginStart="24dp">
+            android:src="@drawable/back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
         </ImageView>
 
         <ImageView
+            android:id="@+id/ivEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/edit"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="29dp"
             android:layout_marginEnd="24dp"
-            android:id="@+id/ivEdit">
+            android:src="@drawable/edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
         </ImageView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-    
+
     <androidx.cardview.widget.CardView
+        android:id="@+id/cvBankDetails"
         android:layout_width="288dp"
         android:layout_height="123dp"
-        app:layout_constraintStart_toStartOf="@id/cl1"
-        app:layout_constraintEnd_toEndOf="@id/cl1"
+        android:layout_marginTop="130dp"
         android:background="@color/white"
-        app:cardCornerRadius="10dp"
-        android:id="@+id/cvBankDetails"
         android:elevation="12dp"
-        app:layout_constraintTop_toTopOf="@id/cl1"
-        android:layout_marginTop="130dp">
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="@id/cl1"
+        app:layout_constraintStart_toStartOf="@id/cl1"
+        app:layout_constraintTop_toTopOf="@id/cl1">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -59,53 +70,53 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="HBL"
-                android:background="#D9D9D9"
-                android:textSize="24sp"
-                android:paddingHorizontal="5dp"
-                android:textStyle="bold"
-                android:textColor="@color/text_color"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="25dp"
                 android:layout_marginTop="14dp"
-                android:layout_marginStart="25dp">
+                android:background="#D9D9D9"
+                android:paddingHorizontal="5dp"
+                android:text="HBL"
+                android:textColor="@color/text_color"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
             </TextView>
-            
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="64dp"
                 android:text="123456346346346"
                 android:textColor="@color/text_color"
                 android:textSize="14sp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="64dp">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
             </TextView>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rameez Ahmed Khan"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="10dp"
                 android:layout_marginBottom="7dp"
+                android:text="Rameez Ahmed Khan"
+                android:textColor="@color/text_color"
                 android:textSize="12sp"
-                android:textColor="@color/text_color">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
             </TextView>
 
             <ImageView
                 android:layout_width="34dp"
                 android:layout_height="34dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:src="@drawable/mastercard"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginEnd="10dp"
-                android:layout_marginTop="10dp">
+                app:layout_constraintTop_toTopOf="parent">
 
             </ImageView>
 
@@ -113,97 +124,97 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="279dp"
-        android:layout_height="44dp"
-        app:cardCornerRadius="10dp"
-        android:elevation="12dp"
-        android:background="@drawable/social_login_bg"
         android:id="@+id/cvName"
-        app:layout_constraintStart_toStartOf="@id/cvBankDetails"
-        app:layout_constraintEnd_toEndOf="@id/cvBankDetails"
-        app:layout_constraintTop_toBottomOf="@id/cvBankDetails"
-        android:layout_marginTop="37dp">
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Rameez Ahmed Khan"
-            android:gravity="center_vertical"
-            android:textSize="16sp"
-            android:id="@+id/tvName"
-            android:textColor="@color/text_color"
-            android:layout_marginStart="12dp">
-
-        </TextView>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
         android:layout_width="279dp"
         android:layout_height="44dp"
-        app:cardCornerRadius="10dp"
+        android:layout_marginTop="37dp"
+        android:background="@drawable/social_login_bg"
         android:elevation="12dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="@id/cvBankDetails"
+        app:layout_constraintStart_toStartOf="@id/cvBankDetails"
+        app:layout_constraintTop_toBottomOf="@id/cvBankDetails">
+
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="12dp"
+            android:gravity="center_vertical"
+            android:text="Rameez Ahmed Khan"
+            android:textColor="@color/text_color"
+            android:textSize="16sp">
+
+        </TextView>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/cvAccNum"
-        app:layout_constraintStart_toStartOf="@id/cvName"
+        android:layout_width="279dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="24dp"
+        android:elevation="12dp"
+        app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="@id/cvName"
-        app:layout_constraintTop_toBottomOf="@id/cvName"
-        android:layout_marginTop="24dp">
+        app:layout_constraintStart_toStartOf="@id/cvName"
+        app:layout_constraintTop_toBottomOf="@id/cvName">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="1234123412341234"
-            android:textSize="16sp"
             android:id="@+id/tvAccNum"
-            android:textColor="@color/text_color"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="12dp"
             android:gravity="center_vertical"
-            android:layout_marginStart="12dp">
+            android:text="1234123412341234"
+            android:textColor="@color/text_color"
+            android:textSize="16sp">
 
         </TextView>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="125dp"
-        android:layout_height="44dp"
-        app:cardCornerRadius="10dp"
-        android:elevation="12dp"
         android:id="@+id/cvCvc"
+        android:layout_width="125dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="24dp"
+        android:elevation="12dp"
+        app:cardCornerRadius="10dp"
         app:layout_constraintStart_toStartOf="@id/cvAccNum"
-        app:layout_constraintTop_toBottomOf="@id/cvAccNum"
-        android:layout_marginTop="24dp">
+        app:layout_constraintTop_toBottomOf="@id/cvAccNum">
 
         <TextView
+            android:id="@+id/tvCvcNum"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="2345"
-            android:textSize="16sp"
-            android:id="@+id/tvCvcNum"
-            android:textColor="@color/text_color"
+            android:layout_marginStart="12dp"
             android:gravity="center_vertical"
-            android:layout_marginStart="12dp">
+            android:text="2345"
+            android:textColor="@color/text_color"
+            android:textSize="16sp">
 
         </TextView>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cvExpiry"
         android:layout_width="125dp"
         android:layout_height="44dp"
-        app:cardCornerRadius="10dp"
+        android:layout_marginTop="24dp"
         android:elevation="12dp"
-        android:id="@+id/cvExpiry"
-        app:layout_constraintTop_toBottomOf="@id/cvAccNum"
+        app:cardCornerRadius="10dp"
         app:layout_constraintEnd_toEndOf="@id/cvAccNum"
-        android:layout_marginTop="24dp">
+        app:layout_constraintTop_toBottomOf="@id/cvAccNum">
 
         <TextView
+            android:id="@+id/tvExpiry"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="08/07"
-            android:textSize="16sp"
-            android:id="@+id/tvExpiry"
-            android:textColor="@color/text_color"
+            android:layout_marginStart="12dp"
             android:gravity="center_vertical"
-            android:layout_marginStart="12dp">
+            android:text="08/07"
+            android:textColor="@color/text_color"
+            android:textSize="16sp">
 
         </TextView>
 
@@ -211,6 +222,7 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="236dp"
         android:layout_height="45dp"
         android:layout_marginTop="112dp"
@@ -228,5 +240,41 @@
 
     </TextView>
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/back"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="29dp"
+        android:id="@+id/ivBack2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:text="You Haven't Added Your Card Details Yet"
+        android:textAlignment="center"
+        android:textColor="@color/text_color"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </TextView>
+
+    <ImageView
+        android:layout_width="267dp"
+        android:layout_height="302dp"
+        android:src="@drawable/cardmachine"
+        android:id="@+id/iv1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
