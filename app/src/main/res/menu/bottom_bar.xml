@@ -7,7 +7,7 @@
         android:title="Home"
         app:exb_color="#01456B"
         android:iconTint="@color/white"
-        android:icon="@drawable/home">
+        android:icon="@drawable/homesvg">
 
     </item>
 
@@ -16,7 +16,7 @@
         android:title="Favourites"
         app:exb_color="#01456B"
         android:iconTint="@color/white"
-        android:icon="@drawable/favourites">
+        android:icon="@drawable/filledheart">
 
     </item>
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/createNewPasswordFragment">
+    app:startDestination="@id/registerFragment">
 
     <fragment
         android:id="@+id/registerFragment"
@@ -58,4 +58,9 @@
             android:id="@+id/action_userProfileFragment_to_forgetPasswordFragment"
             app:destination="@id/forgetPasswordFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/onboardingHomeFragment"
+        android:name="com.example.fatafatmangwao.OnboardingHomeFragment"
+        android:label="fragment_onboarding_home"
+        tools:layout="@layout/fragment_onboarding_home" />
 </navigation>

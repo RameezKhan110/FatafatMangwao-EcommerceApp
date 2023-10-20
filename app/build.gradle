@@ -23,6 +23,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    viewBinding {
+        enabled true
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -49,6 +52,10 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     //expandable bottom bar
     implementation 'com.github.st235:expandablebottombar:1.5.4'
+
+    //onbaording
+    implementation("com.tbuonomo:dotsindicator:5.0")
+
 
 
 }

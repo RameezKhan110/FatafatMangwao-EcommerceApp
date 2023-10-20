@@ -112,7 +112,7 @@
                 android:background="@drawable/input_fields_bg"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="tv1"
+                app:layout_constraintStart_toStartOf="@id/tv1"
                 app:layout_constraintTop_toBottomOf="@id/tv1">
 
                 <ImageView
@@ -161,7 +161,7 @@
                 android:background="@drawable/input_fields_bg"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="tv2"
+                app:layout_constraintStart_toStartOf="@id/tv2"
                 app:layout_constraintTop_toBottomOf="@id/tv2">
 
                 <ImageView
@@ -225,7 +225,7 @@
                 android:background="@drawable/input_fields_bg"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="tv2"
+                app:layout_constraintStart_toStartOf="@id/tv3"
                 app:layout_constraintTop_toBottomOf="@id/tv3">
 
                 <ImageView
@@ -274,7 +274,7 @@
                 android:background="@drawable/input_fields_bg"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="tv2"
+                app:layout_constraintStart_toStartOf="@id/tv5"
                 app:layout_constraintTop_toBottomOf="@id/tv5">
 
                 <ImageView
@@ -323,7 +323,7 @@
                 android:background="@drawable/input_fields_bg"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="tv2"
+                app:layout_constraintStart_toStartOf="@id/tv6"
                 app:layout_constraintTop_toBottomOf="@id/tv6">
 
                 <ImageView

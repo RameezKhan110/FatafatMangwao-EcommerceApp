@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Onboarding1Fragment">
+
+    <ImageView
+        android:id="@+id/iv1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/on_boarding_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ImageView>
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="Shop at Supermarket with QR Code"
+        android:textAlignment="center"
+        android:textColor="#01456B"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@id/iv1"
+        app:layout_constraintStart_toStartOf="@id/iv1"
+        app:layout_constraintTop_toBottomOf="@id/iv1">
+
+    </TextView>
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:text="Experience shopping like never before! Scan, Shop, Smile. Supermarket shopping made smarter with QR code technology."
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@id/tv1"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="@id/tv1"
+        app:layout_constraintTop_toBottomOf="@id/tv1">
+
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="33dp"
+        android:layout_marginBottom="28dp"
+        android:text="Skip"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    </TextView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
