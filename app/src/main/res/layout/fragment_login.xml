@@ -66,7 +66,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
                 android:layout_marginStart="12dp"
-                android:hint="Login with Email or Number"
+                android:background="@null"
+                android:hint="Enter your email"
                 android:paddingVertical="10dp">
 
             </com.google.android.material.textfield.TextInputEditText>
@@ -99,7 +100,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
                 android:layout_marginStart="12dp"
-                android:hint="Login with Password"
+                android:hint="Enter your password"
+                android:background="@null"
                 android:paddingVertical="10dp">
 
             </com.google.android.material.textfield.TextInputEditText>

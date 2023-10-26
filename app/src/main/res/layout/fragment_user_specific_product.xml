@@ -1,82 +1,323 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".UserSpecificProduct">
+    tools:context=".UserSpecificProductFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/specificProduct_item_toolbar"
-        android:layout_width="0dp"
-        android:layout_height="56dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/back_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="22dp"
-            android:layout_marginStart="30dp"
-            android:src="@drawable/back"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="240dp"
+            android:id="@+id/cl_specificProduct"
+            android:background="@drawable/specific_product_cl_bg"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintEnd_toEndOf="parent">
 
-        </ImageView>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="39dp"
+                android:layout_marginStart="30dp"
+                android:src="@drawable/back">
+
+            </ImageView>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="39dp"
+                android:layout_marginEnd="30dp"
+                android:src="@drawable/cancel">
+
+            </ImageView>
+
+            <ImageView
+                android:layout_width="215dp"
+                android:layout_height="215dp"
+                android:src="@drawable/chickenbreast"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="18dp">
+
+            </ImageView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="22dp"
+                android:layout_marginBottom="8dp"
+                app:cardCornerRadius="42dp"
+                android:elevation="12dp"
+                android:foregroundGravity="center_vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:tint="@color/black"
+                    android:src="@drawable/heart">
+
+                </ImageView>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="94dp"
+                android:layout_height="36dp"
+                app:cardCornerRadius="10dp"
+                android:elevation="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="11dp"
+                android:layout_marginEnd="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/plus"
+                        android:layout_marginStart="5dp"
+                        android:layout_gravity="center">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:textStyle="bold"
+                        android:layout_marginStart="13dp"
+                        android:textAlignment="center"
+                        android:textSize="16sp">
+
+                    </TextView>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/minus"
+                        android:layout_marginStart="15dp"
+                        android:layout_gravity="center">
+
+                    </ImageView>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <ImageView
-            android:id="@+id/cart_img"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="22dp"
-            android:layout_marginEnd="30dp"
-            android:src="@drawable/cart"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="16dp"
+            android:textSize="18sp"
+            android:id="@+id/tv_productName"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:maxLines="2"
+            android:text="Boneless Golden Chicken (5-6 pieces) 1 Kg"
+            app:layout_constraintEnd_toEndOf="@id/cl_specificProduct"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/cl_specificProduct"
+            app:layout_constraintTop_toBottomOf="@+id/cl_specificProduct">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rs."
+            android:layout_marginTop="8dp"
+            android:textColor="#3F3C3C"
+            android:id="@+id/tv1"
+            app:layout_constraintStart_toStartOf="@id/tv_productName"
+            app:layout_constraintTop_toBottomOf="@id/tv_productName">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/tv_productPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="849.00"
+            android:textColor="#3F3C3C"
+            app:layout_constraintBottom_toBottomOf="@id/tv1"
+            app:layout_constraintStart_toEndOf="@id/tv1"
+            app:layout_constraintTop_toTopOf="@id/tv1"
+            app:layout_constraintVertical_bias="1.0">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4.5"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:id="@+id/tv_rating"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@id/tv1"
+            app:layout_constraintTop_toBottomOf="@id/tv1"
+            android:layout_marginTop="8dp">
+
+        </TextView>
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:layout_width="wrap_content"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/tv_rating"
+            app:layout_constraintTop_toTopOf="@id/tv_rating"
+            android:id="@+id/ratingBar"
+            app:layout_constraintBottom_toBottomOf="@id/tv_rating"
+            android:layout_marginStart="3dp">
+
+        </androidx.appcompat.widget.AppCompatRatingBar>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="38 recommended"
+            android:textSize="14sp"
+            android:id="@+id/tv_recommendation"
+            android:layout_marginStart="3dp"
+            app:layout_constraintStart_toEndOf="@id/ratingBar"
+            app:layout_constraintTop_toTopOf="@id/ratingBar"
+            app:layout_constraintBottom_toBottomOf="@id/ratingBar">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Best quality fresh, clean standard cut chicken only in 20 mins"
+            app:layout_constraintStart_toStartOf="@id/tv_rating"
+            android:textColor="@color/black"
+            android:layout_marginEnd="50dp"
+            android:layout_marginTop="11dp"
+            android:id="@+id/tv_desc"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:maxLines="2"
+            app:layout_constraintTop_toBottomOf="@id/tv_recommendation">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/btn_addToCart"
+            android:layout_width="195dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/loginbtn_bg"
+            android:gravity="center"
+            android:text="Add To Cart"
+            app:layout_constraintStart_toStartOf="@id/tv_desc"
+            app:layout_constraintEnd_toEndOf="@id/tv_desc"
+            app:layout_constraintTop_toBottomOf="@id/tv_desc"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18sp">
+
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Related Items"
+            app:layout_constraintStart_toStartOf="@+id/tv_desc"
+            app:layout_constraintTop_toBottomOf="@id/btn_addToCart"
+            android:layout_marginTop="27dp"
+            android:textSize="24sp"
+            android:id="@+id/tv2"
+            android:textColor="@color/black"
+            android:textStyle="bold">
+            
+        </TextView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_realtedItems"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.26999998">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv2"
+            app:layout_constraintVertical_bias="0.0"
+            tools:listitem="@layout/user_fav_item">
 
-        </ImageView>
-
-        <ImageView
-            android:id="@+id/search_img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="22dp"
-            android:layout_marginEnd="12dp"
-            android:src="@drawable/search"
+        </androidx.recyclerview.widget.RecyclerView>
+        
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            app:layout_constraintTop_toBottomOf="@id/rv_realtedItems"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/cart_img"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            android:layout_marginTop="15dp"
+            android:elevation="12dp"
+            app:cardCornerRadius="10dp"
+            app:cardBackgroundColor="#01456B"
+            app:layout_constraintEnd_toEndOf="parent">
 
-        </ImageView>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="200dp"
+                android:layout_height="42dp"
+                android:background="@drawable/view_your_cart_cl_bg"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View Your Cart"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textSize="18sp"
+                    android:id="@+id/tv_viewYourCart"
+                    android:layout_marginVertical="9dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:textColor="#01456B"
+                    android:layout_marginStart="18dp"
+                    android:textStyle="bold">
+
+                </TextView>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/cart"
+                    android:layout_marginEnd="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tv_viewYourCart"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_viewYourCart">
+                </ImageView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <include
-        layout="@layout/specific_product_layout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/specificShopLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/specificProduct_item_toolbar" />
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/specificShopLayout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/user_fav_item">
-
-    </androidx.recyclerview.widget.RecyclerView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    
+</ScrollView>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dp"
+    android:layout_marginHorizontal="30dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        app:cardBackgroundColor="#F4F4F4"
+        app:cardCornerRadius="10dp"
+        android:elevation="12dp"
+        android:id="@+id/cv_itemImage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="100dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:id="@+id/iv_itemImage"
+            android:src="@drawable/chickenbreast">
+
+        </ImageView>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="105dp"
+        android:layout_height="wrap_content"
+        android:text="Butuchary Boneless Golden Chicken 450 gm"
+        app:layout_constraintStart_toEndOf="@id/cv_itemImage"
+        android:maxLines="3"
+        android:id="@+id/tv_itemName"
+        android:layout_marginStart="16dp"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="@id/cv_itemImage">
+
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Qty: "
+        app:layout_constraintStart_toStartOf="@id/tv_itemName"
+        app:layout_constraintTop_toBottomOf="@id/tv_itemName"
+        android:layout_marginTop="6dp"
+        android:textSize="14sp"
+        android:textColor="#01456B"
+        android:id="@+id/tv1">
+
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="01"
+        app:layout_constraintStart_toEndOf="@id/tv1"
+        app:layout_constraintTop_toTopOf="@id/tv1"
+        app:layout_constraintBottom_toBottomOf="@id/tv1"
+        android:textSize="14sp"
+        android:layout_marginStart="2dp"
+        android:textColor="#01456B"
+        android:id="@+id/tv_itemQuantity">
+
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rs."
+        app:layout_constraintStart_toStartOf="@id/tv1"
+        app:layout_constraintTop_toBottomOf="@id/tv1"
+        android:layout_marginTop="6dp"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:id="@+id/tv2">
+
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="849.00"
+        app:layout_constraintStart_toEndOf="@id/tv2"
+        app:layout_constraintTop_toTopOf="@id/tv2"
+        app:layout_constraintBottom_toBottomOf="@id/tv2"
+        android:textSize="14sp"
+        android:layout_marginStart="2dp"
+        android:textColor="@color/black"
+        android:id="@+id/tv_itemPrice">
+
+    </TextView>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/delete"
+        android:id="@+id/iv_delete"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="30dp">
+
+    </ImageView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/btn_minus"
+        app:layout_constraintStart_toStartOf="@id/iv_delete"
+        app:layout_constraintTop_toTopOf="@id/tv_itemQuantity"
+        android:layout_marginStart="-20dp"
+        app:layout_constraintBottom_toBottomOf="@id/tv_itemQuantity"
+        app:cardBackgroundColor="#D9D9D9">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/minus">
+
+        </ImageView>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="@color/black"
+        android:text="1"
+        android:id="@+id/tv_changeableQuantity"
+        app:layout_constraintTop_toTopOf="@id/btn_minus"
+        app:layout_constraintBottom_toBottomOf="@id/btn_minus"
+        app:layout_constraintStart_toEndOf="@id/btn_minus"
+        android:layout_marginStart="8dp"
+        android:textStyle="bold">
+
+    </TextView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:id="@+id/btn_plus"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@id/tv_changeableQuantity"
+        app:layout_constraintTop_toTopOf="@id/tv_changeableQuantity"
+        app:layout_constraintBottom_toBottomOf="@id/tv_changeableQuantity"
+        app:cardBackgroundColor="#D9D9D9">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/plus">
+
+        </ImageView>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.widget.Group
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/grp_deleteAndQuantities"
+        app:constraint_referenced_ids="iv_delete, btn_minus, tv_changeableQuantity, btn_plus">
+
+    </androidx.constraintlayout.widget.Group>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
