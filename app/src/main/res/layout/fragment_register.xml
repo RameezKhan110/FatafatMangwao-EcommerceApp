@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rootLayout"
     tools:context=".RegisterFragment" >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -68,10 +69,11 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/etUsername"
                 android:layout_marginVertical="8dp"
                 android:layout_marginStart="12dp"
                 android:background="@null"
-                android:hint="Login with Email or Number"
+                android:hint="Enter Name"
                 android:paddingVertical="10dp">
 
             </com.google.android.material.textfield.TextInputEditText>
@@ -104,9 +106,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
                 android:background="@null"
-
+                android:id="@+id/etEmail"
                 android:layout_marginStart="12dp"
-                android:hint="Enter you Email Address"
+                android:hint="Enter Email Address"
                 android:paddingVertical="10dp">
 
             </com.google.android.material.textfield.TextInputEditText>
@@ -139,6 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
                 android:layout_marginStart="12dp"
+                android:id="@+id/etPassword"
                 android:hint="Enter Password"
                 android:background="@null"
                 android:paddingVertical="10dp">
@@ -174,12 +177,25 @@
                 android:layout_marginVertical="8dp"
                 android:layout_marginStart="12dp"
                 android:hint="Confirm Password"
+                android:id="@+id/etConfirmPassword"
                 android:background="@null"
                 android:paddingVertical="10dp">
 
             </com.google.android.material.textfield.TextInputEditText>
         </LinearLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvPasswordError"
+            android:visibility="gone"
+            android:textColor="#ED0606"
+            app:layout_constraintStart_toStartOf="@id/confirmpass_ll"
+            app:layout_constraintTop_toBottomOf="@id/confirmpass_ll"
+            android:text="Password doesn't match"
+            android:layout_marginTop="10dp">
+
+        </TextView>
         <TextView
             android:layout_width="262dp"
             android:layout_height="45dp"
@@ -194,7 +210,7 @@
             android:layout_marginHorizontal="49dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/confirmpass_ll">
+            app:layout_constraintTop_toBottomOf="@+id/progressBar">
 
         </TextView>
 
@@ -213,5 +229,16 @@
 
         </TextView>
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/confirmpass_ll"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="@+id/confirmpass_ll"
+            app:layout_constraintTop_toBottomOf="@+id/confirmpass_ll" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

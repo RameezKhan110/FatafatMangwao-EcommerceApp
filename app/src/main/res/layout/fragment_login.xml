@@ -67,6 +67,7 @@
                 android:layout_marginVertical="8dp"
                 android:layout_marginStart="12dp"
                 android:background="@null"
+                android:id="@+id/etEmail"
                 android:hint="Enter your email"
                 android:paddingVertical="10dp">
 
@@ -102,6 +103,7 @@
                 android:layout_marginStart="12dp"
                 android:hint="Enter your password"
                 android:background="@null"
+                android:id="@+id/etPassword"
                 android:paddingVertical="10dp">
 
             </com.google.android.material.textfield.TextInputEditText>
@@ -133,7 +135,7 @@
             android:layout_marginHorizontal="49dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pass_ll">
+            app:layout_constraintTop_toBottomOf="@+id/progressBar">
 
         </TextView>
 
@@ -281,6 +283,17 @@
             app:layout_constraintStart_toStartOf="@+id/google_ll"
             app:layout_constraintTop_toBottomOf="@id/google_ll" />
 
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@id/pass_ll"
+            app:layout_constraintEnd_toEndOf="@id/pass_ll"
+            app:layout_constraintTop_toBottomOf="@id/pass_ll"
+            android:layout_marginTop="20dp"
+            android:id="@+id/progressBar">
+
+        </ProgressBar>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

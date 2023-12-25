@@ -24,7 +24,7 @@
                 android:layout_marginStart="29dp"
                 android:textStyle="bold"
                 android:layout_marginTop="20dp"
-                android:text="Cart"
+                android:text="Order History"
                 android:textColor="@color/black"
                 android:textSize="24sp"
                 android:id="@+id/tv1"
@@ -47,19 +47,46 @@
             </ImageView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <include
-            android:id="@+id/layout_stepview"
-            layout="@layout/stepview_layout"
-            android:layout_width="0dp"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            android:text="Order Information"
+            android:textSize="24sp"
+            android:layout_marginStart="22dp"
+            android:textColor="#01456B"
+            android:layout_marginTop="25dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/specificOrder_toolbar"
-            app:layout_constraintVertical_bias="0.0">
+            android:id="@+id/tv8"
+            app:layout_constraintTop_toBottomOf="@id/specificOrder_toolbar">
 
-        </include>
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ID: "
+            android:id="@+id/tv9"
+            android:textSize="16sp"
+            android:textColor="#01456B"
+            app:layout_constraintEnd_toStartOf="@id/tv_orderId"
+            app:layout_constraintTop_toTopOf="@id/tv8"
+            app:layout_constraintBottom_toBottomOf="@id/tv8">
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20365"
+            android:textSize="16sp"
+            android:textColor="#01456B"
+            android:id="@+id/tv_orderId"
+            app:layout_constraintTop_toTopOf="@id/tv9"
+            app:layout_constraintBottom_toBottomOf="@id/tv9"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="20dp">
+
+        </TextView>
 
         <androidx.cardview.widget.CardView
             android:layout_width="0dp"
@@ -71,7 +98,7 @@
             android:layout_marginTop="35dp"
             android:elevation="12dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_stepview"
+            app:layout_constraintTop_toBottomOf="@id/tv8"
             android:layout_marginHorizontal="20dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -279,40 +306,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Related Items"
-            app:layout_constraintTop_toBottomOf="@id/tv_addMoreItems"
-            app:layout_constraintStart_toStartOf="@id/tv_addMoreItems"
-            android:layout_marginTop="19dp"
-            android:textSize="24sp"
-            android:id="@+id/tv3"
-            android:textColor="@color/black">
-
-        </TextView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="-10dp"
-            android:id="@+id/rv_relatedItems"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv3"
-            android:layout_marginTop="14dp"
-            tools:listitem="@layout/user_fav_item"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="horizontal">
-
-        </androidx.recyclerview.widget.RecyclerView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="Sub Total"
             android:textSize="16sp"
             android:id="@id/tv5"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rv_relatedItems"
+            app:layout_constraintTop_toBottomOf="@id/tv_addMoreItems"
             android:layout_marginStart="40dp"
             android:layout_marginTop="30dp">
 
@@ -418,53 +417,24 @@
             android:id="@+id/btn_cashOnDelivery"
             android:layout_width="242dp"
             android:layout_height="45dp"
-            android:layout_marginTop="74dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="30dp"
             android:background="@drawable/loginbtn_bg"
             android:gravity="center"
-            app:layout_constraintStart_toStartOf="@id/view2"
-            app:layout_constraintEnd_toEndOf="@id/view2"
-            app:layout_constraintTop_toBottomOf="@id/view2"
-            android:text="Cash on Delivery "
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="30dp"
+            android:text="Re-Order"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="18sp">
-        </TextView>
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cb_reoccurPurchase"
-            app:layout_constraintTop_toBottomOf="@id/view2"
-            app:layout_constraintStart_toStartOf="@id/view2"
-            android:text="Reoccuer Purchase">
-
-        </CheckBox>
-
-        <TextView
-            android:layout_width="195dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="24dp"
-            android:text="Home"
-            android:id="@+id/backToHome_Btn"
             android:textSize="18sp"
-            android:textColor="@color/black"
-            android:textAlignment="center"
-            android:gravity="center"
-            android:background="@drawable/signupbtn_bg"
-            android:layout_marginBottom="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_cashOnDelivery"
-            app:layout_constraintEnd_toEndOf="@id/btn_cashOnDelivery"
-            app:layout_constraintStart_toStartOf="@id/btn_cashOnDelivery">
+            app:layout_constraintEnd_toEndOf="@id/view2"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="@id/view2"
+            app:layout_constraintTop_toBottomOf="@id/view2"
+            app:layout_constraintVertical_bias="0.0">
 
         </TextView>
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-    
-       
 
 
 </ScrollView>
