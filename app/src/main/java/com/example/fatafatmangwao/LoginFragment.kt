@@ -42,7 +42,6 @@ class LoginFragment : Fragment() {
                 val userPassword = etPassword.text.toString().trim()
                 val loginDetails = User(email= userEmail, password= userPassword)
                 authViewModel.loginUser(loginDetails)
-
             }
         }
     }
@@ -64,7 +63,6 @@ class LoginFragment : Fragment() {
                         }
                         requireContext().showToast("Logging In", Toast.LENGTH_SHORT)
                         findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-                        requireActivity().finish()
                     }
                 }
             }

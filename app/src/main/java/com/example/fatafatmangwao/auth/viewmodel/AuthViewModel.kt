@@ -74,16 +74,16 @@ class AuthViewModel : ViewModel() {
     }
 
     fun loginUser(loginDetails: User) = viewModelScope.launch {
-        _registerUserObserver.postValue(Resource.Loading())
+        _loginUserObserver.postValue(Resource.Loading())
         try {
-            val response = authRepository.registerUser(loginDetails)
+            val response = authRepository.loginUser(loginDetails)
             if (response.error?.not() == true)
-                _registerUserObserver.postValue(Resource.Success(response))
+                _loginUserObserver.postValue(Resource.Success(response))
             else {
-                _registerUserObserver.postValue(response.message?.let { Resource.Error(it, null) })
+                _loginUserObserver.postValue(response.message?.let { Resource.Error(it, null) })
             }
         } catch (e: Exception) {
-            _registerUserObserver.postValue(e.localizedMessage?.let { Resource.Error(it) })
+            _loginUserObserver.postValue(e.localizedMessage?.let { Resource.Error(it) })
         }
     }
 }
