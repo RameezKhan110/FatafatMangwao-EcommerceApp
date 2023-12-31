@@ -1,15 +1,21 @@
-package com.example.fatafatmangwao.auth
+package com.example.fatafatmangwao.networkmodule
 
-import com.example.fatafatmangwao.Extensions
+import com.example.fatafatmangwao.utils.Extensions
 import com.example.fatafatmangwao.OtpData
-import okhttp3.RequestBody
+import com.example.fatafatmangwao.model.category.CategoryModel
+import com.example.fatafatmangwao.model.RegistrationResponse
+import com.example.fatafatmangwao.model.ResendOtpResponse
+import com.example.fatafatmangwao.model.User
+import com.example.fatafatmangwao.model.VerifyOtpResponse
+import com.example.fatafatmangwao.model.shops.ShopsModel
+import com.example.fatafatmangwao.utils.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 import retrofit2.http.Body
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface AuthApiInterface {
 
@@ -24,6 +30,13 @@ interface AuthApiInterface {
 
     @POST("user/login")
     suspend fun loginUser(@Body loginDetails: User): RegistrationResponse
+
+    @GET("category?limit=2")
+    suspend fun getCategories(@Query("limit") limit: Int): CategoryModel
+
+    @GET("shop/get?")
+    suspend fun getAllShops(@Query("search") shopName: String, @Query("category") categoryId: String): ShopsModel
+
 }
 
 object AuthApiService {
@@ -39,17 +52,3 @@ object AuthApiService {
         authApiInterface = retrofit.create()
     }
 }
-
-//object AuthApiServiceWithToken {
-//
-//    val authApiInterface: AuthApiInterface
-//
-//    init {
-//        val retrofit = Retrofit.Builder()
-//            .baseUrl(Constants.BASE_URL)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .client(Extensions.createOkHttpClient())
-//            .build()
-//        authApiInterface = retrofit.create()
-//    }
-//}

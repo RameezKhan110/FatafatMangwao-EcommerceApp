@@ -1,4 +1,4 @@
-package com.example.fatafatmangwao
+package com.example.fatafatmangwao.utils
 
 import android.app.Application
 import android.content.Context

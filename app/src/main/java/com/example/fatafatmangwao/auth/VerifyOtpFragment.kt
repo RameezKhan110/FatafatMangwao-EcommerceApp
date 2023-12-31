@@ -1,4 +1,4 @@
-package com.example.fatafatmangwao
+package com.example.fatafatmangwao.auth
 
 import android.os.Bundle
 import android.util.Log
@@ -9,12 +9,16 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.fatafatmangwao.Extensions.autoDisableSnackBar
-import com.example.fatafatmangwao.Extensions.showSnackBar
-import com.example.fatafatmangwao.Extensions.showToast
-import com.example.fatafatmangwao.auth.Resource
-import com.example.fatafatmangwao.auth.viewmodel.AuthViewModel
+import com.example.fatafatmangwao.OtpData
+import com.example.fatafatmangwao.R
+import com.example.fatafatmangwao.utils.Extensions.autoDisableSnackBar
+import com.example.fatafatmangwao.utils.Extensions.showToast
+import com.example.fatafatmangwao.utils.Resource
+import com.example.fatafatmangwao.viewmodel.ActivityViewModel
 import com.example.fatafatmangwao.databinding.FragmentVerifyOtpBinding
+import com.example.fatafatmangwao.utils.Extensions
+import com.example.fatafatmangwao.viewmodel.ViewModelObservers.resendOtpObserver
+import com.example.fatafatmangwao.viewmodel.ViewModelObservers.verifyOtpObserver
 import com.google.android.material.snackbar.Snackbar
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody.Companion.toRequestBody
@@ -22,7 +26,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 class VerifyOtpFragment : Fragment() {
 
     private lateinit var mBinding: FragmentVerifyOtpBinding
-    private val authViewModel: AuthViewModel by activityViewModels()
+    private val activityViewModel: ActivityViewModel by activityViewModels()
     private var otp: String? = null
 
     override fun onCreateView(
@@ -49,7 +53,7 @@ class VerifyOtpFragment : Fragment() {
                 val otpData = otp?.let { it1 -> OtpData(it1) }
                 if (otpRequestBody != null) {
                     if (otpData != null) {
-                        authViewModel.verifyOtp(otpData)
+                        activityViewModel.verifyOtp(otpData)
                     }
                 }
             }
@@ -59,7 +63,7 @@ class VerifyOtpFragment : Fragment() {
             }
 
             tvResendOTP.setOnClickListener {
-                authViewModel.resendOtp()
+                activityViewModel.resendOtp()
             }
         }
 
@@ -67,7 +71,7 @@ class VerifyOtpFragment : Fragment() {
 
     private fun observe() {
         mBinding.apply {
-            authViewModel.verifyOtpObserver.observe(viewLifecycleOwner) {
+            verifyOtpObserver.observe(viewLifecycleOwner) {
                 when (it) {
                     is Resource.Error -> {
                         progressBar.visibility = View.GONE
@@ -91,7 +95,7 @@ class VerifyOtpFragment : Fragment() {
                 }
             }
 
-            authViewModel.resendOtpObserver.observe(viewLifecycleOwner) {
+            resendOtpObserver.observe(viewLifecycleOwner) {
                 when (it) {
                     is Resource.Error -> {
                         progressBar.visibility = View.GONE

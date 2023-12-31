@@ -5,55 +5,83 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.fatafatmangwao.adapter.ClickListeners
+import com.example.fatafatmangwao.adapter.ListActionClickListener
+import com.example.fatafatmangwao.adapter.UserCategoryAdapter
+import com.example.fatafatmangwao.databinding.FragmentUserCategoryBinding
+import com.example.fatafatmangwao.utils.Extensions.showToast
+import com.example.fatafatmangwao.utils.Resource
+import com.example.fatafatmangwao.viewmodel.ActivityViewModel
+import com.example.fatafatmangwao.viewmodel.ViewModelObservers.getCategoryObserver
+import github.com.st235.lib_expandablebottombar.ExpandableBottomBar
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class UserCategoryFragment : Fragment(), ListActionClickListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [UserCategoryFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class UserCategoryFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    private lateinit var mBinding: FragmentUserCategoryBinding
+    private val activityViewModel: ActivityViewModel by activityViewModels()
+    private val userCategoryAdapter = UserCategoryAdapter(this@UserCategoryFragment)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_category, container, false)
+        mBinding = FragmentUserCategoryBinding.inflate(layoutInflater, container, false)
+
+        val bottomNav = requireActivity().findViewById<ExpandableBottomBar>(R.id.expandableBottomBar)
+        bottomNav.visibility = View.VISIBLE
+        return mBinding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment UserCategoryFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            UserCategoryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setListener()
+        setRecyclerView()
+        observe()
+        activityViewModel.getCategories(2)
+    }
+
+    private fun observe() {
+        mBinding.apply {
+            getCategoryObserver.observe(viewLifecycleOwner) {
+                when(it) {
+                    is Resource.Error -> {
+
+                    }
+                    is Resource.Loading -> {
+
+                    }
+                    is Resource.Success -> {
+                        userCategoryAdapter.submitList(it.data?.data)
+                    }
                 }
             }
+        }
+    }
+
+    private fun setRecyclerView() {
+        mBinding.apply {
+            rvList.layoutManager = GridLayoutManager(requireContext(), 3)
+            rvList.adapter = userCategoryAdapter
+        }
+    }
+
+    private fun setListener() {
+        mBinding.apply {
+
+        }
+    }
+    override fun onItemClick(clickListener: ClickListeners) {
+        when(clickListener) {
+            is ClickListeners.OnCategoryClicked -> {
+                requireContext().showToast("Item clicked", Toast.LENGTH_SHORT)
+                findNavController().navigate(R.id.action_userCategoryFragment_to_userPopularShopsFragment)
+            }
+        }
+
     }
 }

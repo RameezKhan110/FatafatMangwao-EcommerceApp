@@ -1,9 +1,9 @@
-package com.example.fatafatmangwao
+package com.example.fatafatmangwao.utils
 
 import android.content.Context
 import android.view.View
 import android.widget.Toast
-import com.example.fatafatmangwao.auth.HeaderInterceptor
+import com.example.fatafatmangwao.networkmodule.HeaderInterceptor
 import com.google.android.material.snackbar.Snackbar
 import okhttp3.OkHttpClient
 
@@ -54,5 +54,10 @@ object Extensions {
         return OkHttpClient.Builder()
             .addInterceptor(HeaderInterceptor())
             .build()
+    }
+
+    fun getImageUrl(imageUrl: String): String {
+        val imageEndPoint = imageUrl.substring(16)
+        return Constants.IMAGE_BASE_URL+imageEndPoint
     }
 }

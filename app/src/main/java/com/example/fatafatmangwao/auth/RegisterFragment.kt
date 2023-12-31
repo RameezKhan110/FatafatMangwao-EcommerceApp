@@ -1,4 +1,4 @@
-package com.example.fatafatmangwao
+package com.example.fatafatmangwao.auth
 
 import android.os.Bundle
 import android.util.Log
@@ -9,19 +9,22 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.fatafatmangwao.Extensions.showSnackBar
-import com.example.fatafatmangwao.Extensions.showToast
-import com.example.fatafatmangwao.auth.Resource
-import com.example.fatafatmangwao.auth.User
-import com.example.fatafatmangwao.auth.viewmodel.AuthViewModel
+import com.example.fatafatmangwao.R
+import com.example.fatafatmangwao.utils.Extensions.showSnackBar
+import com.example.fatafatmangwao.utils.Extensions.showToast
+import com.example.fatafatmangwao.utils.Resource
+import com.example.fatafatmangwao.viewmodel.ActivityViewModel
 import com.example.fatafatmangwao.databinding.FragmentRegisterBinding
+import com.example.fatafatmangwao.model.User
+import com.example.fatafatmangwao.utils.Extensions
+import com.example.fatafatmangwao.viewmodel.ViewModelObservers.registerUserObserver
 import com.google.android.material.snackbar.Snackbar
 import github.com.st235.lib_expandablebottombar.ExpandableBottomBar
 
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
-    private val authViewModel: AuthViewModel by activityViewModels()
+    private val activityViewModel: ActivityViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,7 +35,7 @@ class RegisterFragment : Fragment() {
 
     private fun observe(){
         binding.apply {
-            authViewModel.registerUserObserver.observe(viewLifecycleOwner) {
+            registerUserObserver.observe(viewLifecycleOwner) {
 
                 when (it) {
                     is Resource.Error -> {
@@ -85,7 +88,7 @@ class RegisterFragment : Fragment() {
                 val userConfirmPassword = etConfirmPassword.text.toString().trim()
 
                 if (userPassword == userConfirmPassword) {
-                    authViewModel.registerUser(User(userName, userEmail, userPassword))
+                    activityViewModel.registerUser(User(userName, userEmail, userPassword))
                 } else {
                     tvPasswordError.visibility = View.VISIBLE
                     tvPasswordError.text = "Password doesn't match"

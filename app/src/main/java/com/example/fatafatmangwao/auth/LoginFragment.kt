@@ -1,4 +1,4 @@
-package com.example.fatafatmangwao
+package com.example.fatafatmangwao.auth
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,24 +8,30 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.fatafatmangwao.Extensions.showSnackBar
-import com.example.fatafatmangwao.Extensions.showToast
-import com.example.fatafatmangwao.auth.Resource
-import com.example.fatafatmangwao.auth.User
-import com.example.fatafatmangwao.auth.viewmodel.AuthViewModel
+import com.example.fatafatmangwao.R
+import com.example.fatafatmangwao.utils.Extensions.showToast
+import com.example.fatafatmangwao.utils.Resource
+import com.example.fatafatmangwao.viewmodel.ActivityViewModel
 import com.example.fatafatmangwao.databinding.FragmentLoginBinding
+import com.example.fatafatmangwao.model.User
+import com.example.fatafatmangwao.utils.Extensions
+import com.example.fatafatmangwao.viewmodel.ViewModelObservers.loginUserObserver
 import github.com.st235.lib_expandablebottombar.ExpandableBottomBar
 
 class LoginFragment : Fragment() {
 
     private lateinit var mBinding: FragmentLoginBinding
-    private val authViewModel: AuthViewModel by activityViewModels()
+    private val activityViewModel: ActivityViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         mBinding = FragmentLoginBinding.inflate(layoutInflater, container, false)
+
+        if(Extensions.getUserToken(requireContext()) != null) {
+            findNavController().navigate(R.id.action_loginFragment_to_userCategoryFragment)
+        }
         return mBinding.root
     }
 
@@ -41,13 +47,13 @@ class LoginFragment : Fragment() {
                 val userEmail = etEmail.text.toString().trim()
                 val userPassword = etPassword.text.toString().trim()
                 val loginDetails = User(email= userEmail, password= userPassword)
-                authViewModel.loginUser(loginDetails)
+                activityViewModel.loginUser(loginDetails)
             }
         }
     }
     private fun observe() {
         mBinding.apply {
-            authViewModel.loginUserObserver.observe(viewLifecycleOwner) {
+            loginUserObserver.observe(viewLifecycleOwner) {
                 when(it) {
                     is Resource.Error -> {
                         progressBar.visibility = View.GONE

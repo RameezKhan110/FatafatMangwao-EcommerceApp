@@ -1,9 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.FatafatMangwao" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimaryDark">@color/btn_blue</item>
+<!--        <item name="android:actionBarStyle">@style/MyActionBar</item>-->
+<!--        <item name="actionBarStyle">@style/MyActionBar</item>-->
+<!--        <item name="bottomNavigationStyle">@style/BottomNavBar</item>-->
     </style>
 
     <style name="Theme.FatafatMangwao" parent="Base.Theme.FatafatMangwao" />
+<!--    <style name="MyActionBar" parent="Theme.MaterialComponents.Light.DarkActionBar">-->
+<!--        <item name="android:background">@color/action_bar</item>-->
+<!--        <item name="background">@color/action_bar</item>-->
+<!--    </style>-->
+
+<!--    <style name="BottomNavBar" parent="Theme.MaterialComponents.Light.DarkActionBar">-->
+<!--        <item name="android:background">@color/bottom_nav</item>-->
+<!--        <item name="background">@color/bottom_nav</item>-->
+<!--    </style>-->
 </resources>

@@ -15,12 +15,13 @@
         android:layout_height="match_parent">
 
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:layout_width="92dp"
             android:layout_height="96dp"
             android:layout_marginStart="13dp"
             android:scaleType="centerCrop"
             android:src="@drawable/food"
+            app:shapeAppearanceOverlay="@style/RoundedCornerStyle"
             android:layout_marginVertical="18dp"
             android:id="@+id/itemPic_img"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -33,7 +34,7 @@
             android:layout_height="wrap_content"
             android:text="White Meat Shop"
             android:textSize="16sp"
-            android:id="@+id/itemName_tv"
+            android:id="@+id/tvName"
             android:textStyle="bold"
             android:textColor="#000000"
             android:layout_marginStart="11dp"
@@ -52,8 +53,8 @@
             android:textSize="10sp"
             android:id="@+id/Rs_tv"
             android:textColor="#000000"
-            app:layout_constraintStart_toStartOf="@id/itemName_tv"
-            app:layout_constraintTop_toBottomOf="@id/itemName_tv">
+            app:layout_constraintStart_toStartOf="@id/tvName"
+            app:layout_constraintTop_toBottomOf="@id/tvName">
 
         </TextView>
 
@@ -61,7 +62,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="249"
-            android:id="@+id/itemPrice_tv"
+            android:id="@+id/tvMinimumAmount"
             android:textColor="#000000"
             app:layout_constraintTop_toTopOf="@id/Rs_tv"
             app:layout_constraintBottom_toBottomOf="@id/Rs_tv"
@@ -108,29 +109,31 @@
         </ImageView>
 
         <TextView
+            android:id="@+id/tvDeliveryCharges"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="8sp"
             android:layout_marginStart="5dp"
+            android:text="Free"
             android:textColor="#000000"
-            app:layout_constraintTop_toTopOf="@id/delivery_img"
+            android:textSize="8sp"
             app:layout_constraintBottom_toBottomOf="@id/delivery_img"
             app:layout_constraintStart_toEndOf="@id/delivery_img"
-            android:text="Free">
+            app:layout_constraintTop_toTopOf="@id/delivery_img">
 
         </TextView>
 
         <TextView
+            android:id="@+id/tv_address"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
-            android:textSize="8sp"
-            android:textColor="@color/text_color"
             android:text="Near Akram Biryani House Latifabad Unit 11 Hyderabad"
-            app:layout_constraintEnd_toEndOf="@id/itemName_tv"
+            android:textColor="@color/text_color"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toEndOf="@id/tvName"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@id/itemName_tv"
-            app:layout_constraintTop_toBottomOf="@id/itemName_tv" />
+            app:layout_constraintStart_toStartOf="@id/tvName"
+            app:layout_constraintTop_toBottomOf="@id/tvName" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

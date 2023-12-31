@@ -1,4 +1,4 @@
-package com.example.fatafatmangwao.auth
+package com.example.fatafatmangwao.utils
 
 sealed class Resource<T>(
     val data: T? = null,

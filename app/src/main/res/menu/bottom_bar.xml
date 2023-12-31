@@ -16,7 +16,7 @@
         android:title="Favourites"
         app:exb_color="#01456B"
         android:iconTint="@color/white"
-        android:icon="@drawable/filledheart">
+        android:icon="@drawable/ic_heart">
 
     </item>
 
@@ -25,7 +25,7 @@
         android:title="Categories"
         app:exb_color="#01456B"
         android:iconTint="@color/white"
-        android:icon="@drawable/category">
+        android:icon="@drawable/ic_category">
 
     </item>
 
@@ -34,7 +34,7 @@
         android:title="Account"
         app:exb_color="#01456B"
         android:iconTint="@color/white"
-        android:icon="@drawable/profile">
+        android:icon="@drawable/ic_profile">
 
     </item>
 </menu>

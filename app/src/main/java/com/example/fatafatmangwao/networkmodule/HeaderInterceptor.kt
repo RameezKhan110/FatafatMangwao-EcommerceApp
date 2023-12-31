@@ -1,8 +1,7 @@
-package com.example.fatafatmangwao.auth
+package com.example.fatafatmangwao.networkmodule
 
-import com.example.fatafatmangwao.ApplicationClass
-import com.example.fatafatmangwao.Extensions
-import com.example.fatafatmangwao.SharedViewModel
+import com.example.fatafatmangwao.utils.ApplicationClass
+import com.example.fatafatmangwao.utils.Extensions
 import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.Protocol

@@ -1,4 +1,4 @@
-package com.example.fatafatmangwao.auth
+package com.example.fatafatmangwao.model
 
 import com.google.gson.annotations.SerializedName
 

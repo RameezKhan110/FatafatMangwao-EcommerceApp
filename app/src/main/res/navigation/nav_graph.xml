@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.fatafatmangwao.RegisterFragment"
+        android:name="com.example.fatafatmangwao.auth.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.fatafatmangwao.LoginFragment"
+        android:name="com.example.fatafatmangwao.auth.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -45,6 +45,9 @@
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_userCategoryFragment"
+            app:destination="@id/userCategoryFragment" />
     </fragment>
     <fragment
         android:id="@+id/userFavouritesFragment"
@@ -71,7 +74,7 @@
         tools:layout="@layout/fragment_onboarding_home" />
     <fragment
         android:id="@+id/verifyOtpFragment"
-        android:name="com.example.fatafatmangwao.VerifyOtpFragment"
+        android:name="com.example.fatafatmangwao.auth.VerifyOtpFragment"
         android:label="fragment_verify_otp"
         tools:layout="@layout/fragment_verify_otp" >
         <action
@@ -92,5 +95,23 @@
         <action
             android:id="@+id/action_homeFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userCategoryFragment"
+        android:name="com.example.fatafatmangwao.UserCategoryFragment"
+        android:label="fragment_user_category"
+        tools:layout="@layout/fragment_user_category" >
+        <action
+            android:id="@+id/action_userCategoryFragment_to_userPopularShopsFragment"
+            app:destination="@id/userPopularShopsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userPopularShopsFragment"
+        android:name="com.example.fatafatmangwao.UserPopularShopsFragment"
+        android:label="fragment_user_popular_shops"
+        tools:layout="@layout/fragment_user_popular_shops" >
+        <action
+            android:id="@+id/action_userPopularShopsFragment_to_userCategoryFragment"
+            app:destination="@id/userCategoryFragment" />
     </fragment>
 </navigation>
