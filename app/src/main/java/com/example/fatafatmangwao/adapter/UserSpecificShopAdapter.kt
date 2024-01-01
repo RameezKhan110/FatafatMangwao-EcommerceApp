@@ -11,41 +11,37 @@ import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
+import com.example.fatafatmangwao.R
 import com.example.fatafatmangwao.databinding.UserCategoryItemBinding
-import com.example.fatafatmangwao.model.category.Data
+import com.example.fatafatmangwao.databinding.UserFavItemBinding
+import com.example.fatafatmangwao.databinding.UserPopularshopsItemBinding
+import com.example.fatafatmangwao.model.shops.Data
+import com.example.fatafatmangwao.model.specific_shops.Product
 import com.example.fatafatmangwao.utils.ClickListeners
 import com.example.fatafatmangwao.utils.Extensions
 import com.example.fatafatmangwao.utils.ListActionTypeClickListener
 
-class UserCategoryAdapter(private val listener: ClickListeners) :
-    ListAdapter<Data, RecyclerView.ViewHolder>(DiffUtil()) {
+class UserSpecificShopAdapter(private val listener: ClickListeners) :
+    ListAdapter<Product, RecyclerView.ViewHolder>(DiffUtil()) {
 
-    class DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<Data>() {
-        override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
+    class DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<Product>() {
+        override fun areItemsTheSame(oldItem: Product, newItem: Product): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {
+        override fun areContentsTheSame(oldItem: Product, newItem: Product): Boolean {
             return oldItem == newItem
         }
     }
 
-    inner class CategoryViewHolder(private val binding: UserCategoryItemBinding) :
+    inner class SpecificShopViewHolder(private val binding: UserFavItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Data) {
-            binding.apply {
+        fun bind(item: Product) {
 
-//            val glide = Glide.with(ivItem)
-//            val requestOptions = RequestOptions().dontTransform()
-//            if (errorHolder != null)
-//                glide.applyDefaultRequestOptions(
-//                    requestOptions.placeholder(R.drawable.food)
-//                        .error(errorHolder)
-//                )
-//            glide.load(item.image).into(ivItem)
+            binding.apply {
                 Glide.with(binding.root.context)
-                    .load(Extensions.getImageUrl(item.image))
+                    .load(Extensions.getImageUrl(item.images.first()))
                     .listener(object : RequestListener<Drawable> {
                         override fun onResourceReady(
                             resource: Drawable,
@@ -68,10 +64,12 @@ class UserCategoryAdapter(private val listener: ClickListeners) :
                             return false
                         }
                     })
-                    .into(ivItem)
-                tvItemName.text = item.name
-                ivItem.setOnClickListener {
-                    listener?.onItemClick(ListActionTypeClickListener.OnCategoryClicked(item.id))
+                    .into(iivItem)
+                tvItemPrice.text = item.price.toString()
+                tvItemTitle.text = item.title
+                ivFav.setImageResource(R.drawable.ic_stroke_heart)
+                root.setOnClickListener {
+                    listener.onItemClick(ListActionTypeClickListener.OnCategoryClicked(item.id))
                 }
             }
 
@@ -79,8 +77,8 @@ class UserCategoryAdapter(private val listener: ClickListeners) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return CategoryViewHolder(
-            UserCategoryItemBinding.inflate(
+        return SpecificShopViewHolder(
+            UserFavItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false
@@ -90,6 +88,6 @@ class UserCategoryAdapter(private val listener: ClickListeners) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position)
-        (holder as CategoryViewHolder).bind(item)
+        (holder as SpecificShopViewHolder).bind(item)
     }
 }

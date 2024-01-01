@@ -8,6 +8,7 @@ import com.example.fatafatmangwao.model.ResendOtpResponse
 import com.example.fatafatmangwao.model.User
 import com.example.fatafatmangwao.model.VerifyOtpResponse
 import com.example.fatafatmangwao.model.shops.ShopsModel
+import com.example.fatafatmangwao.model.specific_shops.SpecificShopModel
 import com.example.fatafatmangwao.utils.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -15,6 +16,7 @@ import retrofit2.create
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface AuthApiInterface {
@@ -37,11 +39,13 @@ interface AuthApiInterface {
     @GET("shop/get?")
     suspend fun getAllShops(@Query("search") shopName: String, @Query("category") categoryId: String): ShopsModel
 
+    @GET("shop/get/{id}")
+    suspend fun getSpecificShop(@Path ("id") categoryId: String): SpecificShopModel
 }
 
-object AuthApiService {
+object ApiService {
 
-    val authApiInterface: AuthApiInterface
+    val apiInterface: AuthApiInterface
 
     init {
         val retrofit = Retrofit.Builder()
@@ -49,6 +53,6 @@ object AuthApiService {
             .client(Extensions.createOkHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-        authApiInterface = retrofit.create()
+        apiInterface = retrofit.create()
     }
 }

@@ -10,6 +10,7 @@
         android:layout_height="70dp"
         android:layout_marginTop="14dp"
         android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/RoundedCornerStyle"
         android:layout_marginStart="30dp"
         android:src="@drawable/food"
         android:id="@+id/shop_img"
@@ -32,7 +33,7 @@
         android:text="Black And Brown">
 
     </TextView>
-    
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,9 +67,9 @@
         app:layout_constraintBottom_toBottomOf="@id/minimumPrice_tv"
         app:layout_constraintStart_toEndOf="@id/minimumPrice_tv"
         android:layout_marginStart="12dp">
-        
+
     </ImageView>
-    
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -96,15 +97,16 @@
     </ImageView>
 
     <TextView
+        android:id="@+id/tvDeliveryTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
         android:text="Deliver in 20 Min"
+        android:textColor="@color/text_color"
         android:textSize="8sp"
-        app:layout_constraintTop_toTopOf="@id/time_img"
         app:layout_constraintBottom_toBottomOf="@id/time_img"
         app:layout_constraintStart_toEndOf="@id/time_img"
-        android:layout_marginStart="5dp"
-        android:textColor="@color/text_color">
+        app:layout_constraintTop_toTopOf="@id/time_img">
 
     </TextView>
 

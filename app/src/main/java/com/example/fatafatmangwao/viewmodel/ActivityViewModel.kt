@@ -14,6 +14,7 @@ import com.example.fatafatmangwao.model.VerifyOtpResponse
 import com.example.fatafatmangwao.repository.ApiRepository
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getCategoryObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getShopsObserver
+import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getSpecificShopObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._loginUserObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._registerUserObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._resendOtpObserver
@@ -100,6 +101,21 @@ class ActivityViewModel : ViewModel() {
                 _getShopsObserver.postValue(Resource.Success(response))
         } catch (e: Exception) {
             _getShopsObserver.postValue(e.localizedMessage?.let { Resource.Error(it) })
+        }
+    }
+
+    fun getSpecificShop(categoryId: String) = viewModelScope.launch {
+        _getSpecificShopObserver.postValue(Resource.Loading())
+        try {
+            val response = apiRepository.getSpecificShopModel(categoryId)
+            if (response.error.not()) {
+                _getSpecificShopObserver.postValue(Resource.Success(response))
+            }
+//            } else {
+//                _getSpecificShopObserver.postValue(response.error.let { Resource.Error(it, null) })
+//            }
+        } catch (e: Exception) {
+            _getSpecificShopObserver.postValue(e.cause?.let { Resource.Error(it.message.toString()) })
         }
     }
 }

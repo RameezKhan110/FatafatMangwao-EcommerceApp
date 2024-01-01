@@ -7,6 +7,7 @@ import com.example.fatafatmangwao.model.ResendOtpResponse
 import com.example.fatafatmangwao.model.VerifyOtpResponse
 import com.example.fatafatmangwao.model.category.CategoryModel
 import com.example.fatafatmangwao.model.shops.ShopsModel
+import com.example.fatafatmangwao.model.specific_shops.SpecificShopModel
 import com.example.fatafatmangwao.utils.Resource
 
 object ViewModelObservers {
@@ -30,4 +31,7 @@ object ViewModelObservers {
 
     val _getShopsObserver: MutableLiveData<Resource<ShopsModel>> = MutableLiveData()
     val getShopsObserver: LiveData<Resource<ShopsModel>> = _getShopsObserver
+
+    val _getSpecificShopObserver: MutableLiveData<Resource<SpecificShopModel>> = MutableLiveData()
+    val getSpecificShopObserver: LiveData<Resource<SpecificShopModel>> = _getSpecificShopObserver
 }

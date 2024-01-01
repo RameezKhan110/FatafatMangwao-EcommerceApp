@@ -5,22 +5,24 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fatafatmangwao.adapter.UserShopsAdapter
 import com.example.fatafatmangwao.databinding.FragmentUserPopularShopsBinding
-import com.example.fatafatmangwao.utils.Extensions.showToast
+import com.example.fatafatmangwao.utils.ClickListeners
+import com.example.fatafatmangwao.utils.ListActionTypeClickListener
 import com.example.fatafatmangwao.utils.Resource
 import com.example.fatafatmangwao.viewmodel.ActivityViewModel
+import com.example.fatafatmangwao.viewmodel.SharedViewModel
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers
 
-class UserPopularShopsFragment : Fragment() {
+class UserPopularShopsFragment : Fragment(), ClickListeners {
 
     private lateinit var mBinding: FragmentUserPopularShopsBinding
-    private val shopsAdapter = UserShopsAdapter()
+    private val shopsAdapter = UserShopsAdapter(this@UserPopularShopsFragment)
     private val activityViewModel: ActivityViewModel by activityViewModels()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -69,6 +71,15 @@ class UserPopularShopsFragment : Fragment() {
         mBinding.apply {
             popularShopsRv.layoutManager = LinearLayoutManager(requireContext())
             popularShopsRv.adapter = shopsAdapter
+        }
+    }
+
+    override fun onItemClick(clickListener: ListActionTypeClickListener) {
+        when(clickListener) {
+            is ListActionTypeClickListener.OnCategoryClicked -> {
+                sharedViewModel.categoryId = clickListener.categoryId
+                findNavController().navigate(R.id.action_userPopularShopsFragment_to_userSpecificShopFragment)
+            }
         }
     }
 }

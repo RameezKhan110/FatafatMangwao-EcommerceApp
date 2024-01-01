@@ -9,9 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.fatafatmangwao.adapter.ClickListeners
-import com.example.fatafatmangwao.adapter.ListActionClickListener
+import com.example.fatafatmangwao.utils.ListActionTypeClickListener
+import com.example.fatafatmangwao.utils.ClickListeners
 import com.example.fatafatmangwao.adapter.UserCategoryAdapter
 import com.example.fatafatmangwao.databinding.FragmentUserCategoryBinding
 import com.example.fatafatmangwao.utils.Extensions.showToast
@@ -20,7 +19,7 @@ import com.example.fatafatmangwao.viewmodel.ActivityViewModel
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers.getCategoryObserver
 import github.com.st235.lib_expandablebottombar.ExpandableBottomBar
 
-class UserCategoryFragment : Fragment(), ListActionClickListener {
+class UserCategoryFragment : Fragment(), ClickListeners {
 
     private lateinit var mBinding: FragmentUserCategoryBinding
     private val activityViewModel: ActivityViewModel by activityViewModels()
@@ -75,9 +74,9 @@ class UserCategoryFragment : Fragment(), ListActionClickListener {
 
         }
     }
-    override fun onItemClick(clickListener: ClickListeners) {
+    override fun onItemClick(clickListener: ListActionTypeClickListener) {
         when(clickListener) {
-            is ClickListeners.OnCategoryClicked -> {
+            is ListActionTypeClickListener.OnCategoryClicked -> {
                 requireContext().showToast("Item clicked", Toast.LENGTH_SHORT)
                 findNavController().navigate(R.id.action_userCategoryFragment_to_userPopularShopsFragment)
             }

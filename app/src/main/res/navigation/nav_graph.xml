@@ -113,5 +113,22 @@
         <action
             android:id="@+id/action_userPopularShopsFragment_to_userCategoryFragment"
             app:destination="@id/userCategoryFragment" />
+        <action
+            android:id="@+id/action_userPopularShopsFragment_to_userSpecificShopFragment"
+            app:destination="@id/userSpecificShopFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userSpecificProductFragment"
+        android:name="com.example.fatafatmangwao.UserSpecificProductFragment"
+        android:label="fragment_user_specific_product"
+        tools:layout="@layout/fragment_user_specific_product" />
+    <fragment
+        android:id="@+id/userSpecificShopFragment"
+        android:name="com.example.fatafatmangwao.UserSpecificShopFragment"
+        android:label="fragment_user_specific_shop"
+        tools:layout="@layout/fragment_user_specific_shop" >
+        <action
+            android:id="@+id/action_userSpecificShopFragment_to_userPopularShopsFragment"
+            app:destination="@id/userPopularShopsFragment" />
     </fragment>
 </navigation>

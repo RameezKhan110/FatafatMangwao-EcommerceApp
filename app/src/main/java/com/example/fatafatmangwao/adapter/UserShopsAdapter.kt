@@ -14,10 +14,12 @@ import com.bumptech.glide.request.target.Target
 import com.example.fatafatmangwao.databinding.UserCategoryItemBinding
 import com.example.fatafatmangwao.databinding.UserPopularshopsItemBinding
 import com.example.fatafatmangwao.model.category.Data
+import com.example.fatafatmangwao.utils.ClickListeners
 import com.example.fatafatmangwao.utils.Constants
 import com.example.fatafatmangwao.utils.Extensions
+import com.example.fatafatmangwao.utils.ListActionTypeClickListener
 
-class UserShopsAdapter: ListAdapter<com.example.fatafatmangwao.model.shops.Data, RecyclerView.ViewHolder>(DiffUtil()) {
+class UserShopsAdapter(private val clickListeners: ClickListeners): ListAdapter<com.example.fatafatmangwao.model.shops.Data, RecyclerView.ViewHolder>(DiffUtil()) {
 
     class DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<com.example.fatafatmangwao.model.shops.Data>() {
         override fun areItemsTheSame(oldItem: com.example.fatafatmangwao.model.shops.Data, newItem: com.example.fatafatmangwao.model.shops.Data): Boolean {
@@ -40,8 +42,11 @@ class UserShopsAdapter: ListAdapter<com.example.fatafatmangwao.model.shops.Data,
 
         UserPopularshopsItemBinding.bind(holder.itemView).apply {
 
+            itemPicImg.setOnClickListener {
+                clickListeners.onItemClick(ListActionTypeClickListener.OnCategoryClicked(item.id))
+            }
             tvName.text = item.shopname
-            tvMinimumAmount.text = "250"
+            tvMinimumPrice.text = "250"
             deliveryTimeTv.text = "30 min"
             tvDeliveryCharges.text  = "200 Rs."
             tvAddress.text = "Near Akram Biryani House Latifabad Unit 11 Hyderabad"
