@@ -58,6 +58,16 @@ object Extensions {
 
     fun getImageUrl(imageUrl: String): String {
         val imageEndPoint = imageUrl.substring(16)
-        return Constants.IMAGE_BASE_URL+imageEndPoint
+        return Constants.IMAGE_BASE_URL + imageEndPoint
+    }
+
+    fun isFirstLaunch(context: Context): Boolean {
+        val sharedPref = context.getSharedPreferences("launch_checker", Context.MODE_PRIVATE)
+        return sharedPref.getBoolean("is_first_launch", true)
+    }
+
+    fun markAppLaunched(context: Context) {
+        val preferences = context.getSharedPreferences("launch_checker", Context.MODE_PRIVATE)
+        preferences.edit().putBoolean("is_first_launch", false).apply()
     }
 }

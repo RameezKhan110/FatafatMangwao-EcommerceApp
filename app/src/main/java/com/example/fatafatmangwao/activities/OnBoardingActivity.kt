@@ -1,7 +1,8 @@
-package com.example.fatafatmangwao
+package com.example.fatafatmangwao.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.fatafatmangwao.OnBoardingViewPagerAdapter
 import com.example.fatafatmangwao.databinding.ActivityOnBoardingBinding
 
 class OnBoardingActivity : AppCompatActivity() {

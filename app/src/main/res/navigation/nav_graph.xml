@@ -68,11 +68,6 @@
             app:destination="@id/forgetPasswordFragment" />
     </fragment>
     <fragment
-        android:id="@+id/onboardingHomeFragment"
-        android:name="com.example.fatafatmangwao.OnboardingHomeFragment"
-        android:label="fragment_onboarding_home"
-        tools:layout="@layout/fragment_onboarding_home" />
-    <fragment
         android:id="@+id/verifyOtpFragment"
         android:name="com.example.fatafatmangwao.auth.VerifyOtpFragment"
         android:label="fragment_verify_otp"
