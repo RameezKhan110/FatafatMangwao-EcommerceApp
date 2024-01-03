@@ -7,7 +7,10 @@ import com.example.fatafatmangwao.model.ResendOtpResponse
 import com.example.fatafatmangwao.model.VerifyOtpResponse
 import com.example.fatafatmangwao.model.category.CategoryModel
 import com.example.fatafatmangwao.model.shops.ShopsModel
+import com.example.fatafatmangwao.model.specific_product.SpecificProductModel
 import com.example.fatafatmangwao.model.specific_shops.SpecificShopModel
+import com.example.fatafatmangwao.model.wishlist.AddWishListModel
+import com.example.fatafatmangwao.model.wishlist.GetWishListModel
 import com.example.fatafatmangwao.utils.Resource
 
 object ViewModelObservers {
@@ -34,4 +37,13 @@ object ViewModelObservers {
 
     val _getSpecificShopObserver: MutableLiveData<Resource<SpecificShopModel>> = MutableLiveData()
     val getSpecificShopObserver: LiveData<Resource<SpecificShopModel>> = _getSpecificShopObserver
+
+    val _addToFavouriteObserver: MutableLiveData<Resource<AddWishListModel>> = MutableLiveData()
+    val addToFavouriteObserver: LiveData<Resource<AddWishListModel>> = _addToFavouriteObserver
+
+    val _getFavouriteObserver: MutableLiveData<Resource<GetWishListModel>> = MutableLiveData()
+    val getFavouriteObserver: LiveData<Resource<GetWishListModel>> = _getFavouriteObserver
+
+    val _getSpecificProductObserver: MutableLiveData<Resource<SpecificProductModel>> = MutableLiveData()
+    val getSpecificProductObserver: LiveData<Resource<SpecificProductModel>> = _getSpecificProductObserver
 }

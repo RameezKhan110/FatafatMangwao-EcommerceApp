@@ -1,15 +1,15 @@
-package com.example.fatafatmangwao.model.specific_shops
+package com.example.fatafatmangwao.model.specific_product
 
 data class Product(
     val _id: String,
-    val category: String,
+    val category: Category,
     val createdAt: String,
     val description: String,
     val featured: Boolean,
     val id: String,
     val images: List<String>,
     val price: Int,
-    val rating: Double,
+    val rating: Int,
     val ratingCount: Int,
     val shopkeeper: String,
     val status: String,
@@ -17,5 +17,5 @@ data class Product(
     val title: String,
     val updatedAt: String,
     val views: Int,
-    val wishlist: List<String>
+    val wishlist: List<Any>
 )

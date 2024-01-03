@@ -1,19 +1,16 @@
 package com.example.fatafatmangwao.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fatafatmangwao.OtpData
-import com.example.fatafatmangwao.model.category.CategoryModel
-import com.example.fatafatmangwao.model.RegistrationResponse
-import com.example.fatafatmangwao.model.ResendOtpResponse
-import com.example.fatafatmangwao.utils.Resource
 import com.example.fatafatmangwao.model.User
-import com.example.fatafatmangwao.model.VerifyOtpResponse
 import com.example.fatafatmangwao.repository.ApiRepository
+import com.example.fatafatmangwao.utils.Resource
+import com.example.fatafatmangwao.viewmodel.ViewModelObservers._addToFavouriteObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getCategoryObserver
+import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getFavouriteObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getShopsObserver
+import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getSpecificProductObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getSpecificShopObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._loginUserObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._registerUserObserver
@@ -111,11 +108,45 @@ class ActivityViewModel : ViewModel() {
             if (response.error.not()) {
                 _getSpecificShopObserver.postValue(Resource.Success(response))
             }
-//            } else {
-//                _getSpecificShopObserver.postValue(response.error.let { Resource.Error(it, null) })
-//            }
         } catch (e: Exception) {
             _getSpecificShopObserver.postValue(e.cause?.let { Resource.Error(it.message.toString()) })
+        }
+    }
+
+
+    fun addToFavourite(productId: String) = viewModelScope.launch {
+        _addToFavouriteObserver.postValue(Resource.Loading())
+        try {
+            val response = apiRepository.addToFavourite(productId)
+            if (response.error.not()) {
+                _addToFavouriteObserver.postValue(Resource.Success(response))
+            }
+        } catch (e: Exception) {
+            _addToFavouriteObserver.postValue(e.cause?.let { Resource.Error(it.message.toString()) })
+        }
+    }
+
+    fun getFavourite() = viewModelScope.launch {
+        _getFavouriteObserver.postValue(Resource.Loading())
+        try {
+            val response = apiRepository.getFavourite()
+            if (response.error.not()) {
+                _getFavouriteObserver.postValue(Resource.Success(response))
+            }
+        } catch (e: Exception) {
+            _getFavouriteObserver.postValue(e.cause?.let { Resource.Error(it.message.toString()) })
+        }
+    }
+
+    fun getSpecificProduct(productId: String) = viewModelScope.launch {
+        _getSpecificProductObserver.postValue(Resource.Loading())
+        try {
+            val response = apiRepository.getSpecificProduct(productId)
+            if (response.error.not()) {
+                _getSpecificProductObserver.postValue(Resource.Success(response))
+            }
+        } catch (e: Exception) {
+            _getSpecificProductObserver.postValue(e.cause?.let { Resource.Error(it.message.toString()) })
         }
     }
 }

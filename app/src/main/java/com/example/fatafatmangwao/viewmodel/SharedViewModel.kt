@@ -8,9 +8,5 @@ class SharedViewModel: ViewModel() {
 
     private val _tokenObserver: MutableLiveData<String> = MutableLiveData()
     var categoryId: String? = null
-    val tokenObserver: LiveData<String> = _tokenObserver
-
-    fun getToken(token: String) {
-        _tokenObserver.postValue(token)
-    }
+    var productId: String? = null
 }

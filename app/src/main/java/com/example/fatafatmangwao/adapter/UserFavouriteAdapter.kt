@@ -13,29 +13,29 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.example.fatafatmangwao.R
 import com.example.fatafatmangwao.databinding.UserFavItemBinding
-import com.example.fatafatmangwao.model.specific_shops.UpdateProduct
+import com.example.fatafatmangwao.model.wishlist.Data
 import com.example.fatafatmangwao.utils.ClickListeners
 import com.example.fatafatmangwao.utils.Extensions
 import com.example.fatafatmangwao.utils.ListActionTypeClickListener
 
-class UserSpecificShopAdapter(private val listener: ClickListeners) :
-    ListAdapter<UpdateProduct, RecyclerView.ViewHolder>(DiffUtil()) {
+class UserFavouriteAdapter(private val listener: ClickListeners) :
+    ListAdapter<Data, RecyclerView.ViewHolder>(DiffUtil()) {
 
     private var isFav = false
-    class DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<UpdateProduct>() {
-        override fun areItemsTheSame(oldItem: UpdateProduct, newItem: UpdateProduct): Boolean {
+    class DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<Data>() {
+        override fun areItemsTheSame(oldItem: Data, newItem: Data): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: UpdateProduct, newItem: UpdateProduct): Boolean {
+        override fun areContentsTheSame(oldItem: Data, newItem: Data): Boolean {
             return oldItem == newItem
         }
     }
 
-    inner class SpecificShopViewHolder(private val binding: UserFavItemBinding) :
+    inner class FavouriteViewHolder(private val binding: UserFavItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: UpdateProduct) {
+        fun bind(item: Data) {
 
             binding.apply {
                 Glide.with(binding.root.context)
@@ -68,7 +68,7 @@ class UserSpecificShopAdapter(private val listener: ClickListeners) :
                 ivFav.setImageResource(R.drawable.ic_stroke_heart)
                 ivFav.setOnClickListener {
                     isFav = isFav.not()
-                    listener.onItemClick(ListActionTypeClickListener.OnFavouriteClicked(ivFav, item._id, isFav))
+                    listener.onItemClick(ListActionTypeClickListener.OnFavouriteClicked(ivFav, item.id, isFav))
 
                 }
             }
@@ -77,7 +77,7 @@ class UserSpecificShopAdapter(private val listener: ClickListeners) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return SpecificShopViewHolder(
+        return FavouriteViewHolder(
             UserFavItemBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
@@ -88,6 +88,6 @@ class UserSpecificShopAdapter(private val listener: ClickListeners) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = getItem(position)
-        (holder as SpecificShopViewHolder).bind(item)
+        (holder as FavouriteViewHolder).bind(item)
     }
 }

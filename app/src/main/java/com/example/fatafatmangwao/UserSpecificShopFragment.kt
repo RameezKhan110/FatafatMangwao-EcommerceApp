@@ -1,6 +1,7 @@
 package com.example.fatafatmangwao
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,11 +15,13 @@ import com.example.fatafatmangwao.databinding.FragmentUserSpecificShopBinding
 import com.example.fatafatmangwao.model.specific_shops.Shop
 import com.example.fatafatmangwao.utils.ClickListeners
 import com.example.fatafatmangwao.utils.Extensions
+import com.example.fatafatmangwao.utils.Extensions.autoDisableSnackBar
 import com.example.fatafatmangwao.utils.ListActionTypeClickListener
 import com.example.fatafatmangwao.utils.Resource
 import com.example.fatafatmangwao.viewmodel.ActivityViewModel
 import com.example.fatafatmangwao.viewmodel.SharedViewModel
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers
+import com.google.android.material.snackbar.Snackbar
 import github.com.st235.lib_expandablebottombar.ExpandableBottomBar
 
 class UserSpecificShopFragment : Fragment(), ClickListeners {
@@ -33,7 +36,8 @@ class UserSpecificShopFragment : Fragment(), ClickListeners {
         savedInstanceState: Bundle?
     ): View? {
         mBinding = FragmentUserSpecificShopBinding.inflate(layoutInflater, container, false)
-        val bottomNav = requireActivity().findViewById<ExpandableBottomBar>(R.id.expandableBottomBar)
+        val bottomNav =
+            requireActivity().findViewById<ExpandableBottomBar>(R.id.expandableBottomBar)
         bottomNav.visibility = View.GONE
         return mBinding.root
     }
@@ -52,6 +56,7 @@ class UserSpecificShopFragment : Fragment(), ClickListeners {
             }
         }
     }
+
     private fun setUpRecyclerView() {
         mBinding.apply {
             rvList.layoutManager = GridLayoutManager(requireContext(), 2)
@@ -68,21 +73,23 @@ class UserSpecificShopFragment : Fragment(), ClickListeners {
     private fun observe() {
         mBinding.apply {
             ViewModelObservers.getSpecificShopObserver.observe(viewLifecycleOwner) {
-                when(it) {
+                when (it) {
                     is Resource.Error -> {
 
                     }
+
                     is Resource.Loading -> {
                         progressBar.visibility = View.VISIBLE
                         rvList.visibility = View.GONE
                         specificShopLayout.root.visibility = View.GONE
                     }
+
                     is Resource.Success -> {
                         progressBar.visibility = View.GONE
                         rvList.visibility = View.VISIBLE
                         specificShopLayout.root.visibility = View.VISIBLE
                         it.data?.data?.let { it1 -> setLayoutData(it1.shop) }
-                        userSpecificShopAdapter.submitList(it.data?.data?.products)
+                        userSpecificShopAdapter.submitList(it.data?.data?.updateProducts)
                     }
                 }
             }
@@ -93,13 +100,48 @@ class UserSpecificShopFragment : Fragment(), ClickListeners {
         mBinding.specificShopLayout.apply {
             shopNameTv.text = shopData.shopname
             minimumPriceTv.text = "Minimum Rs.300"
-            Glide.with(requireContext()).load(Extensions.getImageUrl(shopData.profile)).into(shopImg)
+            Glide.with(requireContext()).load(Extensions.getImageUrl(shopData.profile))
+                .into(shopImg)
             deliveryChargesTv.text = "Free"
             tvDeliveryTime.text = "Deliver in 20 min"
         }
     }
 
     override fun onItemClick(clickListener: ListActionTypeClickListener) {
+        when (clickListener) {
+            is ListActionTypeClickListener.OnFavouriteClicked -> {
+                clickListener.apply {
+                    activityViewModel.addToFavourite(clickListener.productId)
+                    ViewModelObservers.addToFavouriteObserver.observe(viewLifecycleOwner) {
+                        when(it) {
+                            is Resource.Error -> {
 
+                            }
+                            is Resource.Loading -> {
+
+                            }
+                            is Resource.Success -> {
+                                it.message?.let { it1 -> mBinding.root.autoDisableSnackBar(it1, Snackbar.LENGTH_LONG) }
+                                Log.d("TAG", "on fav: ${it.data?.message}")
+                                if (isFav) {
+                                    ivFav.setImageResource(R.drawable.filledheart)
+                                } else {
+                                    ivFav.setImageResource(R.drawable.ic_stroke_heart)
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            is ListActionTypeClickListener.OnProductClicked -> {
+                sharedViewModel.productId = clickListener.productId
+            }
+
+            else -> {
+
+            }
+        }
     }
 }

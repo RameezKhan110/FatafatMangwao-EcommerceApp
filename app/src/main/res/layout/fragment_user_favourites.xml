@@ -9,6 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fav_item_toolbar"
         android:layout_width="0dp"
+        android:layout_marginTop="5dp"
         android:layout_height="56dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,8 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="22dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="24dp"
-            android:src="@drawable/back"
+            android:src="@drawable/ic_back"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,19 +30,17 @@
         </ImageView>
 
         <TextView
-            android:id="@+id/fav_hd_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-
+            android:layout_marginStart="30dp"
             android:text="Favourites"
             android:textColor="#000000"
-            android:textSize="18sp"
+            android:textSize="20sp"
+            android:id="@+id/fav_hd_tv"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="@id/back_img"
             app:layout_constraintStart_toEndOf="@id/back_img"
-            app:layout_constraintTop_toTopOf="@id/back_img"
-            app:layout_constraintVertical_bias="0.857">
+            app:layout_constraintTop_toTopOf="@id/back_img">
 
         </TextView>
 
@@ -50,13 +48,24 @@
             android:id="@+id/cart_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="22dp"
             android:layout_marginEnd="30dp"
-            android:src="@drawable/cart"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/ic_cart"
+            app:layout_constraintBottom_toBottomOf="@+id/search_img"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.39">
+            app:layout_constraintTop_toTopOf="@+id/search_img">
+
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/search_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_search"
+            app:layout_constraintBottom_toBottomOf="@+id/fav_hd_tv"
+            app:layout_constraintEnd_toStartOf="@+id/cart_img"
+            app:layout_constraintTop_toTopOf="@+id/fav_hd_tv"
+            app:layout_constraintVertical_bias="0.416">
 
         </ImageView>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -68,6 +77,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:spanCount="2"
+        android:id="@+id/rvList"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fav_item_toolbar"
@@ -75,4 +85,16 @@
         tools:listitem="@layout/user_fav_item">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
+        android:id="@+id/progressBar">
+
+    </ProgressBar>
 </androidx.constraintlayout.widget.ConstraintLayout>

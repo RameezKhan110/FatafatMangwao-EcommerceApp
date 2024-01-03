@@ -79,6 +79,8 @@ class UserPopularShopsFragment : Fragment(), ClickListeners {
             is ListActionTypeClickListener.OnCategoryClicked -> {
                 sharedViewModel.categoryId = clickListener.categoryId
                 findNavController().navigate(R.id.action_userPopularShopsFragment_to_userSpecificShopFragment)
+            } else -> {
+
             }
         }
     }

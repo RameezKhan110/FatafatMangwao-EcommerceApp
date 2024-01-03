@@ -79,6 +79,8 @@ class UserCategoryFragment : Fragment(), ClickListeners {
             is ListActionTypeClickListener.OnCategoryClicked -> {
                 requireContext().showToast("Item clicked", Toast.LENGTH_SHORT)
                 findNavController().navigate(R.id.action_userCategoryFragment_to_userPopularShopsFragment)
+            } else -> {
+
             }
         }
 

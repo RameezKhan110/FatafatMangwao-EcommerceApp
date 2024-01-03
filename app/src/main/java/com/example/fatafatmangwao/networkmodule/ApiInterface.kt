@@ -8,7 +8,10 @@ import com.example.fatafatmangwao.model.ResendOtpResponse
 import com.example.fatafatmangwao.model.User
 import com.example.fatafatmangwao.model.VerifyOtpResponse
 import com.example.fatafatmangwao.model.shops.ShopsModel
+import com.example.fatafatmangwao.model.specific_product.SpecificProductModel
 import com.example.fatafatmangwao.model.specific_shops.SpecificShopModel
+import com.example.fatafatmangwao.model.wishlist.AddWishListModel
+import com.example.fatafatmangwao.model.wishlist.GetWishListModel
 import com.example.fatafatmangwao.utils.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -41,6 +44,15 @@ interface AuthApiInterface {
 
     @GET("shop/get/{id}")
     suspend fun getSpecificShop(@Path ("id") categoryId: String): SpecificShopModel
+
+    @GET("product/wishlist/{id}")
+    suspend fun addToFavourite(@Path ("id") productId: String): AddWishListModel
+
+    @GET("product/wishlist")
+    suspend fun getFavourite(): GetWishListModel
+
+    @GET("product/{id}")
+    suspend fun getSpecificProduct(@Path ("id") productId: String): SpecificProductModel
 }
 
 object ApiService {
