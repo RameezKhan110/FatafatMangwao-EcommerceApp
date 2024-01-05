@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.fatafatmangwao.databinding.ImageWithCategoryDcVerticalBinding
 import com.example.fatafatmangwao.databinding.UserCategoryItemBinding
 import com.example.fatafatmangwao.model.home.Category
@@ -27,7 +28,8 @@ class HomeCateogriesAdapter :
 
         fun bind(item: Category) {
             binding.apply {
-
+                Glide.with(binding.root.context).load(item.image).into(ivItem)
+                tvItemName.text = item.name
             }
 
         }

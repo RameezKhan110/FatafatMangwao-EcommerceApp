@@ -2,6 +2,7 @@ package com.example.fatafatmangwao.adapter.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fatafatmangwao.R
@@ -48,7 +49,8 @@ class HomeCategoryAndPopularShopAdapter :
 
         fun bind(item: HomeVerticalRVModel.ItemHeadingModel) {
             binding.apply {
-
+                tvHeadingName.text = item.heading
+                label.text = item.label
             }
 
         }
@@ -59,7 +61,11 @@ class HomeCategoryAndPopularShopAdapter :
 
         fun bind(item: List<Category>) {
             binding.apply {
+                val adapter = HomeCateogriesAdapter()
+                rvList.layoutManager = GridLayoutManager(binding.root.context, 3)
+                rvList.adapter = adapter
 
+                adapter.submitList(item)
             }
 
         }
@@ -70,7 +76,10 @@ class HomeCategoryAndPopularShopAdapter :
 
         fun bind(item: List<PopularShop>) {
             binding.apply {
-
+                val adapter = HomePopularShopsAdapter()
+                rvList.layoutManager = GridLayoutManager(binding.root.context, 3)
+                rvList.adapter = adapter
+                adapter.submitList(item)
             }
 
         }

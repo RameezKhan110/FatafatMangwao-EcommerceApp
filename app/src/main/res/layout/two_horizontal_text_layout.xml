@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:text="Categories"
         android:textSize="24sp"
+        android:id="@+id/tvHeadingName"
         android:textStyle="bold"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,6 +24,7 @@
         android:text="View All"
         android:textColor="#0048D2"
         android:textSize="16sp"
+        android:id="@+id/label"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">

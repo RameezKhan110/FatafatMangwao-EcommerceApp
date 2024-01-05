@@ -1,9 +1,11 @@
 package com.example.fatafatmangwao.adapter.home
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.fatafatmangwao.databinding.DiscountCardLayoutBinding
 import com.example.fatafatmangwao.model.home.Banner
 import com.example.fatafatmangwao.utils.ClickListeners
@@ -24,10 +26,13 @@ class HomeBannersAdapter :
     inner class DiscountBannerViewHolder(private val binding: DiscountCardLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        @SuppressLint("SetTextI18n")
         fun bind(item: Banner) {
-
             binding.apply {
-
+                tvDiscountType.text = item.discountType
+                tvDiscountPercent.text = item.discountPercent + "%"
+                Glide.with(binding.root.context).load(item.shopImage).into(ivItem)
+                tvShopName.text = item.shopName
             }
 
         }
