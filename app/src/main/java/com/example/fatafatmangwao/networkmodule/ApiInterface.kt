@@ -7,6 +7,7 @@ import com.example.fatafatmangwao.model.RegistrationResponse
 import com.example.fatafatmangwao.model.ResendOtpResponse
 import com.example.fatafatmangwao.model.User
 import com.example.fatafatmangwao.model.VerifyOtpResponse
+import com.example.fatafatmangwao.model.home.HomeModel
 import com.example.fatafatmangwao.model.shops.ShopsModel
 import com.example.fatafatmangwao.model.specific_product.SpecificProductModel
 import com.example.fatafatmangwao.model.specific_shops.SpecificShopModel
@@ -53,6 +54,9 @@ interface AuthApiInterface {
 
     @GET("product/{id}")
     suspend fun getSpecificProduct(@Path ("id") productId: String): SpecificProductModel
+
+    @GET("home")
+    suspend fun getHomeDetails(): HomeModel
 }
 
 object ApiService {

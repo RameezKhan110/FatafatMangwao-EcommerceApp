@@ -149,4 +149,16 @@ class ActivityViewModel : ViewModel() {
             _getSpecificProductObserver.postValue(e.cause?.let { Resource.Error(it.message.toString()) })
         }
     }
+
+    fun getHomeDetails() = viewModelScope.launch {
+        _getSpecificProductObserver.postValue(Resource.Loading())
+        try {
+            val response = apiRepository.getSpecificProduct(productId)
+            if (response.error.not()) {
+                _getSpecificProductObserver.postValue(Resource.Success(response))
+            }
+        } catch (e: Exception) {
+            _getSpecificProductObserver.postValue(e.cause?.let { Resource.Error(it.message.toString()) })
+        }
+    }
 }

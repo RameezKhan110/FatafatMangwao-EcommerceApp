@@ -7,6 +7,7 @@ import com.example.fatafatmangwao.model.RegistrationResponse
 import com.example.fatafatmangwao.model.ResendOtpResponse
 import com.example.fatafatmangwao.model.User
 import com.example.fatafatmangwao.model.VerifyOtpResponse
+import com.example.fatafatmangwao.model.home.HomeModel
 import com.example.fatafatmangwao.model.shops.ShopsModel
 import com.example.fatafatmangwao.model.specific_product.SpecificProductModel
 import com.example.fatafatmangwao.model.specific_shops.SpecificShopModel
@@ -53,5 +54,9 @@ class ApiRepository {
 
     suspend fun getSpecificProduct(productId: String): SpecificProductModel {
         return ApiService.apiInterface.getSpecificProduct(productId)
+    }
+
+    suspend fun getHomeDetails(): HomeModel {
+        return ApiService.apiInterface.getHomeDetails()
     }
 }
