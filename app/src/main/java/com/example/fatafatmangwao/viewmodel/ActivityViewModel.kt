@@ -9,6 +9,7 @@ import com.example.fatafatmangwao.utils.Resource
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._addToFavouriteObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getCategoryObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getFavouriteObserver
+import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getHomeDetailsObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getShopsObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getSpecificProductObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getSpecificShopObserver
@@ -151,14 +152,14 @@ class ActivityViewModel : ViewModel() {
     }
 
     fun getHomeDetails() = viewModelScope.launch {
-        _getSpecificProductObserver.postValue(Resource.Loading())
+        _getHomeDetailsObserver.postValue(Resource.Loading())
         try {
-            val response = apiRepository.getSpecificProduct(productId)
+            val response = apiRepository.getHomeDetails()
             if (response.error.not()) {
-                _getSpecificProductObserver.postValue(Resource.Success(response))
+                _getHomeDetailsObserver.postValue(Resource.Success(response))
             }
         } catch (e: Exception) {
-            _getSpecificProductObserver.postValue(e.cause?.let { Resource.Error(it.message.toString()) })
+            _getHomeDetailsObserver.postValue(e.cause?.let { Resource.Error(it.message.toString()) })
         }
     }
 }

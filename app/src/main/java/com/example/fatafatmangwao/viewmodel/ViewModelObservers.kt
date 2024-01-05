@@ -6,6 +6,7 @@ import com.example.fatafatmangwao.model.RegistrationResponse
 import com.example.fatafatmangwao.model.ResendOtpResponse
 import com.example.fatafatmangwao.model.VerifyOtpResponse
 import com.example.fatafatmangwao.model.category.CategoryModel
+import com.example.fatafatmangwao.model.home.HomeModel
 import com.example.fatafatmangwao.model.shops.ShopsModel
 import com.example.fatafatmangwao.model.specific_product.SpecificProductModel
 import com.example.fatafatmangwao.model.specific_shops.SpecificShopModel
@@ -46,4 +47,7 @@ object ViewModelObservers {
 
     val _getSpecificProductObserver: MutableLiveData<Resource<SpecificProductModel>> = MutableLiveData()
     val getSpecificProductObserver: LiveData<Resource<SpecificProductModel>> = _getSpecificProductObserver
+
+    val _getHomeDetailsObserver: MutableLiveData<Resource<HomeModel>> = MutableLiveData()
+    val getHomeDetailsObserver: LiveData<Resource<HomeModel>> = _getHomeDetailsObserver
 }
