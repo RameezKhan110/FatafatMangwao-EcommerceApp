@@ -1,6 +1,8 @@
 package com.example.fatafatmangwao.repository
 
 import com.example.fatafatmangwao.OtpData
+import com.example.fatafatmangwao.model.GeneralResponse
+import com.example.fatafatmangwao.model.ProductRequest
 import com.example.fatafatmangwao.networkmodule.ApiService
 import com.example.fatafatmangwao.model.category.CategoryModel
 import com.example.fatafatmangwao.model.RegistrationResponse
@@ -58,5 +60,9 @@ class ApiRepository {
 
     suspend fun getHomeDetails(): HomeModel {
         return ApiService.apiInterface.getHomeDetails()
+    }
+
+    suspend fun addToCart(request: ProductRequest): GeneralResponse {
+        return ApiService.apiInterface.addToCart(request)
     }
 }

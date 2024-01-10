@@ -30,7 +30,7 @@ class LoginFragment : Fragment() {
         mBinding = FragmentLoginBinding.inflate(layoutInflater, container, false)
 
         if(Extensions.getUserToken(requireContext()) != null) {
-            findNavController().navigate(R.id.action_loginFragment_to_userCategoryFragment)
+            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
         return mBinding.root
     }

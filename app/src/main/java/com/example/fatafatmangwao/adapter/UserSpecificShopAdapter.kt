@@ -71,6 +71,10 @@ class UserSpecificShopAdapter(private val listener: ClickListeners) :
                     listener.onItemClick(ListActionTypeClickListener.OnFavouriteClicked(ivFav, item._id, isFav))
 
                 }
+
+                favtItemPicCl.setOnClickListener {
+                    listener.onItemClick(ListActionTypeClickListener.OnProductClicked(item._id))
+                }
             }
 
         }

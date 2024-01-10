@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.fatafatmangwao.databinding.ImageWithCategoryDcVerticalBinding
 import com.example.fatafatmangwao.model.home.PopularShop
+import com.example.fatafatmangwao.utils.Extensions
 
 class HomePopularShopsAdapter :
     ListAdapter<PopularShop, RecyclerView.ViewHolder>(DiffUtil()) {
@@ -28,7 +29,7 @@ class HomePopularShopsAdapter :
         @SuppressLint("SetTextI18n")
         fun bind(item: PopularShop) {
             binding.apply {
-                Glide.with(binding.root.context).load(item.profile).into(ivItem)
+                Glide.with(binding.root.context).load(Extensions.getImageUrl(item.profile)).into(ivItem)
                 tvShopName.text = item.name
                 tvCategory.text = item.category
                 tvDc.text = "PKR.200 delivery fees"

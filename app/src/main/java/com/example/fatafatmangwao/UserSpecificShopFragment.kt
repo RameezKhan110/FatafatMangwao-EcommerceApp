@@ -137,6 +137,7 @@ class UserSpecificShopFragment : Fragment(), ClickListeners {
 
             is ListActionTypeClickListener.OnProductClicked -> {
                 sharedViewModel.productId = clickListener.productId
+                findNavController().navigate(R.id.action_userSpecificShopFragment_to_userSpecificProductFragment)
             }
 
             else -> {

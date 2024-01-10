@@ -9,6 +9,7 @@ import com.example.fatafatmangwao.databinding.ImageWithCategoryDcVerticalBinding
 import com.example.fatafatmangwao.databinding.UserCategoryItemBinding
 import com.example.fatafatmangwao.model.home.Category
 import com.example.fatafatmangwao.model.home.PopularShop
+import com.example.fatafatmangwao.utils.Extensions
 
 class HomeCateogriesAdapter :
     ListAdapter<Category, RecyclerView.ViewHolder>(DiffUtil()) {
@@ -28,7 +29,7 @@ class HomeCateogriesAdapter :
 
         fun bind(item: Category) {
             binding.apply {
-                Glide.with(binding.root.context).load(item.image).into(ivItem)
+                Glide.with(binding.root.context).load(Extensions.getImageUrl(item.image)).into(ivItem)
                 tvItemName.text = item.name
             }
 

@@ -36,8 +36,8 @@ class HomeCategoryAndPopularShopAdapter :
         super.getItemViewType(position)
         return when (getItem(position)) {
             is HomeVerticalRVModel.ItemHeadingModel -> R.layout.two_horizontal_text_layout
-            is HomeVerticalRVModel.CategoryModelItem -> R.layout.user_category_item
-            is HomeVerticalRVModel.PopularShopItem -> R.layout.image_with_category_dc_vertical
+            is HomeVerticalRVModel.CategoryModelItem -> R.layout.hom_category_grid_list_layout
+            is HomeVerticalRVModel.PopularShopItem -> R.layout.home_popular_grid_list_layout
             else -> {
                 throw IllegalArgumentException("invalid position")
             }
@@ -117,7 +117,10 @@ class HomeCategoryAndPopularShopAdapter :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (val item = getItem(position)) {
             is HomeVerticalRVModel.CategoryModelItem -> (holder as HomeCategoryViewHolder).bind(item.categoryItem)
-            is HomeVerticalRVModel.PopularShopItem -> (holder as HomePopularShopViewHolder).bind(item.popularShopItem)
+            is HomeVerticalRVModel.PopularShopItem -> (holder as HomePopularShopViewHolder).bind(
+                item.popularShopItem
+            )
+
             is HomeVerticalRVModel.ItemHeadingModel -> (holder as ItemsHeadingViewHolder).bind(item)
         }
 

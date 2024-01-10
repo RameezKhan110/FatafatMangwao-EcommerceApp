@@ -3,9 +3,12 @@ package com.example.fatafatmangwao.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fatafatmangwao.OtpData
+import com.example.fatafatmangwao.model.ProductRequest
 import com.example.fatafatmangwao.model.User
+import com.example.fatafatmangwao.model.home.HomeData
 import com.example.fatafatmangwao.repository.ApiRepository
 import com.example.fatafatmangwao.utils.Resource
+import com.example.fatafatmangwao.viewmodel.ViewModelObservers._addToCartObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._addToFavouriteObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getCategoryObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getFavouriteObserver
@@ -22,6 +25,7 @@ import kotlinx.coroutines.launch
 class ActivityViewModel : ViewModel() {
 
     private val apiRepository = ApiRepository()
+    var homeData: ArrayList<HomeData>? = null
 
     fun registerUser(registrationDetails: User) = viewModelScope.launch {
 
@@ -160,6 +164,18 @@ class ActivityViewModel : ViewModel() {
             }
         } catch (e: Exception) {
             _getHomeDetailsObserver.postValue(e.cause?.let { Resource.Error(it.message.toString()) })
+        }
+    }
+
+    fun addToCart(request: ProductRequest) = viewModelScope.launch {
+        _addToCartObserver.postValue(Resource.Loading())
+        try {
+            val response = apiRepository.addToCart(request)
+            if (response.error?.not() == true) {
+                _addToCartObserver.postValue(Resource.Success(response))
+            }
+        } catch (e: Exception) {
+            _addToCartObserver.postValue(e.cause?.let { Resource.Error(it.message.toString()) })
         }
     }
 }

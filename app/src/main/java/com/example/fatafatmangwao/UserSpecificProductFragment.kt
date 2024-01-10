@@ -1,6 +1,7 @@
 package com.example.fatafatmangwao
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,18 +9,20 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
 import com.example.fatafatmangwao.databinding.FragmentUserSpecificProductBinding
+import com.example.fatafatmangwao.model.ProductRequest
 import com.example.fatafatmangwao.model.specific_product.Product
 import com.example.fatafatmangwao.utils.Resource
 import com.example.fatafatmangwao.viewmodel.ActivityViewModel
 import com.example.fatafatmangwao.viewmodel.SharedViewModel
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers
 
-class  UserSpecificProductFragment : Fragment() {
+class UserSpecificProductFragment : Fragment() {
 
     private lateinit var mBinding: FragmentUserSpecificProductBinding
     private val activityViewModel: ActivityViewModel by activityViewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
-//    private val userSpecificProductAdapter = UserSpecificProductAdapter(this@UserSpecificProductFragment)
+    private var totalQuantity: Int = 0
+    //    private val userSpecificProductAdapter = UserSpecificProductAdapter(this@UserSpecificProductFragment)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,6 +37,29 @@ class  UserSpecificProductFragment : Fragment() {
 //        setUpRecyclerView()
         observe()
         sharedViewModel.productId?.let { activityViewModel.getSpecificProduct(it) }
+
+        mBinding.apply {
+
+
+            ivAdd.setOnClickListener {
+                totalQuantity += 1
+                tvQuantity.text = totalQuantity.toString()
+            }
+
+            ivMinus.setOnClickListener {
+                totalQuantity -= 1
+                tvQuantity.text = totalQuantity.toString()
+
+            }
+
+            btnAddToCart.setOnClickListener {
+                val request =
+                    sharedViewModel.productId?.let { it1 -> ProductRequest(it1, totalQuantity) }
+                if (request != null) {
+                    activityViewModel.addToCart(request)
+                }
+            }
+        }
     }
 
     private fun setListeners(productDetails: Product) {
@@ -43,21 +69,40 @@ class  UserSpecificProductFragment : Fragment() {
             tvProductPrice.text = productDetails.price.toString()
             tvRating.text = productDetails.ratingCount.toString()
             tvDesc.text = productDetails.description
+
+
         }
     }
 
     private fun observe() {
         ViewModelObservers.getSpecificProductObserver.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is Resource.Error -> {
 
                 }
+
                 is Resource.Loading -> {
 
                 }
+
                 is Resource.Success -> {
                     it.data?.data?.let { it1 -> setListeners(it1.product) }
-//                    userSpecificProductAdapter.submitList(it.data.data)
+                }
+            }
+        }
+
+        ViewModelObservers.addToCartObserver.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Error -> {
+
+                }
+
+                is Resource.Loading -> {
+
+                }
+
+                is Resource.Success -> {
+                    Log.d("TAG", "cart message: ${it.data?.message}")
                 }
             }
         }

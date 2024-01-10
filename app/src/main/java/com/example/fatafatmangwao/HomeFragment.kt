@@ -1,4 +1,3 @@
-
 package com.example.fatafatmangwao
 
 import android.os.Bundle
@@ -11,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fatafatmangwao.adapter.home.HomeListAdapter
 import com.example.fatafatmangwao.databinding.FragmentHomeBinding
 import com.example.fatafatmangwao.model.home.HomeData
+import com.example.fatafatmangwao.model.home.HomeHorizontalRVModel
+import com.example.fatafatmangwao.model.home.HomeVerticalRVModel
 import com.example.fatafatmangwao.utils.ClickListeners
 import com.example.fatafatmangwao.utils.ListActionTypeClickListener
 import com.example.fatafatmangwao.utils.Resource
@@ -30,7 +31,8 @@ class HomeFragment : Fragment(), ClickListeners {
     ): View? {
         mBinding = FragmentHomeBinding.inflate(layoutInflater, container, false)
 
-        val bottomNav = requireActivity().findViewById<ExpandableBottomBar>(R.id.expandableBottomBar)
+        val bottomNav =
+            requireActivity().findViewById<ExpandableBottomBar>(R.id.expandableBottomBar)
         bottomNav.visibility = View.VISIBLE
         return mBinding.root
     }
@@ -39,32 +41,71 @@ class HomeFragment : Fragment(), ClickListeners {
         super.onViewCreated(view, savedInstanceState)
 
         setUpRecyclerview()
-        observe()
+        if (activityViewModel.homeData.isNullOrEmpty()) {
+            observe()
+        } else {
+            homeAdapter.submitList(activityViewModel.homeData)
+        }
         activityViewModel.getHomeDetails()
     }
 
     private fun observe() {
         ViewModelObservers.getHomeDetailsObserver.observe(viewLifecycleOwner) {
-            when(it) {
+            when (it) {
                 is Resource.Error -> {
 
                 }
+
                 is Resource.Loading -> {
 
                 }
+
                 is Resource.Success -> {
 
-                    homeData.add(HomeData.BannerModelItem(it.data?.data?.banners ?: arrayListOf()))
-                    homeData.add(HomeData.ItemHeadingModel("Categories", "View All"))
-                    homeData.add(HomeData.CategoryModelItem(it.data?.data?.categories ?: arrayListOf()))
-                    homeData.add(HomeData.ItemHeadingModel("Popular Shops", "View All"))
-                    homeData.add(HomeData.PopularShopItem(it.data?.data?.popularShops ?: arrayListOf()))
-
-                    homeAdapter.submitList(homeData)
+                    homeData.add(
+                        HomeData.homeHorizontalItems(
+                            HomeHorizontalRVModel.BannerModelItem(
+                                it.data?.data?.banners ?: arrayListOf()
+                            )
+                        )
+                    )
+                    homeData.add(
+                        HomeData.homeVerticalItems(
+                            HomeVerticalRVModel.ItemHeadingModel(
+                                "Categories",
+                                "View All"
+                            )
+                        )
+                    )
+                    homeData.add(
+                        HomeData.homeVerticalItems(
+                            HomeVerticalRVModel.CategoryModelItem(
+                                it.data?.data?.categories ?: arrayListOf()
+                            )
+                        )
+                    )
+                    homeData.add(
+                        HomeData.homeVerticalItems(
+                            HomeVerticalRVModel.ItemHeadingModel(
+                                "Popular Shops",
+                                "View All"
+                            )
+                        )
+                    )
+                    homeData.add(
+                        HomeData.homeVerticalItems(
+                            HomeVerticalRVModel.PopularShopItem(
+                                it.data?.data?.popularShops ?: arrayListOf()
+                            )
+                        )
+                    )
+                    activityViewModel.homeData = homeData
+                    homeAdapter.submitList(activityViewModel.homeData)
                 }
             }
         }
     }
+
     private fun setUpRecyclerview() {
         mBinding.apply {
             rvList.layoutManager = LinearLayoutManager(requireContext())

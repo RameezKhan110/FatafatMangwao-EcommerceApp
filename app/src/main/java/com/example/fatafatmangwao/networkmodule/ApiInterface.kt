@@ -2,6 +2,8 @@ package com.example.fatafatmangwao.networkmodule
 
 import com.example.fatafatmangwao.utils.Extensions
 import com.example.fatafatmangwao.OtpData
+import com.example.fatafatmangwao.model.GeneralResponse
+import com.example.fatafatmangwao.model.ProductRequest
 import com.example.fatafatmangwao.model.category.CategoryModel
 import com.example.fatafatmangwao.model.RegistrationResponse
 import com.example.fatafatmangwao.model.ResendOtpResponse
@@ -57,6 +59,9 @@ interface AuthApiInterface {
 
     @GET("home")
     suspend fun getHomeDetails(): HomeModel
+
+    @POST("cart")
+    suspend fun addToCart(@Body request: ProductRequest): GeneralResponse
 }
 
 object ApiService {

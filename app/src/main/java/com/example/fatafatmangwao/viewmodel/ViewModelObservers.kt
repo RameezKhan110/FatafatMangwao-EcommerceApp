@@ -2,6 +2,7 @@ package com.example.fatafatmangwao.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.fatafatmangwao.model.GeneralResponse
 import com.example.fatafatmangwao.model.RegistrationResponse
 import com.example.fatafatmangwao.model.ResendOtpResponse
 import com.example.fatafatmangwao.model.VerifyOtpResponse
@@ -50,4 +51,7 @@ object ViewModelObservers {
 
     val _getHomeDetailsObserver: MutableLiveData<Resource<HomeModel>> = MutableLiveData()
     val getHomeDetailsObserver: LiveData<Resource<HomeModel>> = _getHomeDetailsObserver
+
+    val _addToCartObserver: MutableLiveData<Resource<GeneralResponse>> = MutableLiveData()
+    val addToCartObserver: LiveData<Resource<GeneralResponse>> = _addToCartObserver
 }
