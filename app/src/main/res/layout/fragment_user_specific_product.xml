@@ -114,7 +114,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginStart="13dp"
-                            android:text="1"
+                            android:text="0"
                             android:id="@+id/tvQuantity"
                             android:textAlignment="center"
                             android:textColor="@color/black"
@@ -292,6 +292,7 @@
         android:layout_marginTop="15dp"
         android:id="@+id/viewYOurCart_cd"
         android:elevation="12dp"
+        android:visibility="gone"
         app:cardBackgroundColor="#01456B"
         app:cardCornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -302,6 +303,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="200dp"
             android:layout_height="42dp"
+            android:id="@+id/go_to_cart"
             android:layout_gravity="center"
             android:background="@drawable/view_your_cart_cl_bg">
 

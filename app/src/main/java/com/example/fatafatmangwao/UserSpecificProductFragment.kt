@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.MutableLiveData
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.fatafatmangwao.databinding.FragmentUserSpecificProductBinding
 import com.example.fatafatmangwao.model.ProductRequest
@@ -21,6 +23,7 @@ class UserSpecificProductFragment : Fragment() {
     private lateinit var mBinding: FragmentUserSpecificProductBinding
     private val activityViewModel: ActivityViewModel by activityViewModels()
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private var totalQuantityObserver: MutableLiveData<Int> = MutableLiveData()
     private var totalQuantity: Int = 0
     //    private val userSpecificProductAdapter = UserSpecificProductAdapter(this@UserSpecificProductFragment)
     override fun onCreateView(
@@ -40,24 +43,42 @@ class UserSpecificProductFragment : Fragment() {
 
         mBinding.apply {
 
-
             ivAdd.setOnClickListener {
                 totalQuantity += 1
                 tvQuantity.text = totalQuantity.toString()
+                totalQuantityObserver.value = totalQuantityObserver.value?.plus(1)
+
             }
 
             ivMinus.setOnClickListener {
-                totalQuantity -= 1
-                tvQuantity.text = totalQuantity.toString()
+                if(totalQuantity > 0) {
+                    totalQuantity -= 1
+                    tvQuantity.text = totalQuantity.toString()
+                    totalQuantityObserver.value = totalQuantityObserver.value?.minus(1)
+                }
 
+
+
+            }
+
+            totalQuantityObserver.observe(viewLifecycleOwner) {
+                if(totalQuantity > 0 ) {
+                    viewYOurCartCd.visibility = View.VISIBLE
+                } else {
+                    viewYOurCartCd.visibility = View.GONE
+                }
             }
 
             btnAddToCart.setOnClickListener {
                 val request =
-                    sharedViewModel.productId?.let { it1 -> ProductRequest(it1, totalQuantity) }
+                    sharedViewModel.productId?.let { it1 -> ProductRequest(it1, totalQuantity.toString()) }
                 if (request != null) {
                     activityViewModel.addToCart(request)
                 }
+            }
+
+            goToCart.setOnClickListener {
+                findNavController().navigate(R.id.action_userSpecificProductFragment_to_userCartFragment)
             }
         }
     }
@@ -75,36 +96,41 @@ class UserSpecificProductFragment : Fragment() {
     }
 
     private fun observe() {
-        ViewModelObservers.getSpecificProductObserver.observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Error -> {
+        mBinding.apply {
 
-                }
+            ViewModelObservers.getSpecificProductObserver.observe(viewLifecycleOwner) {
+                when (it) {
+                    is Resource.Error -> {
+                    }
 
-                is Resource.Loading -> {
+                    is Resource.Loading -> {
 
-                }
+                    }
 
-                is Resource.Success -> {
-                    it.data?.data?.let { it1 -> setListeners(it1.product) }
-                }
-            }
-        }
-
-        ViewModelObservers.addToCartObserver.observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Error -> {
-
-                }
-
-                is Resource.Loading -> {
-
-                }
-
-                is Resource.Success -> {
-                    Log.d("TAG", "cart message: ${it.data?.message}")
+                    is Resource.Success -> {
+                        it.data?.data?.let { it1 -> setListeners(it1.product) }
+                    }
                 }
             }
+
+            ViewModelObservers.addToCartObserver.observe(viewLifecycleOwner) {
+                when (it) {
+                    is Resource.Error -> {
+                        Log.d("TAG", "cart error ${it.message}")
+
+                    }
+
+                    is Resource.Loading -> {
+
+                    }
+
+                    is Resource.Success -> {
+                        Log.d("TAG", "cart message: ${it.data?.message}")
+                    }
+                }
+            }
+
+
         }
     }
 

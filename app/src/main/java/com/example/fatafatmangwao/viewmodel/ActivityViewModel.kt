@@ -173,6 +173,8 @@ class ActivityViewModel : ViewModel() {
             val response = apiRepository.addToCart(request)
             if (response.error?.not() == true) {
                 _addToCartObserver.postValue(Resource.Success(response))
+            } else {
+                _addToCartObserver.postValue(response.message?.let { Resource.Error(it) })
             }
         } catch (e: Exception) {
             _addToCartObserver.postValue(e.cause?.let { Resource.Error(it.message.toString()) })

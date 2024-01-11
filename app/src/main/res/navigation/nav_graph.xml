@@ -116,7 +116,11 @@
         android:id="@+id/userSpecificProductFragment"
         android:name="com.example.fatafatmangwao.UserSpecificProductFragment"
         android:label="fragment_user_specific_product"
-        tools:layout="@layout/fragment_user_specific_product" />
+        tools:layout="@layout/fragment_user_specific_product" >
+        <action
+            android:id="@+id/action_userSpecificProductFragment_to_userCartFragment"
+            app:destination="@id/userCartFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userSpecificShopFragment"
         android:name="com.example.fatafatmangwao.UserSpecificShopFragment"
@@ -127,6 +131,19 @@
             app:destination="@id/userPopularShopsFragment" />
         <action
             android:id="@+id/action_userSpecificShopFragment_to_userSpecificProductFragment"
+            app:destination="@id/userSpecificProductFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userCurrentOrderFragment"
+        android:name="com.example.fatafatmangwao.UserCurrentOrderFragment"
+        android:label="UserCurrentOrderFragment" />
+
+    <fragment
+        android:id="@+id/userCartFragment"
+        android:name="com.example.fatafatmangwao.UserCartFragment"
+        android:label="UserCartFragment" >
+        <action
+            android:id="@+id/action_userCartFragment_to_userSpecificProductFragment"
             app:destination="@id/userSpecificProductFragment" />
     </fragment>
 </navigation>
