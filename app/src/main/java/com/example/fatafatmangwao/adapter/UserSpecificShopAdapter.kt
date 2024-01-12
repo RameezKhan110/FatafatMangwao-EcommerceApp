@@ -68,7 +68,7 @@ class UserSpecificShopAdapter(private val listener: ClickListeners) :
                 ivFav.setImageResource(R.drawable.ic_stroke_heart)
                 ivFav.setOnClickListener {
                     isFav = isFav.not()
-                    listener.onItemClick(ListActionTypeClickListener.OnFavouriteClicked(ivFav, item._id, isFav))
+                    listener.onItemClick(ListActionTypeClickListener.OnFavouriteClicked(ivFav, item._id, item.wishlist))
 
                 }
 

@@ -9,6 +9,7 @@ import com.example.fatafatmangwao.model.RegistrationResponse
 import com.example.fatafatmangwao.model.ResendOtpResponse
 import com.example.fatafatmangwao.model.User
 import com.example.fatafatmangwao.model.VerifyOtpResponse
+import com.example.fatafatmangwao.model.cart.GetCartModel
 import com.example.fatafatmangwao.model.home.HomeModel
 import com.example.fatafatmangwao.model.shops.ShopsModel
 import com.example.fatafatmangwao.model.specific_product.SpecificProductModel
@@ -62,6 +63,9 @@ interface AuthApiInterface {
 
     @POST("cart")
     suspend fun addToCart(@Body request: ProductRequest): GeneralResponse
+
+    @GET("cart")
+    suspend fun getCart(): GetCartModel
 }
 
 object ApiService {

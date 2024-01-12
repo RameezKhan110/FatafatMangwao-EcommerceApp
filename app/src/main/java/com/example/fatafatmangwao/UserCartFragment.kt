@@ -1,59 +1,89 @@
 package com.example.fatafatmangwao
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import com.bumptech.glide.Glide
+import com.example.fatafatmangwao.databinding.CartConfirmOrderLayoutBinding
+import com.example.fatafatmangwao.databinding.FragmentUserCartBinding
+import com.example.fatafatmangwao.model.cart.Data
+import com.example.fatafatmangwao.utils.Resource
+import com.example.fatafatmangwao.viewmodel.ActivityViewModel
+import com.example.fatafatmangwao.viewmodel.ViewModelObservers
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [UserCartFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class UserCartFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    private lateinit var mBinding: FragmentUserCartBinding
+    private lateinit var itemLayoutBinding: CartConfirmOrderLayoutBinding
+    private val activityViewModel: ActivityViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_user_cart, container, false)
+    ): View {
+        mBinding = FragmentUserCartBinding.inflate(inflater, container, false)
+        itemLayoutBinding = CartConfirmOrderLayoutBinding.inflate(layoutInflater, container, false)
+        return mBinding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment UserCartFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            UserCartFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        observe()
+        activityViewModel.getCart()
+
+    }
+
+    private fun observe() {
+        ViewModelObservers.getCartObserver.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Error -> {
+
+                }
+
+                is Resource.Loading -> {
+
+                }
+
+                is Resource.Success -> {
+                    Log.d("TAG", "data from get cart: $it" )
+//                    it.data?.data?.let { it1 ->
+//                        val itemData = setData(it1)
+//                        var totalComponents = 4
+//                        itemData.forEach { view ->
+//                            mBinding.root.children.forEach {
+//                                if (it is ViewGroup) {
+//                                    mBinding.cl1.addView(view.root, totalComponents)
+//                                    totalComponents++
+//                                }
+//                            }
+//                        }
+//                    }
                 }
             }
+        }
+    }
+
+    private fun setData(data: Data): List<CartConfirmOrderLayoutBinding> {
+//        val layout2 = LayoutInflater.from(requireContext()).inflate(
+//            R.layout.cart_confirm_order_layout,
+//            mBinding.cl1,
+//            false
+//        )
+        val list = arrayListOf<CartConfirmOrderLayoutBinding>()
+        data.cart.forEach {
+            val itemView = itemLayoutBinding.apply {
+                Glide.with(requireContext()).load(it.images.first()).into(ivItemImage)
+                tvItemName.text = it.title
+                tvItemQuantity.text = it.quantity.toString()
+                tvItemPrice.text = it.price.toString()
+            }
+            list.add(itemView)
+        }
+        return list
     }
 }

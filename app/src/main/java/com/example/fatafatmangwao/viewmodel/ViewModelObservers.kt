@@ -6,6 +6,7 @@ import com.example.fatafatmangwao.model.GeneralResponse
 import com.example.fatafatmangwao.model.RegistrationResponse
 import com.example.fatafatmangwao.model.ResendOtpResponse
 import com.example.fatafatmangwao.model.VerifyOtpResponse
+import com.example.fatafatmangwao.model.cart.GetCartModel
 import com.example.fatafatmangwao.model.category.CategoryModel
 import com.example.fatafatmangwao.model.home.HomeModel
 import com.example.fatafatmangwao.model.shops.ShopsModel
@@ -54,4 +55,7 @@ object ViewModelObservers {
 
     val _addToCartObserver: MutableLiveData<Resource<GeneralResponse>> = MutableLiveData()
     val addToCartObserver: LiveData<Resource<GeneralResponse>> = _addToCartObserver
+
+    val _getCartObserver: MutableLiveData<Resource<GetCartModel>> = MutableLiveData()
+    val getCartObserver: LiveData<Resource<GetCartModel>> = _getCartObserver
 }

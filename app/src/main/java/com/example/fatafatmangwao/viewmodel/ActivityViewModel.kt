@@ -10,6 +10,7 @@ import com.example.fatafatmangwao.repository.ApiRepository
 import com.example.fatafatmangwao.utils.Resource
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._addToCartObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._addToFavouriteObserver
+import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getCartObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getCategoryObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getFavouriteObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getHomeDetailsObserver
@@ -178,6 +179,20 @@ class ActivityViewModel : ViewModel() {
             }
         } catch (e: Exception) {
             _addToCartObserver.postValue(e.cause?.let { Resource.Error(it.message.toString()) })
+        }
+    }
+
+    fun getCart() = viewModelScope.launch {
+        _getCartObserver.postValue(Resource.Loading())
+        try {
+            val response = apiRepository.getCart()
+            if (response.error.not()) {
+                _getCartObserver.postValue(Resource.Success(response))
+            } else {
+                _getCartObserver.postValue(response.error.let { Resource.Error(it.toString()) })
+            }
+        } catch (e: Exception) {
+            _getCartObserver.postValue(e.cause?.let { Resource.Error(it.message.toString()) })
         }
     }
 }

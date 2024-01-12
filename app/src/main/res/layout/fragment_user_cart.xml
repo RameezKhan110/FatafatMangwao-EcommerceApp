@@ -8,6 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:id="@+id/cl1"
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -124,7 +125,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/location"
-                    android:id="@id/tv3"
+                    android:id="@+id/iv3"
                     app:layout_constraintStart_toStartOf="@id/tv2"
                     app:layout_constraintEnd_toEndOf="@id/tv2"
                     app:layout_constraintTop_toBottomOf="@id/tv2"
@@ -135,8 +136,8 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toEndOf="@id/tv3"
-                    app:layout_constraintTop_toTopOf="@id/tv3"
+                    app:layout_constraintStart_toEndOf="@id/iv3"
+                    app:layout_constraintTop_toTopOf="@id/iv3"
                     android:textSize="10sp"
                     android:text="Rameez Ahmed Khan"
                     android:textColor="@color/black"
@@ -144,7 +145,7 @@
                     android:layout_marginEnd="5dp"
                     android:maxLines="1"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintBottom_toBottomOf="@id/tv3"
+                    app:layout_constraintBottom_toBottomOf="@id/iv3"
                     android:layout_marginStart="10dp">
 
                 </TextView>
@@ -154,9 +155,9 @@
                     android:layout_height="wrap_content"
                     android:src="@drawable/location"
                     android:id="@id/tv4"
-                    app:layout_constraintStart_toStartOf="@id/tv3"
-                    app:layout_constraintEnd_toEndOf="@id/tv3"
-                    app:layout_constraintTop_toBottomOf="@id/tv3"
+                    app:layout_constraintStart_toStartOf="@id/iv3"
+                    app:layout_constraintEnd_toEndOf="@id/iv3"
+                    app:layout_constraintTop_toBottomOf="@id/iv3"
                     android:layout_marginTop="10dp">
 
                 </ImageView>
@@ -196,7 +197,7 @@
             app:layout_constraintTop_toBottomOf="@id/cv_userDetails">
 
             <TextView
-                android:id="@+id/tv2"
+                android:id="@+id/mytv2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Delivery Time"
@@ -222,7 +223,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tv_deliveryDate"
                 app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/tv2"
+                app:layout_constraintStart_toEndOf="@+id/mytv2"
                 app:layout_constraintTop_toTopOf="parent">
 
             </TextView>
@@ -254,11 +255,11 @@
             app:layout_constraintTop_toBottomOf="@id/cv_delivery"
             android:orientation="vertical">
 
-            <include
-                layout="@layout/cart_confirm_order_layout"
-                android:id="@+id/layout_itemDetails">
+<!--            <include-->
+<!--                layout="@layout/cart_confirm_order_layout"-->
+<!--                android:id="@+id/layout_itemDetails">-->
 
-            </include>
+<!--            </include>-->
 
         </LinearLayout>
 
@@ -285,9 +286,7 @@
             android:layout_marginTop="19dp"
             android:textSize="24sp"
             android:id="@+id/tv3"
-            android:textColor="@color/black">
-
-        </TextView>
+            android:textColor="@color/black"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
