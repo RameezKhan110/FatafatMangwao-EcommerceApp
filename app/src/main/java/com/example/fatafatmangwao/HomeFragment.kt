@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.fatafatmangwao.adapter.home.HomeCategoryAndPopularShopAdapter
 import com.example.fatafatmangwao.adapter.home.HomeListAdapter
 import com.example.fatafatmangwao.databinding.FragmentHomeBinding
 import com.example.fatafatmangwao.model.home.HomeData
@@ -84,6 +86,14 @@ class HomeFragment : Fragment(), ClickListeners {
                             )
                         )
                     )
+
+                    homeData.add(
+                        HomeData.homeVerticalItems(
+                            HomeVerticalRVModel.SupermarketItemModel(
+                                "Testing"
+                            )
+                        )
+                    )
                     homeData.add(
                         HomeData.homeVerticalItems(
                             HomeVerticalRVModel.ItemHeadingModel(
@@ -114,6 +124,17 @@ class HomeFragment : Fragment(), ClickListeners {
     }
 
     override fun onItemClick(clickListener: ListActionTypeClickListener) {
-        TODO("Not yet implemented")
+        when(clickListener) {
+            is ListActionTypeClickListener.OnHeadingClicked -> {
+                if(clickListener.heading == "Categories") {
+                    findNavController().navigate(R.id.action_homeFragment_to_userCategoryFragment)
+                } else {
+                    findNavController().navigate(R.id.action_homeFragment_to_userPopularShopsFragment)
+                }
+            }
+            else -> {
+
+            }
+        }
     }
 }

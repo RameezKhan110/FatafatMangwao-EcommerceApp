@@ -8,12 +8,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fatafatmangwao.R
 import com.example.fatafatmangwao.databinding.HomCategoryGridListLayoutBinding
 import com.example.fatafatmangwao.databinding.HomePopularGridListLayoutBinding
+import com.example.fatafatmangwao.databinding.SupermarketsCardLayoutBinding
 import com.example.fatafatmangwao.databinding.TwoHorizontalTextLayoutBinding
 import com.example.fatafatmangwao.model.home.Category
 import com.example.fatafatmangwao.model.home.HomeVerticalRVModel
 import com.example.fatafatmangwao.model.home.PopularShop
+import com.example.fatafatmangwao.utils.ClickListeners
+import com.example.fatafatmangwao.utils.ListActionTypeClickListener
 
-class HomeCategoryAndPopularShopAdapter :
+class HomeCategoryAndPopularShopAdapter(val listener: ClickListeners) :
     ListAdapter<HomeVerticalRVModel, RecyclerView.ViewHolder>(DiffUtil()) {
 
     class DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<HomeVerticalRVModel>() {
@@ -38,6 +41,7 @@ class HomeCategoryAndPopularShopAdapter :
             is HomeVerticalRVModel.ItemHeadingModel -> R.layout.two_horizontal_text_layout
             is HomeVerticalRVModel.CategoryModelItem -> R.layout.hom_category_grid_list_layout
             is HomeVerticalRVModel.PopularShopItem -> R.layout.home_popular_grid_list_layout
+            is HomeVerticalRVModel.SupermarketItemModel -> R.layout.supermarkets_card_layout
             else -> {
                 throw IllegalArgumentException("invalid position")
             }
@@ -51,6 +55,9 @@ class HomeCategoryAndPopularShopAdapter :
             binding.apply {
                 tvHeadingName.text = item.heading
                 label.text = item.label
+                label.setOnClickListener {
+                    listener.onItemClick(ListActionTypeClickListener.OnHeadingClicked(item.heading))
+                }
             }
 
         }
@@ -85,6 +92,17 @@ class HomeCategoryAndPopularShopAdapter :
         }
     }
 
+    inner class SupermarketCardViewHolder(private val binding: SupermarketsCardLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: HomeVerticalRVModel.SupermarketItemModel) {
+            binding.apply {
+
+            }
+
+        }
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -108,6 +126,12 @@ class HomeCategoryAndPopularShopAdapter :
                 )
             )
 
+            R.layout.supermarkets_card_layout -> SupermarketCardViewHolder(
+                SupermarketsCardLayoutBinding.inflate(
+                    LayoutInflater.from(parent.context), parent, false
+                )
+            )
+
             else -> {
                 throw IllegalArgumentException("Unknown view type")
             }
@@ -122,6 +146,9 @@ class HomeCategoryAndPopularShopAdapter :
             )
 
             is HomeVerticalRVModel.ItemHeadingModel -> (holder as ItemsHeadingViewHolder).bind(item)
+            is HomeVerticalRVModel.SupermarketItemModel -> (holder as SupermarketCardViewHolder).bind(
+                item
+            )
         }
 
     }

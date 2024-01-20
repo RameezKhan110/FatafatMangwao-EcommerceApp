@@ -2,23 +2,25 @@ package com.example.fatafatmangwao.adapter.home
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.fatafatmangwao.databinding.DiscountCardLayoutBinding
-import com.example.fatafatmangwao.model.home.Banner
-import com.example.fatafatmangwao.utils.ClickListeners
+import com.example.fatafatmangwao.model.home.Banners
+import com.example.fatafatmangwao.utils.Extensions
 
 class HomeBannersAdapter :
-    ListAdapter<Banner, RecyclerView.ViewHolder>(DiffUtil()) {
+    ListAdapter<Banners, RecyclerView.ViewHolder>(DiffUtil()) {
 
-    class DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<Banner>() {
-        override fun areItemsTheSame(oldItem: Banner, newItem: Banner): Boolean {
+    var count: Int = 0
+    class DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<Banners>() {
+        override fun areItemsTheSame(oldItem: Banners, newItem: Banners): Boolean {
             return oldItem == newItem
         }
 
-        override fun areContentsTheSame(oldItem: Banner, newItem: Banner): Boolean {
+        override fun areContentsTheSame(oldItem: Banners, newItem: Banners): Boolean {
             return oldItem == newItem
         }
     }
@@ -27,12 +29,16 @@ class HomeBannersAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
-        fun bind(item: Banner) {
+        fun bind(item: Banners) {
             binding.apply {
-                tvDiscountType.text = item.discountType
-                tvDiscountPercent.text = item.discountPercent + "%"
-                Glide.with(binding.root.context).load(item.shopImage).into(ivItem)
-                tvShopName.text = item.shopName
+                count++
+                if(count > 1) {
+                    tv2.visibility = View.INVISIBLE
+                }
+                tvDiscountType.text = "Upto"
+                tvDiscountPercent.text = "70%"
+                Glide.with(binding.root.context).load(item.banner?.let { Extensions.getImageUrl(it) }).into(ivItem)
+                tvShopName.text = "Black and Brown"
             }
 
         }

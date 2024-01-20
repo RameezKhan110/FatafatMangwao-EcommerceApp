@@ -7,6 +7,7 @@ import com.example.fatafatmangwao.networkmodule.ApiService
 import com.example.fatafatmangwao.model.category.CategoryModel
 import com.example.fatafatmangwao.model.RegistrationResponse
 import com.example.fatafatmangwao.model.ResendOtpResponse
+import com.example.fatafatmangwao.model.UpdateProductRequest
 import com.example.fatafatmangwao.model.User
 import com.example.fatafatmangwao.model.VerifyOtpResponse
 import com.example.fatafatmangwao.model.cart.GetCartModel
@@ -69,5 +70,17 @@ class ApiRepository {
 
     suspend fun getCart(): GetCartModel {
         return ApiService.apiInterface.getCart()
+    }
+
+    suspend fun deleteFromCart(productId: String) : GeneralResponse {
+        return ApiService.apiInterface.deleteFromCart(productId)
+    }
+
+    suspend fun placeOrder() : GeneralResponse {
+        return ApiService.apiInterface.placeOrder()
+    }
+
+    suspend fun updateProductQuantity(id: String, method: UpdateProductRequest): GeneralResponse {
+        return ApiService.apiInterface.updateProductQuantity(id, method)
     }
 }

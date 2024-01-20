@@ -36,21 +36,27 @@ class UserPopularShopsFragment : Fragment(), ClickListeners {
         setListeners()
         setUpRecyclerView()
         observe()
-        activityViewModel.getAllShops("", "653ab8d9eb53153e5b06038b")
+        sharedViewModel.categoryId?.let { activityViewModel.getAllShops("", it) }
     }
 
     private fun observe() {
         mBinding.apply {
             ViewModelObservers.getShopsObserver.observe(viewLifecycleOwner) {
-                when(it) {
+                when (it) {
                     is Resource.Error -> {
-
+                        loadingView.visibility = View.GONE
+                        loadingView.cancelAnimation()
                     }
+
                     is Resource.Loading -> {
-
+                        loadingView.visibility = View.VISIBLE
                     }
+
                     is Resource.Success -> {
+                        loadingView.visibility = View.GONE
+                        loadingView.cancelAnimation()
                         shopsAdapter.submitList(it.data?.data)
+
                     }
                 }
             }
@@ -75,11 +81,13 @@ class UserPopularShopsFragment : Fragment(), ClickListeners {
     }
 
     override fun onItemClick(clickListener: ListActionTypeClickListener) {
-        when(clickListener) {
+        when (clickListener) {
             is ListActionTypeClickListener.OnCategoryClicked -> {
-                sharedViewModel.categoryId = clickListener.categoryId
+                sharedViewModel.shopId = clickListener.categoryId
                 findNavController().navigate(R.id.action_userPopularShopsFragment_to_userSpecificShopFragment)
-            } else -> {
+            }
+
+            else -> {
 
             }
         }

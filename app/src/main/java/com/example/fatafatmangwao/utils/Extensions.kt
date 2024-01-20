@@ -3,9 +3,13 @@ package com.example.fatafatmangwao.utils
 import android.content.Context
 import android.view.View
 import android.widget.Toast
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.fatafatmangwao.networkmodule.HeaderInterceptor
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.delay
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 
 object Extensions {
 
@@ -36,7 +40,7 @@ object Extensions {
         snackBar.show()
     }
 
-    fun storeUserToken(context: Context, token: String) {
+    fun storeUserToken(context: Context, token: String?) {
         val sharedPref = context.getSharedPreferences("Users_token", Context.MODE_PRIVATE)
         val editor = sharedPref.edit()
 
@@ -50,10 +54,23 @@ object Extensions {
         return sharedPref.getString("user_token", null)
     }
 
+    fun clearUserToken(context: Context) {
+        val sharedPref = context.getSharedPreferences("Users_token", Context.MODE_PRIVATE)
+        val editor = sharedPref.edit()
+
+        editor.remove("user_token")
+        editor.apply()
+    }
     fun createOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(HeaderInterceptor())
+            .addInterceptor(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY })
             .build()
+    }
+
+    suspend fun mockLoading() {
+        delay(3000)
+
     }
 
     fun getImageUrl(imageUrl: String): String {
@@ -69,5 +86,17 @@ object Extensions {
     fun markAppLaunched(context: Context) {
         val preferences = context.getSharedPreferences("launch_checker", Context.MODE_PRIVATE)
         preferences.edit().putBoolean("is_first_launch", false).apply()
+    }
+
+    fun <T> clearLiveDataValue(liveData: LiveData<T>) {
+        (liveData as MutableLiveData).value = null
+    }
+
+    fun View.visible() {
+        visibility = View.VISIBLE
+    }
+
+    fun View.gone() {
+        visibility = View.GONE
     }
 }

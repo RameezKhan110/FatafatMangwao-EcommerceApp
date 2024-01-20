@@ -12,9 +12,10 @@ import com.example.fatafatmangwao.model.home.HomeData
 import com.example.fatafatmangwao.model.home.HomeHorizontalRVModel
 import com.example.fatafatmangwao.model.home.HomeVerticalRVModel
 import com.example.fatafatmangwao.utils.ClickListeners
+import com.example.fatafatmangwao.utils.ListActionTypeClickListener
 
 class HomeListAdapter(private val listener: ClickListeners) :
-    ListAdapter<HomeData, RecyclerView.ViewHolder>(DiffUtil()) {
+    ListAdapter<HomeData, RecyclerView.ViewHolder>(DiffUtil()), ClickListeners{
 
     class DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<HomeData>() {
         override fun areItemsTheSame(
@@ -50,7 +51,7 @@ class HomeListAdapter(private val listener: ClickListeners) :
                 rvList.layoutManager = LinearLayoutManager(binding.root.context, LinearLayoutManager.HORIZONTAL, false)
                 rvList.adapter = adapter
 
-                adapter.submitList(item.bannerItem)
+                adapter.submitList(item.bannersItem)
             }
 
         }
@@ -62,7 +63,7 @@ class HomeListAdapter(private val listener: ClickListeners) :
         fun bind(item: HomeVerticalRVModel) {
             binding.apply {
 
-                val adapter = HomeCategoryAndPopularShopAdapter()
+                val adapter = HomeCategoryAndPopularShopAdapter(this@HomeListAdapter)
                 rvList.layoutManager = LinearLayoutManager(binding.root.context)
                 rvList.adapter = adapter
 
@@ -108,5 +109,15 @@ class HomeListAdapter(private val listener: ClickListeners) :
             }
         }
 
+    }
+
+    override fun onItemClick(clickListener: ListActionTypeClickListener) {
+        when(clickListener) {
+            is ListActionTypeClickListener.OnHeadingClicked -> {
+                listener.onItemClick(ListActionTypeClickListener.OnHeadingClicked(clickListener.heading))
+            } else -> {
+
+            }
+        }
     }
 }

@@ -71,7 +71,7 @@ class UserCategoryAdapter(private val listener: ClickListeners) :
                     .into(ivItem)
                 tvItemName.text = item.name
                 ivItem.setOnClickListener {
-                    listener?.onItemClick(ListActionTypeClickListener.OnCategoryClicked(item.id))
+                    listener.onItemClick(ListActionTypeClickListener.OnCategoryClicked(item.id))
                 }
             }
 

@@ -48,7 +48,7 @@ class UserSpecificShopFragment : Fragment(), ClickListeners {
         setListeners()
         setUpRecyclerView()
         observe()
-        sharedViewModel.categoryId?.let { activityViewModel.getSpecificShop(it) }
+        sharedViewModel.shopId?.let { activityViewModel.getSpecificShop(it) }
 
         mBinding.apply {
             backImg.setOnClickListener {
@@ -75,18 +75,19 @@ class UserSpecificShopFragment : Fragment(), ClickListeners {
             ViewModelObservers.getSpecificShopObserver.observe(viewLifecycleOwner) {
                 when (it) {
                     is Resource.Error -> {
-
+                        loadingView.visibility = View.GONE
+                        specificShopLayout.root.visibility = View.VISIBLE
+                        loadingView.cancelAnimation()
                     }
 
                     is Resource.Loading -> {
-                        progressBar.visibility = View.VISIBLE
-                        rvList.visibility = View.GONE
+                        loadingView.visibility = View.VISIBLE
                         specificShopLayout.root.visibility = View.GONE
                     }
 
                     is Resource.Success -> {
-                        progressBar.visibility = View.GONE
-                        rvList.visibility = View.VISIBLE
+                        loadingView.visibility = View.GONE
+                        loadingView.cancelAnimation()
                         specificShopLayout.root.visibility = View.VISIBLE
                         it.data?.data?.let { it1 -> setLayoutData(it1.shop) }
                         userSpecificShopAdapter.submitList(it.data?.data?.updateProducts)

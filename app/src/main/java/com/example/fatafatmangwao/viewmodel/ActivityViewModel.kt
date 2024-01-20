@@ -4,12 +4,14 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.fatafatmangwao.OtpData
 import com.example.fatafatmangwao.model.ProductRequest
+import com.example.fatafatmangwao.model.UpdateProductRequest
 import com.example.fatafatmangwao.model.User
 import com.example.fatafatmangwao.model.home.HomeData
 import com.example.fatafatmangwao.repository.ApiRepository
 import com.example.fatafatmangwao.utils.Resource
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._addToCartObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._addToFavouriteObserver
+import com.example.fatafatmangwao.viewmodel.ViewModelObservers._deleteFromCartObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getCartObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getCategoryObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getFavouriteObserver
@@ -18,8 +20,10 @@ import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getShopsObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getSpecificProductObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._getSpecificShopObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._loginUserObserver
+import com.example.fatafatmangwao.viewmodel.ViewModelObservers._placeOrderObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._registerUserObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._resendOtpObserver
+import com.example.fatafatmangwao.viewmodel.ViewModelObservers._updateProductQuantityObserver
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers._verifyOtpObserver
 import kotlinx.coroutines.launch
 
@@ -193,6 +197,50 @@ class ActivityViewModel : ViewModel() {
             }
         } catch (e: Exception) {
             _getCartObserver.postValue(e.cause?.let { Resource.Error(it.message.toString()) })
+        }
+    }
+
+    fun deleteFromCart(productId: String) = viewModelScope.launch {
+        _deleteFromCartObserver.postValue(Resource.Loading())
+        try {
+            val response = apiRepository.deleteFromCart(productId)
+            if (response.error?.not() == true) {
+                _deleteFromCartObserver.postValue(Resource.Success(response))
+                getCart()
+            } else {
+                _deleteFromCartObserver.postValue(response.error.let { Resource.Error(it.toString()) })
+            }
+        } catch (e: Exception) {
+            _deleteFromCartObserver.postValue(e.cause?.let { Resource.Error(it.message.toString()) })
+        }
+    }
+
+    fun placeOrder() = viewModelScope.launch {
+        _placeOrderObserver.postValue(Resource.Loading())
+        try {
+            val response = apiRepository.placeOrder()
+            if (response.error?.not() == true) {
+                _placeOrderObserver.postValue(Resource.Success(response))
+            } else {
+                _placeOrderObserver.postValue(response.error.let { Resource.Error(it.toString()) })
+            }
+        } catch (e: Exception) {
+            _placeOrderObserver.postValue(e.cause?.let { Resource.Error(it.message.toString()) })
+        }
+    }
+
+    fun updateProductQuantity(id: String, method: UpdateProductRequest) = viewModelScope.launch {
+        _updateProductQuantityObserver.postValue(Resource.Loading())
+        try {
+            val response = apiRepository.updateProductQuantity(id, method)
+            if (response.error?.not() == true) {
+                _updateProductQuantityObserver.postValue(Resource.Success(response))
+                getCart()
+            } else {
+                _updateProductQuantityObserver.postValue(response.error.let { Resource.Error(it.toString()) })
+            }
+        } catch (e: Exception) {
+            _updateProductQuantityObserver.postValue(e.cause?.let { Resource.Error(it.message.toString()) })
         }
     }
 }

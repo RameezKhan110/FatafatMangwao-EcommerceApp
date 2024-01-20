@@ -16,8 +16,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:id="@+id/cl1"
             android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -51,17 +53,19 @@
 
                 </ImageView>
 
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/ivProduct"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:src="@drawable/chickenbreast"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/RoundedCornerStyle"
+                    android:src="@drawable/food"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                </ImageView>
+                </com.google.android.material.imageview.ShapeableImageView>
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="42dp"
@@ -78,7 +82,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/heart"
+                        android:src="@drawable/ic_stroke_heart"
                         app:tint="@color/black">
 
                     </ImageView>
@@ -129,7 +133,7 @@
                             android:layout_gravity="center"
                             android:id="@+id/ivMinus"
                             android:layout_marginStart="15dp"
-                            android:src="@drawable/minus">
+                            android:src="@drawable/ic_minus">
 
                         </ImageView>
                     </LinearLayout>
@@ -142,10 +146,9 @@
                 android:id="@+id/tv_productName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="30dp"
+                android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="16dp"
                 android:maxLines="2"
-                android:text="Boneless Golden Chicken (5-6 pieces) 1 Kg"
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -286,6 +289,20 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/loadingView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:lottie_fileName="loadinganimation.json"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true">
+
+    </com.airbnb.lottie.LottieAnimationView>
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="56dp"

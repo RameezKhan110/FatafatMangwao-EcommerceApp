@@ -58,4 +58,13 @@ object ViewModelObservers {
 
     val _getCartObserver: MutableLiveData<Resource<GetCartModel>> = MutableLiveData()
     val getCartObserver: LiveData<Resource<GetCartModel>> = _getCartObserver
+
+    val _deleteFromCartObserver: MutableLiveData<Resource<GeneralResponse>> = MutableLiveData()
+    val deleteFromCartObserver: LiveData<Resource<GeneralResponse>> = _deleteFromCartObserver
+
+    val _placeOrderObserver: MutableLiveData<Resource<GeneralResponse>> = MutableLiveData()
+    val placeOrderObserver: LiveData<Resource<GeneralResponse>> = _placeOrderObserver
+
+    val _updateProductQuantityObserver: MutableLiveData<Resource<GeneralResponse>> = MutableLiveData()
+    val updateProductQuantityObserver: LiveData<Resource<GeneralResponse>> = _updateProductQuantityObserver
 }

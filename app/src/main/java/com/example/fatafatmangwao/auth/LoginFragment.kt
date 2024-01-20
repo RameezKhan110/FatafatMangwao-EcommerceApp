@@ -15,6 +15,7 @@ import com.example.fatafatmangwao.viewmodel.ActivityViewModel
 import com.example.fatafatmangwao.databinding.FragmentLoginBinding
 import com.example.fatafatmangwao.model.User
 import com.example.fatafatmangwao.utils.Extensions
+import com.example.fatafatmangwao.viewmodel.ViewModelObservers
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers.loginUserObserver
 import github.com.st235.lib_expandablebottombar.ExpandableBottomBar
 
@@ -29,7 +30,7 @@ class LoginFragment : Fragment() {
     ): View? {
         mBinding = FragmentLoginBinding.inflate(layoutInflater, container, false)
 
-        if(Extensions.getUserToken(requireContext()) != null) {
+        if(Extensions.getUserToken(requireContext()).isNullOrEmpty().not()) {
             findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
         return mBinding.root
@@ -48,6 +49,9 @@ class LoginFragment : Fragment() {
                 val userPassword = etPassword.text.toString().trim()
                 val loginDetails = User(email= userEmail, password= userPassword)
                 activityViewModel.loginUser(loginDetails)
+            }
+            signupBtn.setOnClickListener {
+                findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
             }
         }
     }
@@ -73,5 +77,9 @@ class LoginFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
     }
 }

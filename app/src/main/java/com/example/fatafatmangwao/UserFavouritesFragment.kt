@@ -1,11 +1,13 @@
 package com.example.fatafatmangwao
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.fatafatmangwao.adapter.UserFavouriteAdapter
 import com.example.fatafatmangwao.databinding.ActivityMainBinding
@@ -15,6 +17,8 @@ import com.example.fatafatmangwao.utils.ListActionTypeClickListener
 import com.example.fatafatmangwao.utils.Resource
 import com.example.fatafatmangwao.viewmodel.ActivityViewModel
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class UserFavouritesFragment : Fragment(), ClickListeners {
 
@@ -51,17 +55,20 @@ class UserFavouritesFragment : Fragment(), ClickListeners {
             ViewModelObservers.getFavouriteObserver.observe(viewLifecycleOwner) {
                 when (it) {
                     is Resource.Error -> {
-                        progressBar.visibility = View.GONE
+                        loadingView.visibility = View.GONE
+                        loadingView.cancelAnimation()
 
                     }
 
                     is Resource.Loading -> {
-                        progressBar.visibility = View.VISIBLE
+                        loadingView.visibility = View.VISIBLE
 
                     }
 
                     is Resource.Success -> {
-                        progressBar.visibility = View.GONE
+                        loadingView.visibility = View.GONE
+                        loadingView.cancelAnimation()
+                        Log.d("TAG", "favs ${it.data?.data}")
                         userFavouriteAdapter.submitList(it.data?.data)
                     }
                 }
