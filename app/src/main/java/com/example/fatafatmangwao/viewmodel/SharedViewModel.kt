@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 
 class SharedViewModel: ViewModel() {
 
-    private val _tokenObserver: MutableLiveData<String> = MutableLiveData()
     var shopId: String? = null
     var productId: String? = null
     var categoryId: String? = null
+    var productQuantity: Int? = null
 }

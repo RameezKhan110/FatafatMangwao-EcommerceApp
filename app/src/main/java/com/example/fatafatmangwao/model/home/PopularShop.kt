@@ -5,7 +5,7 @@ data class PopularShop(
     val accountNumber: Int,
     val accountTitle: String,
     val bank: String,
-    val category: String,
+    val category: Category,
     val cover: String,
     val createdAt: String,
     val email: String,

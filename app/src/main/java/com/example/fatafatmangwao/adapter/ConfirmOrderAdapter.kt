@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.fatafatmangwao.databinding.CartConfirmOrderLayoutBinding
 import com.example.fatafatmangwao.model.cart.Cart
 import com.example.fatafatmangwao.utils.Extensions
+import com.example.fatafatmangwao.utils.Extensions.gone
 
 class ConfirmOrderAdapter :
     androidx.recyclerview.widget.ListAdapter<Cart, RecyclerView.ViewHolder>(DiffUtil()) {
@@ -32,8 +33,7 @@ class ConfirmOrderAdapter :
                 binding.tvItemName.text = item.title
                 binding.tvItemQuantity.text = item.quantity.toString()
                 binding.tvItemPrice.text = item.price.toString()
-
-                grpDeleteAndQuantities.visibility = View.GONE
+                grpDeleteAndQuantities.gone()
             }
 
         }

@@ -74,7 +74,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/time"
+            android:src="@drawable/ic_time"
             android:id="@+id/clock_img"
             android:layout_marginTop="7dp"
             app:layout_constraintStart_toStartOf="@id/Rs_tv"
@@ -100,7 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
-            android:src="@drawable/deliver"
+            android:src="@drawable/ic_dc"
             android:id="@+id/delivery_img"
             app:layout_constraintTop_toTopOf="@id/deliveryTime_tv"
             app:layout_constraintBottom_toBottomOf="@id/deliveryTime_tv"

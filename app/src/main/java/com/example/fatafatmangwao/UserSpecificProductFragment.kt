@@ -17,11 +17,13 @@ import com.example.fatafatmangwao.model.ProductRequest
 import com.example.fatafatmangwao.model.specific_product.Product
 import com.example.fatafatmangwao.utils.ClickListeners
 import com.example.fatafatmangwao.utils.Extensions
+import com.example.fatafatmangwao.utils.Extensions.gone
 import com.example.fatafatmangwao.utils.ListActionTypeClickListener
 import com.example.fatafatmangwao.utils.Resource
 import com.example.fatafatmangwao.viewmodel.ActivityViewModel
 import com.example.fatafatmangwao.viewmodel.SharedViewModel
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers
+import github.com.st235.lib_expandablebottombar.ExpandableBottomBar
 
 class UserSpecificProductFragment : Fragment(), ClickListeners {
 
@@ -37,6 +39,9 @@ class UserSpecificProductFragment : Fragment(), ClickListeners {
         savedInstanceState: Bundle?
     ): View? {
         mBinding = FragmentUserSpecificProductBinding.inflate(layoutInflater, container, false)
+        val bottomNav =
+            requireActivity().findViewById<ExpandableBottomBar>(R.id.expandableBottomBar)
+        bottomNav.gone()
         return mBinding.root
     }
 
@@ -49,6 +54,7 @@ class UserSpecificProductFragment : Fragment(), ClickListeners {
 
         mBinding.apply {
 
+            tvQuantity.text = totalQuantity.toString()
             ivAdd.setOnClickListener {
                 totalQuantity += 1
                 tvQuantity.text = totalQuantity.toString()
@@ -156,5 +162,13 @@ class UserSpecificProductFragment : Fragment(), ClickListeners {
 
     override fun onItemClick(clickListener: ListActionTypeClickListener) {
 
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Extensions.apply {
+            clearLiveDataValue(ViewModelObservers._addToCartObserver)
+            clearLiveDataValue(ViewModelObservers._getSpecificProductObserver)
+        }
     }
 }

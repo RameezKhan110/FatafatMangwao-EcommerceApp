@@ -57,12 +57,12 @@
             app:layout_constraintTop_toBottomOf="@+id/createacc_tv">
 
             <ImageView
-                android:layout_width="24dp"
+                android:layout_width="wrap_content"
                 android:layout_height="24dp"
+                android:layout_gravity="center"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="2dp"
-                android:layout_gravity="center"
-                android:src="@drawable/email_illustration">
+                android:src="@drawable/baseline_person_24">
 
             </ImageView>
 
@@ -92,12 +92,12 @@
             app:layout_constraintTop_toBottomOf="@+id/name_ll">
 
             <ImageView
-                android:layout_width="24dp"
+                android:layout_width="wrap_content"
                 android:layout_height="24dp"
+                android:layout_gravity="center"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="2dp"
-                android:layout_gravity="center"
-                android:src="@drawable/email_illustration">
+                android:src="@drawable/ic_mail">
 
             </ImageView>
 
@@ -132,7 +132,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="2dp"
                 android:layout_gravity="center"
-                android:src="@drawable/email_illustration">
+                android:src="@drawable/ic_lock">
 
             </ImageView>
 
@@ -162,12 +162,12 @@
             app:layout_constraintTop_toBottomOf="@+id/pass_ll">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="2dp"
-                android:layout_gravity="center"
-                android:src="@drawable/email_illustration">
+                android:src="@drawable/ic_lock">
 
             </ImageView>
 

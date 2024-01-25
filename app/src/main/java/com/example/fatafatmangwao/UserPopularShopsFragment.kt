@@ -11,11 +11,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fatafatmangwao.adapter.UserShopsAdapter
 import com.example.fatafatmangwao.databinding.FragmentUserPopularShopsBinding
 import com.example.fatafatmangwao.utils.ClickListeners
+import com.example.fatafatmangwao.utils.Extensions.gone
+import com.example.fatafatmangwao.utils.Extensions.visible
 import com.example.fatafatmangwao.utils.ListActionTypeClickListener
 import com.example.fatafatmangwao.utils.Resource
 import com.example.fatafatmangwao.viewmodel.ActivityViewModel
 import com.example.fatafatmangwao.viewmodel.SharedViewModel
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers
+import github.com.st235.lib_expandablebottombar.ExpandableBottomBar
 
 class UserPopularShopsFragment : Fragment(), ClickListeners {
 
@@ -28,6 +31,10 @@ class UserPopularShopsFragment : Fragment(), ClickListeners {
         savedInstanceState: Bundle?
     ): View? {
         mBinding = FragmentUserPopularShopsBinding.inflate(layoutInflater, container, false)
+
+        val bottomNav =
+            requireActivity().findViewById<ExpandableBottomBar>(R.id.expandableBottomBar)
+        bottomNav.gone()
         return mBinding.root
     }
 

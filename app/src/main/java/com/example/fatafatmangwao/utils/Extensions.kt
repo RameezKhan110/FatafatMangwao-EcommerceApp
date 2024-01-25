@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.fatafatmangwao.networkmodule.Chucker
 import com.example.fatafatmangwao.networkmodule.HeaderInterceptor
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.delay
@@ -64,6 +65,7 @@ object Extensions {
     fun createOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(HeaderInterceptor())
+            .addInterceptor(Chucker.chuckerInterceptor)
             .addInterceptor(HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY })
             .build()
     }

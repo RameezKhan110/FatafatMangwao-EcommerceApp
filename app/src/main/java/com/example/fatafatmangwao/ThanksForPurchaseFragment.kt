@@ -8,18 +8,43 @@ import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 import com.example.fatafatmangwao.activities.MainActivity
+import com.example.fatafatmangwao.databinding.FragmentThanksForPurchaseBinding
+import com.example.fatafatmangwao.utils.Extensions.autoDisableSnackBar
+import com.example.fatafatmangwao.utils.Extensions.gone
+import com.google.android.material.snackbar.Snackbar
+import github.com.st235.lib_expandablebottombar.ExpandableBottomBar
 
 class ThanksForPurchaseFragment : Fragment() {
 
+    private lateinit var mBinding: FragmentThanksForPurchaseBinding
     private val mainActivity = MainActivity()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
+        mBinding = FragmentThanksForPurchaseBinding.inflate(layoutInflater, container, false)
+        val bottomNav =
+            requireActivity().findViewById<ExpandableBottomBar>(R.id.expandableBottomBar)
+        bottomNav.gone()
+
+        return mBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        mBinding.root.autoDisableSnackBar(
+            "Your order has been placed successfully",
+            Snackbar.LENGTH_LONG
+        )
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             findNavController().popBackStack(R.id.userCategoryFragment, false)
         }
-        return inflater.inflate(R.layout.fragment_thanks_for_purchase, container, false)
+
+        mBinding.backToHomeBtn.setOnClickListener {
+            findNavController().navigate(R.id.action_thanksForPurchaseFragment_to_homeFragment)
+        }
+
     }
 }

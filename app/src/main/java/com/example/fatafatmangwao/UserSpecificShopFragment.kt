@@ -1,5 +1,6 @@
 package com.example.fatafatmangwao
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -16,6 +17,8 @@ import com.example.fatafatmangwao.model.specific_shops.Shop
 import com.example.fatafatmangwao.utils.ClickListeners
 import com.example.fatafatmangwao.utils.Extensions
 import com.example.fatafatmangwao.utils.Extensions.autoDisableSnackBar
+import com.example.fatafatmangwao.utils.Extensions.gone
+import com.example.fatafatmangwao.utils.Extensions.visible
 import com.example.fatafatmangwao.utils.ListActionTypeClickListener
 import com.example.fatafatmangwao.utils.Resource
 import com.example.fatafatmangwao.viewmodel.ActivityViewModel
@@ -38,7 +41,7 @@ class UserSpecificShopFragment : Fragment(), ClickListeners {
         mBinding = FragmentUserSpecificShopBinding.inflate(layoutInflater, container, false)
         val bottomNav =
             requireActivity().findViewById<ExpandableBottomBar>(R.id.expandableBottomBar)
-        bottomNav.visibility = View.GONE
+        bottomNav.gone()
         return mBinding.root
     }
 
@@ -82,6 +85,7 @@ class UserSpecificShopFragment : Fragment(), ClickListeners {
 
                     is Resource.Loading -> {
                         loadingView.visibility = View.VISIBLE
+                        loadingView.playAnimation()
                         specificShopLayout.root.visibility = View.GONE
                     }
 
@@ -108,6 +112,7 @@ class UserSpecificShopFragment : Fragment(), ClickListeners {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onItemClick(clickListener: ListActionTypeClickListener) {
         when (clickListener) {
             is ListActionTypeClickListener.OnFavouriteClicked -> {
@@ -124,11 +129,12 @@ class UserSpecificShopFragment : Fragment(), ClickListeners {
                             is Resource.Success -> {
                                 it.message?.let { it1 -> mBinding.root.autoDisableSnackBar(it1, Snackbar.LENGTH_LONG) }
                                 Log.d("TAG", "on fav: ${it.data?.message}")
-                                if (isFav) {
-                                    ivFav.setImageResource(R.drawable.filledheart)
-                                } else {
-                                    ivFav.setImageResource(R.drawable.ic_stroke_heart)
+                                sharedViewModel.shopId?.let { it1 ->
+                                    activityViewModel.getSpecificShop(
+                                        it1
+                                    )
                                 }
+                                userSpecificShopAdapter.notifyDataSetChanged()
                             }
                         }
                     }
@@ -145,5 +151,11 @@ class UserSpecificShopFragment : Fragment(), ClickListeners {
 
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Extensions.clearLiveDataValue(ViewModelObservers._addToFavouriteObserver)
+        Extensions.clearLiveDataValue(ViewModelObservers._getSpecificShopObserver)
     }
 }

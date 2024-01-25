@@ -29,9 +29,10 @@ class HomePopularShopsAdapter :
         @SuppressLint("SetTextI18n")
         fun bind(item: PopularShop) {
             binding.apply {
-                Glide.with(binding.root.context).load(Extensions.getImageUrl(item.profile)).into(ivItem)
+                Glide.with(binding.root.context).load(Extensions.getImageUrl(item.profile))
+                    .into(ivItem)
                 tvShopName.text = item.name
-                tvCategory.text = item.category
+                tvCategory.text = item.category.name
                 tvDc.text = "PKR.200 delivery fees"
             }
 

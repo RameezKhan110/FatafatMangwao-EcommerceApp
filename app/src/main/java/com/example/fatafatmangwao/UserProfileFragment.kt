@@ -5,12 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.fatafatmangwao.activities.MainActivity
 import com.example.fatafatmangwao.databinding.FragmentUserProfileBinding
 import com.example.fatafatmangwao.utils.Extensions
+import com.example.fatafatmangwao.utils.Extensions.visible
 import com.example.fatafatmangwao.viewmodel.ActivityViewModel
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers
+import github.com.st235.lib_expandablebottombar.ExpandableBottomBar
 
 class UserProfileFragment : Fragment() {
 
@@ -22,6 +26,23 @@ class UserProfileFragment : Fragment() {
     ): View? {
         mBinding = FragmentUserProfileBinding.inflate(layoutInflater, container, false)
 
+        val bottomNav =
+            requireActivity().findViewById<ExpandableBottomBar>(R.id.expandableBottomBar)
+        bottomNav.visible()
+
+        return mBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                (requireActivity() as MainActivity).indicatorSwitcher(R.id.home)
+            }
+
+        })
+
         mBinding.apply {
             ivLogout.setOnClickListener {
                 Extensions.clearLiveDataValue(ViewModelObservers._loginUserObserver)
@@ -29,7 +50,6 @@ class UserProfileFragment : Fragment() {
                 findNavController().navigate(R.id.action_userProfileFragment_to_loginFragment)
             }
         }
-        return mBinding.root
     }
 
 }

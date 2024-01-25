@@ -12,12 +12,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fatafatmangwao.adapter.ConfirmOrderAdapter
 import com.example.fatafatmangwao.databinding.FragmentConfirmOrderBinding
 import com.example.fatafatmangwao.model.cart.Data
+import com.example.fatafatmangwao.utils.Extensions
 import com.example.fatafatmangwao.utils.Extensions.autoDisableSnackBar
+import com.example.fatafatmangwao.utils.Extensions.gone
 import com.example.fatafatmangwao.utils.Extensions.showSnackBar
 import com.example.fatafatmangwao.utils.Resource
 import com.example.fatafatmangwao.viewmodel.ActivityViewModel
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers
 import com.google.android.material.snackbar.Snackbar
+import github.com.st235.lib_expandablebottombar.ExpandableBottomBar
 
 class ConfirmOrderFragment : Fragment() {
 
@@ -31,6 +34,9 @@ class ConfirmOrderFragment : Fragment() {
     ): View? {
         mBinding = FragmentConfirmOrderBinding.inflate(layoutInflater, container, false)
 
+        val bottomNav =
+            requireActivity().findViewById<ExpandableBottomBar>(R.id.expandableBottomBar)
+        bottomNav.gone()
 
         return mBinding.root
     }
@@ -40,9 +46,8 @@ class ConfirmOrderFragment : Fragment() {
         setUpRecyclerView()
         observe()
         activityViewModel.getCart()
-        activityViewModel.placeOrder()
         mBinding.btnPlaceOrder.setOnClickListener {
-            findNavController().navigate(R.id.action_confirmOrderFragment_to_thanksForPurchaseFragment)
+            activityViewModel.placeOrder()
         }
     }
 
@@ -91,10 +96,6 @@ class ConfirmOrderFragment : Fragment() {
                         loadingView.visibility = View.GONE
                         loadingView.cancelAnimation()
                         scrollView.visibility = View.VISIBLE
-                        mBinding.root.autoDisableSnackBar(
-                            "Your order has been placed successfully",
-                            Snackbar.LENGTH_LONG
-                        )
                         findNavController().navigate(R.id.action_confirmOrderFragment_to_thanksForPurchaseFragment)
                     }
                 }
@@ -113,5 +114,13 @@ class ConfirmOrderFragment : Fragment() {
     private fun setUpRecyclerView() {
         mBinding.rvList.layoutManager = NonScrollableLayoutManager(requireContext())
         mBinding.rvList.adapter = confirmOrderAdapter
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Extensions.apply {
+            clearLiveDataValue(ViewModelObservers._getCartObserver)
+            clearLiveDataValue(ViewModelObservers._placeOrderObserver)
+        }
     }
 }

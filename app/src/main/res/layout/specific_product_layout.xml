@@ -40,7 +40,7 @@
         android:id="@+id/money_img"
         app:layout_constraintStart_toStartOf="@id/shopName_tv"
         app:layout_constraintTop_toBottomOf="@id/shopName_tv"
-        android:src="@drawable/money">
+        android:src="@drawable/ic_vouchers">
 
     </ImageView>
 
@@ -61,7 +61,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/deliver"
+        android:src="@drawable/ic_dc"
         android:id="@+id/delivery_img"
         app:layout_constraintTop_toTopOf="@id/minimumPrice_tv"
         app:layout_constraintBottom_toBottomOf="@id/minimumPrice_tv"
@@ -87,7 +87,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/time"
+        android:src="@drawable/ic_time"
         android:id="@+id/time_img"
         app:layout_constraintStart_toStartOf="@id/money_img"
         app:layout_constraintEnd_toEndOf="@id/money_img"

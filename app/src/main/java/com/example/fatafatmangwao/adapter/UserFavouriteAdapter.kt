@@ -48,7 +48,7 @@ class UserFavouriteAdapter(private val listener: ClickListeners) :
                             dataSource: DataSource,
                             isFirstResource: Boolean
                         ): Boolean {
-                            Log.d("Glide", "Image loaded successfully")
+//                            Log.d("Glide", "Image loaded successfully")
                             return false
                         }
 
@@ -58,14 +58,14 @@ class UserFavouriteAdapter(private val listener: ClickListeners) :
                             target: Target<Drawable>,
                             isFirstResource: Boolean
                         ): Boolean {
-                            Log.d("Glide", "Image load failed: ${e?.message}")
+//                            Log.d("Glide", "Image load failed: ${e?.message}")
                             return false
                         }
                     })
                     .into(iivItem)
                 tvItemPrice.text = item.price.toString()
                 tvItemTitle.text = item.title
-                ivFav.setImageResource(R.drawable.ic_stroke_heart)
+                ivFav.setImageResource(R.drawable.filledheart)
                 ivFav.setOnClickListener {
                     isFav = isFav.not()
                     listener.onItemClick(ListActionTypeClickListener.OnFavouriteClicked(ivFav, item.id, isFav))

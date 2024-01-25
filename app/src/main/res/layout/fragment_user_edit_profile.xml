@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".UserEditProfile">
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/editProfile_toolbar"
         android:layout_width="0dp"
@@ -22,7 +20,7 @@
             android:layout_marginVertical="22dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="24dp"
-            android:src="@drawable/back"
+            android:src="@drawable/ic_back"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginVertical="22dp"
             android:layout_marginEnd="30dp"
-            android:src="@drawable/cancel"
+            android:src="@drawable/ic_close"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -116,12 +114,12 @@
                 app:layout_constraintTop_toBottomOf="@id/tv1">
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="2dp"
-                    android:src="@drawable/email_illustration">
+                    android:src="@drawable/baseline_person_24">
 
                 </ImageView>
 
@@ -130,6 +128,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
+                    android:background="@null"
                     android:layout_marginStart="12dp"
                     android:hint="Login with Email or Number"
                     android:paddingVertical="10dp">
@@ -170,7 +169,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="2dp"
-                    android:src="@drawable/email_illustration">
+                    android:src="@drawable/ic_mail">
 
                 </ImageView>
 
@@ -179,6 +178,60 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
+                    android:background="@null"
+
+                    android:layout_marginStart="12dp"
+                    android:hint="Login with Email or Number"
+                    android:paddingVertical="10dp">
+
+                </com.google.android.material.textfield.TextInputEditText>
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="17dp"
+                android:text="Email Phone No"
+                android:textColor="#474747"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/email_ll" />
+
+            <LinearLayout
+                android:id="@+id/phone_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="36dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/input_fields_bg"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv10"
+                app:layout_constraintTop_toBottomOf="@id/tv10">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="2dp"
+                    android:src="@drawable/ic_phone">
+
+                </ImageView>
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etPhone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="8dp"
+                    android:background="@null"
+
                     android:layout_marginStart="12dp"
                     android:hint="Login with Email or Number"
                     android:paddingVertical="10dp">
@@ -196,8 +249,8 @@
                 android:textColor="#01456B"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/email_ll"
-                app:layout_constraintTop_toBottomOf="@id/email_ll">
+                app:layout_constraintStart_toStartOf="@id/phone_ll"
+                app:layout_constraintTop_toBottomOf="@id/phone_ll">
 
             </TextView>
 
@@ -234,7 +287,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="2dp"
-                    android:src="@drawable/email_illustration">
+                    android:src="@drawable/ic_lock">
 
                 </ImageView>
 
@@ -244,6 +297,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginStart="12dp"
+                    android:background="@null"
+
                     android:hint="Login with Email or Number"
                     android:paddingVertical="10dp">
 
@@ -283,7 +338,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="2dp"
-                    android:src="@drawable/email_illustration">
+                    android:src="@drawable/ic_lock">
 
                 </ImageView>
 
@@ -293,6 +348,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginStart="12dp"
+                    android:background="@null"
+
                     android:hint="Login with Email or Number"
                     android:paddingVertical="10dp">
 
@@ -332,7 +389,7 @@
                     android:layout_gravity="center"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="2dp"
-                    android:src="@drawable/email_illustration">
+                    android:src="@drawable/ic_lock">
 
                 </ImageView>
 
@@ -342,6 +399,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginStart="12dp"
+                    android:background="@null"
+
                     android:hint="Login with Email or Number"
                     android:paddingVertical="10dp">
 

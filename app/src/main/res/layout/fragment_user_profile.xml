@@ -63,7 +63,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/settings"
+                android:src="@drawable/ic_location"
                 android:id="@+id/ivSettings"
                 android:layout_marginTop="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -100,7 +100,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/orders"
+                android:src="@drawable/ic_orders"
                 android:id="@+id/orders_img"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -137,7 +137,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/heart"
+                android:src="@drawable/ic_heart_white_outline"
                 android:id="@+id/wishlist_img"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="@id/view1"
@@ -174,7 +174,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/notification"
+                android:src="@drawable/ic_notification"
                 android:id="@+id/notification_img"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="@id/view2"
@@ -204,7 +204,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/userItems_cl"
             app:layout_constraintStart_toStartOf="@id/userItems_cl"
-            android:src="@drawable/settings"
+            android:src="@drawable/ic_order_history"
             android:layout_marginTop="35dp"
             android:id="@+id/orderHistory_img"
             android:layout_marginStart="3dp">
@@ -226,14 +226,14 @@
         </TextView>
 
         <ImageView
+            android:id="@+id/orderHistory_arrow_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrowhead"
-            android:id="@+id/orderHistory_arrow_img"
-            app:layout_constraintTop_toTopOf="@+id/orderHistory_tv"
+            android:layout_marginEnd="31dp"
+            android:src="@drawable/ic_leftchevron"
             app:layout_constraintBottom_toBottomOf="@id/orderHistory_tv"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="31dp">
+            app:layout_constraintTop_toTopOf="@+id/orderHistory_tv">
 
         </ImageView>
 
@@ -242,7 +242,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/orderHistory_img"
             app:layout_constraintStart_toStartOf="@id/orderHistory_img"
-            android:src="@drawable/settings"
+            android:src="@drawable/ic_myaccount"
             app:layout_constraintEnd_toEndOf="@id/orderHistory_img"
             android:layout_marginTop="35dp"
             android:id="@+id/myacc_img">
@@ -264,14 +264,14 @@
         </TextView>
 
         <ImageView
+            android:id="@+id/myacc_arrow_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrowhead"
-            android:id="@+id/myacc_arrow_img"
-            app:layout_constraintTop_toTopOf="@+id/myacc_tv"
+            android:layout_marginEnd="31dp"
+            android:src="@drawable/ic_leftchevron"
             app:layout_constraintBottom_toBottomOf="@id/myacc_tv"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="31dp">
+            app:layout_constraintTop_toTopOf="@+id/myacc_tv">
 
         </ImageView>
 
@@ -281,7 +281,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/myacc_img"
             app:layout_constraintStart_toStartOf="@id/myacc_img"
-            android:src="@drawable/settings"
+            android:src="@drawable/ic_review"
             android:layout_marginTop="35dp"
             app:layout_constraintEnd_toEndOf="@id/myacc_img"
             android:id="@+id/reviews_img">
@@ -303,14 +303,14 @@
         </TextView>
 
         <ImageView
+            android:id="@+id/reviews_arrow_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrowhead"
-            android:id="@+id/reviews_arrow_img"
-            app:layout_constraintTop_toTopOf="@+id/reviews_tv"
+            android:layout_marginEnd="31dp"
+            android:src="@drawable/ic_leftchevron"
             app:layout_constraintBottom_toBottomOf="@id/reviews_tv"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="31dp">
+            app:layout_constraintTop_toTopOf="@+id/reviews_tv">
 
         </ImageView>
 
@@ -335,7 +335,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/availableCodes_tv"
             app:layout_constraintStart_toStartOf="@id/availableCodes_tv"
-            android:src="@drawable/settings"
+            android:src="@drawable/ic_applypromo"
             android:layout_marginTop="35dp"
             android:id="@+id/applyPromo_img">
 
@@ -356,26 +356,26 @@
         </TextView>
 
         <ImageView
+            android:id="@+id/applyPromo_arrow_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrowhead"
-            android:id="@+id/applyPromo_arrow_img"
-            app:layout_constraintTop_toTopOf="@+id/applyPromo_tv"
+            android:layout_marginEnd="31dp"
+            android:src="@drawable/ic_leftchevron"
             app:layout_constraintBottom_toBottomOf="@id/applyPromo_tv"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="31dp">
+            app:layout_constraintTop_toTopOf="@+id/applyPromo_tv">
 
         </ImageView>
 
         <ImageView
+            android:id="@+id/vouchers_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/applyPromo_img"
-            app:layout_constraintStart_toStartOf="@id/applyPromo_img"
-            android:src="@drawable/settings"
-            app:layout_constraintEnd_toEndOf="@id/applyPromo_img"
             android:layout_marginTop="35dp"
-            android:id="@+id/vouchers_img">
+            android:src="@drawable/ic_vouchers"
+            app:layout_constraintEnd_toEndOf="@id/applyPromo_img"
+            app:layout_constraintStart_toStartOf="@id/applyPromo_img"
+            app:layout_constraintTop_toBottomOf="@id/applyPromo_img">
 
         </ImageView>
 
@@ -394,14 +394,14 @@
         </TextView>
 
         <ImageView
+            android:id="@+id/vouchers_arrow_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrowhead"
-            android:id="@+id/vouchers_arrow_img"
-            app:layout_constraintTop_toTopOf="@+id/vouchers_tv"
+            android:layout_marginEnd="31dp"
+            android:src="@drawable/ic_leftchevron"
             app:layout_constraintBottom_toBottomOf="@id/vouchers_tv"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="31dp">
+            app:layout_constraintTop_toTopOf="@+id/vouchers_tv">
 
         </ImageView>
 
@@ -410,7 +410,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/vouchers_img"
             app:layout_constraintStart_toStartOf="@id/vouchers_img"
-            android:src="@drawable/settings"
+            android:src="@drawable/ic_rewards"
             app:layout_constraintEnd_toEndOf="@id/vouchers_img"
             android:layout_marginTop="35dp"
             android:id="@+id/rewards_img">
@@ -434,7 +434,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/arrowhead"
+            android:src="@drawable/ic_leftchevron"
             android:id="@+id/rewards_arrow_img"
             app:layout_constraintTop_toTopOf="@+id/rewards_tv"
             app:layout_constraintBottom_toBottomOf="@id/rewards_tv"

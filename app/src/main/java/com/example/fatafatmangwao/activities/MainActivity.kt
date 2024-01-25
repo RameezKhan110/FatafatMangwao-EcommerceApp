@@ -98,12 +98,11 @@ class MainActivity : AppCompatActivity() {
         return fragment
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-
+//    override fun onBackPressed() {
+//        super.onBackPressed()
+//
 //        indicatorSwitcher(R.id.home)
 //        val currentFragment = getCurrentFragmentInstance()
-//
 //        if (currentFragment is UserFavouritesFragment) {
 //            indicatorSwitcher(R.id.home)
 //        } else if (currentFragment is UserCategoryFragment) {
@@ -116,4 +115,4 @@ class MainActivity : AppCompatActivity() {
 //            indicatorSwitcher(R.id.home)
 //        }
     }
-}
+//}

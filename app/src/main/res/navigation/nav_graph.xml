@@ -51,6 +51,9 @@
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment2"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/userFavouritesFragment"
@@ -102,6 +105,9 @@
         <action
             android:id="@+id/action_homeFragment_to_userPopularShopsFragment"
             app:destination="@id/userPopularShopsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment2"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/userCategoryFragment"
@@ -188,5 +194,9 @@
         android:id="@+id/thanksForPurchaseFragment"
         android:name="com.example.fatafatmangwao.ThanksForPurchaseFragment"
         android:label="fragment_thanks_for_purchase"
-        tools:layout="@layout/fragment_thanks_for_purchase" />
+        tools:layout="@layout/fragment_thanks_for_purchase" >
+        <action
+            android:id="@+id/action_thanksForPurchaseFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

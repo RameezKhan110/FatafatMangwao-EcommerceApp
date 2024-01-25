@@ -22,7 +22,9 @@ import com.example.fatafatmangwao.utils.Extensions.visible
 import com.example.fatafatmangwao.utils.ListActionTypeClickListener
 import com.example.fatafatmangwao.utils.Resource
 import com.example.fatafatmangwao.viewmodel.ActivityViewModel
+import com.example.fatafatmangwao.viewmodel.SharedViewModel
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers
+import github.com.st235.lib_expandablebottombar.ExpandableBottomBar
 
 
 class UserCartFragment : Fragment(), ClickListeners {
@@ -31,11 +33,15 @@ class UserCartFragment : Fragment(), ClickListeners {
     private lateinit var itemLayoutBinding: CartConfirmOrderLayoutBinding
     private val activityViewModel: ActivityViewModel by activityViewModels()
     private val cartAdapter = UserCartAdapter(this@UserCartFragment)
+    private val sharedViewModel: SharedViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         mBinding = FragmentUserCartBinding.inflate(inflater, container, false)
+        val bottomNav =
+            requireActivity().findViewById<ExpandableBottomBar>(R.id.expandableBottomBar)
+        bottomNav.gone()
         itemLayoutBinding = CartConfirmOrderLayoutBinding.inflate(layoutInflater, container, false)
         return mBinding.root
     }
@@ -95,6 +101,8 @@ class UserCartFragment : Fragment(), ClickListeners {
                             }
                         }
                         cartAdapter.submitList(it.data?.data?.cart)
+//                        sharedViewModel.productQuantity = it.data.data.cart.
+
 //                        Extensions.clearLiveDataValue(ViewModelObservers._getCartObserver)
                     }
                 }
@@ -154,6 +162,7 @@ class UserCartFragment : Fragment(), ClickListeners {
 
                             is Resource.Success -> {
                                 it.data?.message?.let { it1 -> Log.d("TAG", it1) }
+
                             }
                         }
                     }
@@ -182,6 +191,15 @@ class UserCartFragment : Fragment(), ClickListeners {
             else -> {
 
             }
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Extensions.apply {
+            clearLiveDataValue(ViewModelObservers._getCartObserver)
+            clearLiveDataValue(ViewModelObservers._deleteFromCartObserver)
+            clearLiveDataValue(ViewModelObservers._updateProductQuantityObserver)
         }
     }
 }

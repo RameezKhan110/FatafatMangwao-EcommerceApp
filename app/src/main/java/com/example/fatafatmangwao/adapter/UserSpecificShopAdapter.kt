@@ -21,7 +21,6 @@ import com.example.fatafatmangwao.utils.ListActionTypeClickListener
 class UserSpecificShopAdapter(private val listener: ClickListeners) :
     ListAdapter<UpdateProduct, RecyclerView.ViewHolder>(DiffUtil()) {
 
-    private var isFav = false
     class DiffUtil : androidx.recyclerview.widget.DiffUtil.ItemCallback<UpdateProduct>() {
         override fun areItemsTheSame(oldItem: UpdateProduct, newItem: UpdateProduct): Boolean {
             return oldItem == newItem
@@ -55,7 +54,7 @@ class UserSpecificShopAdapter(private val listener: ClickListeners) :
                         override fun onLoadFailed(
                             e: GlideException?,
                             model: Any?,
-                            target: Target<Drawable>,
+                            target: Target<Drawable>,   
                             isFirstResource: Boolean
                         ): Boolean {
                             Log.d("Glide", "Image load failed: ${e?.message}")
@@ -65,10 +64,28 @@ class UserSpecificShopAdapter(private val listener: ClickListeners) :
                     .into(iivItem)
                 tvItemPrice.text = item.price.toString()
                 tvItemTitle.text = item.title
-                ivFav.setImageResource(R.drawable.ic_stroke_heart)
+
+                if (item.wishlist) {
+                    ivFav.setImageResource(R.drawable.ic_filledheart)
+                } else {
+                    ivFav.setImageResource(R.drawable.ic_stroke_heart)
+                }
+
                 ivFav.setOnClickListener {
-                    isFav = isFav.not()
-                    listener.onItemClick(ListActionTypeClickListener.OnFavouriteClicked(ivFav, item._id, item.wishlist))
+
+                    if (item.wishlist) {
+                        ivFav.setImageResource(R.drawable.ic_filledheart)
+                    } else {
+                        ivFav.setImageResource(R.drawable.ic_stroke_heart)
+                    }
+
+                    listener.onItemClick(
+                        ListActionTypeClickListener.OnFavouriteClicked(
+                            ivFav,
+                            item._id,
+                            item.wishlist
+                        )
+                    )
 
                 }
 

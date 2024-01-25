@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -16,10 +17,13 @@ import com.example.fatafatmangwao.utils.ListActionTypeClickListener
 import com.example.fatafatmangwao.utils.ClickListeners
 import com.example.fatafatmangwao.adapter.UserCategoryAdapter
 import com.example.fatafatmangwao.databinding.FragmentUserCategoryBinding
+import com.example.fatafatmangwao.utils.Extensions
 import com.example.fatafatmangwao.utils.Extensions.showToast
+import com.example.fatafatmangwao.utils.Extensions.visible
 import com.example.fatafatmangwao.utils.Resource
 import com.example.fatafatmangwao.viewmodel.ActivityViewModel
 import com.example.fatafatmangwao.viewmodel.SharedViewModel
+import com.example.fatafatmangwao.viewmodel.ViewModelObservers
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers.getCategoryObserver
 import github.com.st235.lib_expandablebottombar.ExpandableBottomBar
 import kotlinx.coroutines.delay
@@ -30,7 +34,6 @@ class UserCategoryFragment : Fragment(), ClickListeners {
     private lateinit var mBinding: FragmentUserCategoryBinding
     private val activityViewModel: ActivityViewModel by activityViewModels()
     private val userCategoryAdapter = UserCategoryAdapter(this@UserCategoryFragment)
-    private val mainActivity = MainActivity()
     private val sharedViewModel: SharedViewModel by activityViewModels()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,16 +43,20 @@ class UserCategoryFragment : Fragment(), ClickListeners {
 
         val bottomNav =
             requireActivity().findViewById<ExpandableBottomBar>(R.id.expandableBottomBar)
-        bottomNav.visibility = View.VISIBLE
+        bottomNav.visible()
+//        (requireActivity() as MainActivity).indicatorSwitcher(R.id.categories)
         return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-//            mainActivity.indicatorSwitcher()
-//        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                (requireActivity() as MainActivity).indicatorSwitcher(R.id.home)
+            }
+
+        })
         setListener()
         setRecyclerView()
         observe()
@@ -96,35 +103,6 @@ class UserCategoryFragment : Fragment(), ClickListeners {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-
-//        val bottomNav =
-//            requireActivity().findViewById<ExpandableBottomBar>(R.id.expandableBottomBar)
-//        val menu =  bottomNav.menu
-//        menu.select(R.id.categories)
-
-//        bottomNav.visibility = View.VISIBLE
-//        bottomNav.onItemSelectedListener = { view, menuItem, check ->
-//            when (menuItem.id) {
-//                R.id.home -> {
-//                    findNavController().navigate(R.id.homeFragment)
-//                }
-//
-//                R.id.fav -> {
-//                    findNavController().navigate(R.id.userFavouritesFragment)
-//                }
-//
-//                R.id.categories -> {
-//                    findNavController().navigate(R.id.userCategoryFragment)
-//                }
-//
-//                R.id.account -> {
-//                    findNavController().navigate(R.id.userProfileFragment)
-//                }
-//            }
-//        }
-    }
     override fun onItemClick(clickListener: ListActionTypeClickListener) {
         when (clickListener) {
             is ListActionTypeClickListener.OnCategoryClicked -> {
@@ -138,6 +116,11 @@ class UserCategoryFragment : Fragment(), ClickListeners {
             }
         }
 
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Extensions.clearLiveDataValue(ViewModelObservers._getCategoryObserver)
     }
 
 }

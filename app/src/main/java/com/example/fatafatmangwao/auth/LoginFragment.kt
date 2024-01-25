@@ -1,5 +1,6 @@
 package com.example.fatafatmangwao.auth
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.fatafatmangwao.R
+import com.example.fatafatmangwao.activities.MapsActivity
 import com.example.fatafatmangwao.utils.Extensions.showToast
 import com.example.fatafatmangwao.utils.Resource
 import com.example.fatafatmangwao.viewmodel.ActivityViewModel
@@ -32,6 +34,8 @@ class LoginFragment : Fragment() {
 
         if(Extensions.getUserToken(requireContext()).isNullOrEmpty().not()) {
             findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+//            startActivity(Intent(requireActivity(), MapsActivity::class.java))
+
         }
         return mBinding.root
     }
@@ -72,6 +76,7 @@ class LoginFragment : Fragment() {
                             Extensions.storeUserToken(requireContext(), it1)
                         }
                         requireContext().showToast("Logging In", Toast.LENGTH_SHORT)
+//                        startActivity(Intent(requireActivity(), MapsActivity::class.java))
                         findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                     }
                 }
