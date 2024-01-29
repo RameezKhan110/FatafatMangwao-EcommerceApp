@@ -1,13 +1,16 @@
 package com.example.fatafatmangwao.utils
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.fatafatmangwao.model.User
 import com.example.fatafatmangwao.networkmodule.Chucker
 import com.example.fatafatmangwao.networkmodule.HeaderInterceptor
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.Gson
 import kotlinx.coroutines.delay
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -100,5 +103,23 @@ object Extensions {
 
     fun View.gone() {
         visibility = View.GONE
+    }
+
+    @SuppressLint("CommitPrefEdits")
+    fun saveUserDetails(context: Context, userDetails: User) {
+        val sharedPref = context.getSharedPreferences("User_Detail", Context.MODE_PRIVATE)
+        val gson = Gson()
+        val jsonObj = gson.toJson(userDetails)
+        val editor = sharedPref.edit().putString("user_details", jsonObj).apply()
+
+    }
+
+    fun getUserDetails(context: Context): User? {
+        val sharedPref = context.getSharedPreferences("User_Detail", Context.MODE_PRIVATE)
+        val gson = Gson()
+        val jsonObj = sharedPref.getString("user_details", null)
+        return gson.fromJson(jsonObj, User::class.java)
+
+
     }
 }

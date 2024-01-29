@@ -17,7 +17,6 @@ import github.com.st235.lib_expandablebottombar.ExpandableBottomBar
 class ThanksForPurchaseFragment : Fragment() {
 
     private lateinit var mBinding: FragmentThanksForPurchaseBinding
-    private val mainActivity = MainActivity()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

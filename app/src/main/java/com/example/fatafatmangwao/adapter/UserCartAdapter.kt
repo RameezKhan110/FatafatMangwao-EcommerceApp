@@ -31,7 +31,7 @@ class UserCartAdapter(val listener: ClickListeners) :
         fun bind(item: Cart) {
             binding.apply {
                 binding.tvItemName
-                Glide.with(binding.root.context).load(Extensions.getImageUrl(item.images.first()))
+                Glide.with(binding.root.context).load(item.images?.let { Extensions.getImageUrl(it.first()) })
                     .into(ivItemImage)
                 binding.tvItemName.text = item.title
                 binding.tvItemQuantity.text = item.quantity.toString()
@@ -39,24 +39,36 @@ class UserCartAdapter(val listener: ClickListeners) :
                 tvChangeableQuantity.text = item.quantity.toString()
 
                 ivDelete.setOnClickListener {
-                    listener.onItemClick(ListActionTypeClickListener.OnCartDeleteClicked(item._id))
+                    item._id?.let { it1 ->
+                        ListActionTypeClickListener.OnCartDeleteClicked(
+                            it1
+                        )
+                    }?.let { it2 -> listener.onItemClick(it2) }
                 }
 
                 btnPlus.setOnClickListener {
-                    listener.onItemClick(
+                    item._id?.let { it1 ->
                         ListActionTypeClickListener.OnCartPlusOrMinusClicked(
-                            item._id,
+                            it1,
                             "+"
                         )
-                    )
+                    }?.let { it2 ->
+                        listener.onItemClick(
+                            it2
+                        )
+                    }
                 }
                 btnMinus.setOnClickListener {
-                    listener.onItemClick(
+                    item._id?.let { it1 ->
                         ListActionTypeClickListener.OnCartPlusOrMinusClicked(
-                            item._id,
+                            it1,
                             "-"
                         )
-                    )
+                    }?.let { it2 ->
+                        listener.onItemClick(
+                            it2
+                        )
+                    }
                 }
             }
 

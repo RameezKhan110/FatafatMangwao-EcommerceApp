@@ -115,7 +115,11 @@ class HomeListAdapter(private val listener: ClickListeners) :
         when(clickListener) {
             is ListActionTypeClickListener.OnHeadingClicked -> {
                 listener.onItemClick(ListActionTypeClickListener.OnHeadingClicked(clickListener.heading))
-            } else -> {
+            }
+            is ListActionTypeClickListener.OnQRCardClicked -> {
+                listener.onItemClick(ListActionTypeClickListener.OnQRCardClicked(clickListener.fromQR))
+            }
+            else -> {
 
             }
         }

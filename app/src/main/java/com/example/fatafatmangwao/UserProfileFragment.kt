@@ -47,7 +47,11 @@ class UserProfileFragment : Fragment() {
             ivLogout.setOnClickListener {
                 Extensions.clearLiveDataValue(ViewModelObservers._loginUserObserver)
                 Extensions.clearUserToken(requireContext())
-                findNavController().navigate(R.id.action_userProfileFragment_to_loginFragment)
+
+                findNavController().navigate(R.id.loginFragment)
+            }
+            tvEditProfile.setOnClickListener {
+                findNavController().navigate(R.id.userEditProfile)
             }
         }
     }

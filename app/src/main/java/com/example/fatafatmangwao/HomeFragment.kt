@@ -33,7 +33,6 @@ class HomeFragment : Fragment(), ClickListeners {
     private val homeAdapter = HomeListAdapter(this@HomeFragment)
     private val homeData = arrayListOf<HomeData>()
     private val activityViewModel: ActivityViewModel by activityViewModels()
-    private val mainActivity = MainActivity()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -149,6 +148,12 @@ class HomeFragment : Fragment(), ClickListeners {
                 } else {
                     findNavController().navigate(R.id.action_homeFragment_to_userPopularShopsFragment)
                 }
+            }
+
+            is ListActionTypeClickListener.OnQRCardClicked -> {
+                val bundle = Bundle()
+                bundle.putBoolean("fromQR", clickListener.fromQR)
+                findNavController().navigate(R.id.userPopularShopsFragment, bundle)
             }
             else -> {
 

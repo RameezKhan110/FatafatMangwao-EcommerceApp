@@ -18,6 +18,7 @@ import com.example.fatafatmangwao.utils.Extensions.gone
 import com.example.fatafatmangwao.utils.Extensions.showSnackBar
 import com.example.fatafatmangwao.utils.Resource
 import com.example.fatafatmangwao.viewmodel.ActivityViewModel
+import com.example.fatafatmangwao.viewmodel.SharedViewModel
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers
 import com.google.android.material.snackbar.Snackbar
 import github.com.st235.lib_expandablebottombar.ExpandableBottomBar
@@ -27,6 +28,7 @@ class ConfirmOrderFragment : Fragment() {
     private lateinit var mBinding: FragmentConfirmOrderBinding
     private val activityViewModel: ActivityViewModel by activityViewModels()
     private val confirmOrderAdapter = ConfirmOrderAdapter()
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,11 +45,26 @@ class ConfirmOrderFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val bundle = arguments
+        val fromQR = bundle?.getBoolean("fromQR")
+        Log.d("TAG", "cart size ${sharedViewModel.supermarketCartItems.size}")
+        if (fromQR == true) {
+            confirmOrderAdapter.submitList(sharedViewModel.supermarketCartItems)
+        } else {
+            activityViewModel.getCart()
+
+        }
         setUpRecyclerView()
         observe()
-        activityViewModel.getCart()
         mBinding.btnPlaceOrder.setOnClickListener {
+            if(fromQR == true) {
+
+            }
             activityViewModel.placeOrder()
+        }
+        if(fromQR == true) {
+            mBinding.btnPlaceOrder.text = "Pay Via Card"
         }
     }
 

@@ -130,7 +130,6 @@
                     android:layout_marginVertical="8dp"
                     android:background="@null"
                     android:layout_marginStart="12dp"
-                    android:hint="Login with Email or Number"
                     android:paddingVertical="10dp">
 
                 </com.google.android.material.textfield.TextInputEditText>
@@ -179,9 +178,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:background="@null"
-
                     android:layout_marginStart="12dp"
-                    android:hint="Login with Email or Number"
                     android:paddingVertical="10dp">
 
                 </com.google.android.material.textfield.TextInputEditText>
@@ -216,8 +213,8 @@
                 app:layout_constraintTop_toBottomOf="@id/tv10">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="2dp"
@@ -231,9 +228,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:background="@null"
-
                     android:layout_marginStart="12dp"
-                    android:hint="Login with Email or Number"
                     android:paddingVertical="10dp">
 
                 </com.google.android.material.textfield.TextInputEditText>
@@ -242,13 +237,16 @@
 
             <TextView
                 android:id="@+id/tv4"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
                 android:text="Change Password"
                 android:textColor="#01456B"
                 android:textSize="18sp"
+                android:layout_marginStart="-10dp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/phone_ll"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@id/phone_ll"
                 app:layout_constraintTop_toBottomOf="@id/phone_ll">
 
@@ -297,9 +295,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginStart="12dp"
+                    android:hint="Old password"
                     android:background="@null"
-
-                    android:hint="Login with Email or Number"
                     android:paddingVertical="10dp">
 
                 </com.google.android.material.textfield.TextInputEditText>
@@ -348,9 +345,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="8dp"
                     android:layout_marginStart="12dp"
+                    android:hint="New password"
                     android:background="@null"
-
-                    android:hint="Login with Email or Number"
                     android:paddingVertical="10dp">
 
                 </com.google.android.material.textfield.TextInputEditText>
@@ -400,28 +396,31 @@
                     android:layout_marginVertical="8dp"
                     android:layout_marginStart="12dp"
                     android:background="@null"
-
-                    android:hint="Login with Email or Number"
+                    android:hint="Re write new password"
                     android:paddingVertical="10dp">
 
                 </com.google.android.material.textfield.TextInputEditText>
             </LinearLayout>
 
             <TextView
-                android:id="@+id/resetPass_btn"
+                android:id="@+id/btnSaveChanges"
                 android:layout_width="262dp"
                 android:layout_height="45dp"
                 android:layout_marginHorizontal="49dp"
                 android:layout_marginTop="33dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/loginbtn_bg"
                 android:gravity="center"
-                android:text="Reset Password"
+                android:text="Save Changes"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/rewrite_ll"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@id/rewrite_ll"
-                app:layout_constraintTop_toBottomOf="@id/rewrite_ll">
+                app:layout_constraintTop_toBottomOf="@id/rewrite_ll"
+                app:layout_constraintVertical_bias="1.0">
 
             </TextView>
 

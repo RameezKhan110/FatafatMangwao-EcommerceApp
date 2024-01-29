@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#525050"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".QRScannerFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/qr_toolbar"
+        android:layout_width="0dp"
+        android:background="#525050"
+        android:layout_height="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/back_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="22dp"
+            android:layout_marginStart="30dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="Supermarkets"
+            android:textColor="#ffff"
+            android:textSize="20sp"
+            android:id="@+id/fav_hd_tv"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/back_img"
+            app:layout_constraintStart_toEndOf="@id/back_img"
+            app:layout_constraintTop_toTopOf="@id/back_img">
+
+        </TextView>
+
+        <ImageView
+            android:id="@+id/cart_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:src="@drawable/ic_cart"
+            app:layout_constraintBottom_toBottomOf="@+id/search_img"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/search_img">
+
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/search_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/ic_search"
+            app:layout_constraintBottom_toBottomOf="@+id/fav_hd_tv"
+            app:layout_constraintEnd_toStartOf="@+id/cart_img"
+            app:layout_constraintTop_toTopOf="@+id/fav_hd_tv"
+            app:layout_constraintVertical_bias="0.416">
+
+        </ImageView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.budiyev.android.codescanner.CodeScannerView
+        android:id="@+id/scanner_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:autoFocusButtonColor="@android:color/white"
+        app:autoFocusButtonVisible="true"
+        app:flashButtonColor="@android:color/white"
+        app:flashButtonVisible="true"
+        app:frameAspectRatioHeight="1"
+        app:frameAspectRatioWidth="1"
+        app:frameColor="@android:color/white"
+        app:frameCornersRadius="0dp"
+        app:frameCornersSize="50dp"
+        app:frameSize="0.75"
+        app:frameThickness="2dp"
+        app:frameVerticalBias="0.5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/qr_toolbar"
+        app:maskColor="#77000000" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/loadingView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:lottie_fileName="loadinganimation.json"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true">
+
+    </com.airbnb.lottie.LottieAnimationView>
+</androidx.constraintlayout.widget.ConstraintLayout>

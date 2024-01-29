@@ -51,7 +51,8 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="View Profile"
+                android:text="Edit Profile"
+                android:id="@+id/tvEditProfile"
                 android:textSize="16sp"
                 android:textColor="#000AFF"
                 app:layout_constraintStart_toStartOf="@id/userName_tv"

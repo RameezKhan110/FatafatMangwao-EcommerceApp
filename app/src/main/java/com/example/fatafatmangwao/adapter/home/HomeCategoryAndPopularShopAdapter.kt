@@ -84,7 +84,7 @@ class HomeCategoryAndPopularShopAdapter(val listener: ClickListeners) :
         fun bind(item: List<PopularShop>) {
             binding.apply {
                 val adapter = HomePopularShopsAdapter()
-                rvList.layoutManager = GridLayoutManager(binding.root.context, 3)
+                rvList.layoutManager = GridLayoutManager(binding.root.context, 2)
                 rvList.adapter = adapter
                 adapter.submitList(item)
             }
@@ -97,7 +97,9 @@ class HomeCategoryAndPopularShopAdapter(val listener: ClickListeners) :
 
         fun bind(item: HomeVerticalRVModel.SupermarketItemModel) {
             binding.apply {
-
+                btnViewAll.setOnClickListener {
+                    listener.onItemClick(ListActionTypeClickListener.OnQRCardClicked(true))
+                }
             }
 
         }

@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.fatafatmangwao.R
-import com.example.fatafatmangwao.activities.MapsActivity
 import com.example.fatafatmangwao.utils.Extensions.showToast
 import com.example.fatafatmangwao.utils.Resource
 import com.example.fatafatmangwao.viewmodel.ActivityViewModel

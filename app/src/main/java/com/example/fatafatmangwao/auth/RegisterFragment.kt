@@ -1,9 +1,11 @@
 package com.example.fatafatmangwao.auth
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewDebug.IntToString
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -25,6 +27,9 @@ class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
     private val activityViewModel: ActivityViewModel by activityViewModels()
+    private lateinit var userName: String
+    private lateinit var userEmail: String
+    private lateinit var userPassword: String
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,7 +57,6 @@ class RegisterFragment : Fragment() {
 
                     is Resource.Success -> {
                         progressBar.visibility = View.GONE
-                        findNavController().navigate(R.id.action_registerFragment_to_verifyOtpFragment)
                         rootLayout.showSnackBar(
                             "Welcome $",
                             Snackbar.LENGTH_INDEFINITE
@@ -62,12 +66,20 @@ class RegisterFragment : Fragment() {
                         it.data?.token?.let { token ->
                             Extensions.storeUserToken(requireContext(), token)
                         }
+                        userName = etUsername.text.toString().trim()
+                        userEmail = etEmail.text.toString().trim()
+                        userPassword = etPassword.text.toString().trim()
+                        val user = User(userName, userEmail, userPassword)
+                        Extensions.saveUserDetails(requireContext(), user)
+                        findNavController().navigate(R.id.action_registerFragment_to_verifyOtpFragment)
+
                     }
                 }
             }
         }
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observe()
@@ -82,9 +94,9 @@ class RegisterFragment : Fragment() {
 
         binding.signupBtn.setOnClickListener {
             binding.apply {
-                val userName = etUsername.text.toString().trim()
-                val userEmail = etEmail.text.toString().trim()
-                val userPassword = etPassword.text.toString().trim()
+                userName = etUsername.text.toString().trim()
+                userEmail = etEmail.text.toString().trim()
+                userPassword = etPassword.text.toString().trim()
                 val userConfirmPassword = etConfirmPassword.text.toString().trim()
 
                 if (userPassword == userConfirmPassword) {

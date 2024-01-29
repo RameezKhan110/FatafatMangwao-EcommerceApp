@@ -27,9 +27,16 @@ class ConfirmOrderAdapter :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Cart) {
-            binding.apply{
+            binding.apply {
                 binding.tvItemName
-                Glide.with(binding.root.context).load(Extensions.getImageUrl(item.images.first())).into(ivItemImage)
+                if (item.imageDrawable != null) {
+                    ivItemImage.setImageResource(item.imageDrawable)
+                } else {
+                    Glide.with(binding.root.context)
+                        .load(item.images?.let { Extensions.getImageUrl(it.first()) })
+                        .into(ivItemImage)
+
+                }
                 binding.tvItemName.text = item.title
                 binding.tvItemQuantity.text = item.quantity.toString()
                 binding.tvItemPrice.text = item.price.toString()
