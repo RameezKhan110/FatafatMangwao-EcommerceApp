@@ -86,7 +86,7 @@ class VerifyOtpFragment : Fragment() {
 
                     is Resource.Success -> {
                         progressBar.visibility = View.GONE
-                        findNavController().navigate(R.id.action_verifyOtpFragment_to_homeFragment)
+                        findNavController().navigate(R.id.splashFragment)
                         Log.d("TAG", "token on verify: ${it.data?.token}")
                         it.data?.token?.let { token ->
                             Extensions.storeUserToken(requireContext(), token)

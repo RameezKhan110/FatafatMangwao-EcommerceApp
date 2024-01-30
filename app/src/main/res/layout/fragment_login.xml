@@ -137,7 +137,7 @@
             android:layout_marginHorizontal="49dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/progressBar">
+            app:layout_constraintTop_toBottomOf="@+id/loadingView">
 
         </TextView>
 
@@ -285,17 +285,19 @@
             app:layout_constraintStart_toStartOf="@+id/google_ll"
             app:layout_constraintTop_toBottomOf="@id/google_ll" />
 
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/loadingView"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="@id/pass_ll"
             app:layout_constraintEnd_toEndOf="@id/pass_ll"
             app:layout_constraintTop_toBottomOf="@id/pass_ll"
-            android:layout_marginTop="20dp"
-            android:id="@+id/progressBar">
+            app:lottie_fileName="loadinganimation.json"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true">
 
-        </ProgressBar>
+        </com.airbnb.lottie.LottieAnimationView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
@@ -18,6 +19,7 @@ import com.example.fatafatmangwao.model.specific_product.Product
 import com.example.fatafatmangwao.utils.ClickListeners
 import com.example.fatafatmangwao.utils.Extensions
 import com.example.fatafatmangwao.utils.Extensions.gone
+import com.example.fatafatmangwao.utils.Extensions.showToast
 import com.example.fatafatmangwao.utils.ListActionTypeClickListener
 import com.example.fatafatmangwao.utils.Resource
 import com.example.fatafatmangwao.viewmodel.ActivityViewModel
@@ -134,16 +136,23 @@ class UserSpecificProductFragment : Fragment(), ClickListeners {
             ViewModelObservers.addToCartObserver.observe(viewLifecycleOwner) {
                 when (it) {
                     is Resource.Error -> {
-                        Log.d("TAG", "cart error ${it.message}")
+                        loadingView.visibility = View.GONE
+                        scrollView2.visibility = View.VISIBLE
+                        loadingView.cancelAnimation()
 
                     }
 
                     is Resource.Loading -> {
-
+                        loadingView.visibility = View.VISIBLE
+                        scrollView2.visibility = View.GONE
+                        loadingView.playAnimation()
                     }
 
                     is Resource.Success -> {
-                        Log.d("TAG", "cart message: ${it.data?.message}")
+                        loadingView.visibility = View.GONE
+                        scrollView2.visibility = View.VISIBLE
+                        loadingView.cancelAnimation()
+                        requireContext().showToast("Item added to cart", Toast.LENGTH_SHORT)
                     }
                 }
             }

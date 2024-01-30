@@ -16,6 +16,8 @@ import com.example.fatafatmangwao.viewmodel.ActivityViewModel
 import com.example.fatafatmangwao.databinding.FragmentLoginBinding
 import com.example.fatafatmangwao.model.User
 import com.example.fatafatmangwao.utils.Extensions
+import com.example.fatafatmangwao.utils.Extensions.gone
+import com.example.fatafatmangwao.utils.Extensions.visible
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers
 import com.example.fatafatmangwao.viewmodel.ViewModelObservers.loginUserObserver
 import github.com.st235.lib_expandablebottombar.ExpandableBottomBar
@@ -32,7 +34,7 @@ class LoginFragment : Fragment() {
         mBinding = FragmentLoginBinding.inflate(layoutInflater, container, false)
 
         if(Extensions.getUserToken(requireContext()).isNullOrEmpty().not()) {
-            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+            findNavController().navigate(R.id.splashFragment)
 //            startActivity(Intent(requireActivity(), MapsActivity::class.java))
 
         }
@@ -63,20 +65,20 @@ class LoginFragment : Fragment() {
             loginUserObserver.observe(viewLifecycleOwner) {
                 when(it) {
                     is Resource.Error -> {
-                        progressBar.visibility = View.GONE
+                        loadingView.gone()
                         it.message?.let { it1 -> requireContext().showToast(it1, Toast.LENGTH_SHORT) }
                     }
                     is Resource.Loading -> {
-                        progressBar.visibility = View.VISIBLE
+                        loadingView.visible()
                     }
                     is Resource.Success -> {
-                        progressBar.visibility = View.GONE
+                        loadingView.gone()
                         it.data?.token?.let { it1 ->
                             Extensions.storeUserToken(requireContext(), it1)
                         }
                         requireContext().showToast("Logging In", Toast.LENGTH_SHORT)
 //                        startActivity(Intent(requireActivity(), MapsActivity::class.java))
-                        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                        findNavController().navigate(R.id.splashFragment)
                     }
                 }
             }
