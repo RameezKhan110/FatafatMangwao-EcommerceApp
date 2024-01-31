@@ -47,7 +47,7 @@ class HomeListAdapter(private val listener: ClickListeners) :
 
         fun bind(item: HomeHorizontalRVModel.BannerModelItem) {
             binding.apply {
-                val adapter = HomeBannersAdapter()
+                val adapter = HomeBannersAdapter(this@HomeListAdapter)
                 rvList.layoutManager = LinearLayoutManager(binding.root.context, LinearLayoutManager.HORIZONTAL, false)
                 rvList.adapter = adapter
 
@@ -119,6 +119,11 @@ class HomeListAdapter(private val listener: ClickListeners) :
             is ListActionTypeClickListener.OnQRCardClicked -> {
                 listener.onItemClick(ListActionTypeClickListener.OnQRCardClicked(clickListener.fromQR))
             }
+
+            is ListActionTypeClickListener.OnBannerCLicked -> {
+                listener.onItemClick(ListActionTypeClickListener.OnBannerCLicked(clickListener.id))
+            }
+
             else -> {
 
             }

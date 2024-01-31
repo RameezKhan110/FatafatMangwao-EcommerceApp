@@ -10,5 +10,7 @@ sealed class ListActionTypeClickListener {
     data class OnHeadingClicked(val heading: String): ListActionTypeClickListener()
     data class OnCartPlusOrMinusClicked(val id: String, val method: String): ListActionTypeClickListener()
     data class OnQRCardClicked(val fromQR: Boolean = false): ListActionTypeClickListener()
+
+    data class OnBannerCLicked(val id: String): ListActionTypeClickListener()
     data class OnSupermarketClicked(val supermarketId: String, val fromSupermarket: Boolean) : ListActionTypeClickListener()
 }

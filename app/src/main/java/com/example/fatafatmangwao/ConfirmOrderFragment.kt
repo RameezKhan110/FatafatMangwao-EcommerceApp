@@ -29,6 +29,7 @@ class ConfirmOrderFragment : Fragment() {
     private val activityViewModel: ActivityViewModel by activityViewModels()
     private val confirmOrderAdapter = ConfirmOrderAdapter()
     private val sharedViewModel: SharedViewModel by activityViewModels()
+    private var fromQR: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,9 +48,9 @@ class ConfirmOrderFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val bundle = arguments
-        val fromQR = bundle?.getBoolean("fromQR")
+        fromQR = bundle?.getBoolean("fromQR") == true
         Log.d("TAG", "cart size ${sharedViewModel.supermarketCartItems.size}")
-        if (fromQR == true) {
+        if (fromQR) {
             confirmOrderAdapter.submitList(sharedViewModel.supermarketCartItems)
         } else {
             activityViewModel.getCart()
@@ -58,13 +59,7 @@ class ConfirmOrderFragment : Fragment() {
         setUpRecyclerView()
         observe()
         mBinding.btnPlaceOrder.setOnClickListener {
-            if(fromQR == true) {
-
-            }
             activityViewModel.placeOrder()
-        }
-        if(fromQR == true) {
-            mBinding.btnPlaceOrder.text = "Pay Via Card"
         }
     }
 
@@ -122,9 +117,11 @@ class ConfirmOrderFragment : Fragment() {
 
     private fun setData(data: Data) {
         mBinding.apply {
+
             tvSubTotal.text = data.subTotal.toString()
             tvDc.text = data.delivery.toString()
             tvTotalAmount.text = data.total.toString()
+
         }
     }
 

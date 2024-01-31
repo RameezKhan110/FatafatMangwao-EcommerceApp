@@ -55,6 +55,9 @@ class UserCartFragment : Fragment(), ClickListeners {
 
         mBinding.apply {
 
+            tvAddMoreItems.setOnClickListener {
+                findNavController().navigate(R.id.userSpecificShopFragment)
+            }
             btnCashOnDelivery.setOnClickListener {
                 findNavController().navigate(R.id.action_userCartFragment_to_confirmOrderFragment)
             }

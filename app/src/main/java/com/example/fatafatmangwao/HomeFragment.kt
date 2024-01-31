@@ -155,6 +155,10 @@ class HomeFragment : Fragment(), ClickListeners {
                 bundle.putBoolean("fromQR", clickListener.fromQR)
                 findNavController().navigate(R.id.userPopularShopsFragment, bundle)
             }
+
+            is ListActionTypeClickListener.OnBannerCLicked -> {
+                findNavController().navigate(R.id.userCategoryFragment)
+            }
             else -> {
 
             }

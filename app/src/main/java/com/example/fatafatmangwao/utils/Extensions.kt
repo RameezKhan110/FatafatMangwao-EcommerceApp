@@ -79,7 +79,7 @@ object Extensions {
     }
 
     fun getImageUrl(imageUrl: String): String {
-        val imageEndPoint = imageUrl.substring(16)
+        val imageEndPoint = imageUrl.substring(21)
         return Constants.IMAGE_BASE_URL + imageEndPoint
     }
 

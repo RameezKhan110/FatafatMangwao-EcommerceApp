@@ -60,6 +60,8 @@ class QRScannerFragment : Fragment() {
                                 sharedViewModel.supermarketCartItems.add(Cart(title = "Italiano cuisine original black pepper, 100 grams", imageDrawable = R.drawable.blackpepper, quantity = 1, price = 400))
                             } else if(productId == "2") {
                                 sharedViewModel.supermarketCartItems.add(Cart(title = "Sabroso pure white chicken, 1kg", imageDrawable = R.drawable.food, quantity = 1, price = 400))
+                            } else if(productId == "3") {
+                                sharedViewModel.supermarketCartItems.add(Cart(title = "Knorr noodles, spicy in favlour", imageDrawable = R.drawable.food, quantity = 1, price = 400))
                             }
                         } else {
                             requireContext().showToast("You cant add this item into cart", Toast.LENGTH_SHORT)

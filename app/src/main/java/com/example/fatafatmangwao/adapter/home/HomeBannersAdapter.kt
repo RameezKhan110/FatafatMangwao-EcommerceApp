@@ -9,9 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.fatafatmangwao.databinding.DiscountCardLayoutBinding
 import com.example.fatafatmangwao.model.home.Banners
+import com.example.fatafatmangwao.utils.ClickListeners
 import com.example.fatafatmangwao.utils.Extensions
+import com.example.fatafatmangwao.utils.ListActionTypeClickListener
 
-class HomeBannersAdapter :
+class HomeBannersAdapter(private val listener: ClickListeners) :
     ListAdapter<Banners, RecyclerView.ViewHolder>(DiffUtil()) {
 
     var count: Int = 0
@@ -39,6 +41,13 @@ class HomeBannersAdapter :
                 tvDiscountPercent.text = "70%"
                 Glide.with(binding.root.context).load(item.banner?.let { Extensions.getImageUrl(it) }).into(ivItem)
                 tvShopName.text = "Black and Brown"
+                ivItem.setOnClickListener {
+                    item._id?.let { it1 ->
+                        ListActionTypeClickListener.OnBannerCLicked(
+                            it1
+                        )
+                    }?.let { it2 -> listener.onItemClick(it2) }
+                }
             }
 
         }
